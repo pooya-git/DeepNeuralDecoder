@@ -1,2 +1,2 @@
-# Decoding Errors in Steane Code
-ML-Based Quantum Error Decoder
+# ML-based Fault Tolerant Decoders
+Goal: To perform QECC decoding at the circuit level.
