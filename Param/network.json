@@ -1,0 +1,58 @@
+{
+  "Syn12": {
+    "dim": 6, 
+    "edges": {
+      "H": {
+        "w_std": 0.01, 
+        "b_std": 0.0
+      }
+    }, 
+    "type": "input"
+  }, 
+  "H": {
+    "dim": 30, 
+    "edges": {
+      "Err3": {
+        "w_std": 0.18257, 
+        "b_std": 0.0
+      }, 
+      "Err4": {
+        "w_std": 0.18257, 
+        "b_std": 0.0
+      }
+    }, 
+    "type": "hidden"
+  }, 
+  "Err3": {
+    "dim": 128, 
+    "edges": {
+    }, 
+    "type": "output"
+  }, 
+  "Syn4": {
+    "dim": 3, 
+    "edges": {
+      "Err4": {
+        "w_std": 0.01, 
+        "b_std": 0.0
+      }
+    }, 
+    "type": "input"
+  }, 
+  "Syn3": {
+    "dim": 3, 
+    "edges": {
+      "Err3": {
+        "w_std": 0.01, 
+        "b_std": 0.0
+      }
+    }, 
+    "type": "input"
+  }, 
+  "Err4": {
+    "dim": 128, 
+    "edges": {
+    }, 
+    "type": "output"
+  }
+}

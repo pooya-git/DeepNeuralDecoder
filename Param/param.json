@@ -11,10 +11,5 @@
     "iterations": 10, 
     "momentum": 0.9, 
     "decay": 0.99
-  }, 
-  "nn": {
-    "h1 size": 30, 
-    "h2 size": 15, 
-    "init w-std": 0.01
   }
 }

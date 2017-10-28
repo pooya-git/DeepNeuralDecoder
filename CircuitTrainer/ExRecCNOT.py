@@ -80,7 +80,7 @@ def get_data(filename):
     err_Z = np.matrix(err_Z).astype(np.float32)
     return syn_X, err_X, syn_Z, err_Z, p, lu_avg, lu_std, data_size
 
-def train(filename, param):
+def train(filename, param, nn):
 
     test_fraction= param['data']['test fraction']
     batch_size= param['data']['batch size']
@@ -88,9 +88,6 @@ def train(filename, param):
     num_iterations= param['opt']['iterations']
     momentum_val= param['opt']['momentum']
     decay_rate= param['opt']['decay']
-    num_h1= param['nn']['h1 size']
-    num_h2= param['nn']['h2 size']
-    init_w_std= param['nn']['init w-std']
     verbose = param['usr']['verbose']
 
     output= {}
@@ -126,58 +123,52 @@ def train(filename, param):
     output['opt']['batch size']= batch_size
     output['opt']['number of batches']= n_batches
 
+
     # TF IO placehoders
-    Syn12 = tf.placeholder(tf.float32, shape=(None, 6), name='Syn12')
-    Syn3 = tf.placeholder(tf.float32, shape=(None, 3), name='Syn3')
-    Syn4 = tf.placeholder(tf.float32, shape=(None, 3), name='Syn3')
-    Err3 = tf.placeholder(tf.float32, shape=(None, K), name='Err3')
-    Err4 = tf.placeholder(tf.float32, shape=(None, K), name='Err4')
+    In= {}
+    Out= {}
+    for key in nn.keys():
+        if nn[key]['type'] == 'input':
+            In[key]= tf.placeholder(tf.float32, \
+                shape= (None, nn[key]['dim']), name= key)
+    for key in nn.keys():
+        if nn[key]['type'] == 'output':
+            Out[key]= tf.placeholder(tf.float32, \
+                shape= (None, nn[key]['dim']), name= key)
 
-    # TF weights initial values
-    W12 = np.random.randn(6, num_h1) * init_w_std
-    W1h = np.random.randn(num_h1, K) / np.sqrt(num_h1)
-    W2h = np.random.randn(num_h1, K) / np.sqrt(num_h1)
-    W3 = np.random.randn(3, K) * init_w_std
-    W4 = np.random.randn(3, K) * init_w_std
-
-    # TF biases initial values
-    b12 = np.zeros(num_h1)    
-    b1h = np.zeros(K)
-    b2h = np.zeros(K)
-    b3 = np.zeros(K)  
-    b4 = np.zeros(K)  
-
-    # TF weights and biases variables
-    W12 = tf.Variable(W12.astype(np.float32))
-    b12 = tf.Variable(b12.astype(np.float32))
-    W1h = tf.Variable(W1h.astype(np.float32))
-    b1h = tf.Variable(b1h.astype(np.float32))
-    W2h = tf.Variable(W2h.astype(np.float32))
-    b2h = tf.Variable(b2h.astype(np.float32))
-    W3 = tf.Variable(W3.astype(np.float32))
-    b3 = tf.Variable(b3.astype(np.float32))
-    W4 = tf.Variable(W4.astype(np.float32))
-    b4 = tf.Variable(b4.astype(np.float32))
+    # TF weight and bias variables
+    W= {}
+    b= {}
+    for beg in nn.keys():
+        for end in nn[beg]['edges'].keys():
+            init_biases= np.zeros(nn[end]['dim'])
+            init_weights= np.random.randn(nn[beg]['dim'], nn[end]['dim']) * \
+                nn[beg]['edges'][end]['w_std']
+            b[(beg, end)]= tf.Variable(init_biases.astype(np.float32))
+            W[(beg, end)]= tf.Variable(init_weights.astype(np.float32))
 
     # Feedforward rules
-    Z1 = tf.nn.relu(tf.matmul(Syn12, W12) + b12)
-    Err3_ish = tf.matmul(Z1, W1h) + b1h + tf.matmul(Syn3, W3) + b3
-    Err4_ish = tf.matmul(Z1, W2h) + b2h + tf.matmul(Syn4, W4) + b4
+    H = tf.nn.relu(tf.matmul(In['Syn12'], W[('Syn12', 'H')]) +\
+        b[('Syn12', 'H')])
+    Err3 = tf.matmul(H, W[('H', 'Err3')]) + b[('H', 'Err3')] \
+        + tf.matmul(In['Syn3'], W[('Syn3', 'Err3')]) + b[('Syn3', 'Err3')]
+    Err4 = tf.matmul(H, W[('H', 'Err4')]) + b[('H', 'Err4')] \
+        + tf.matmul(In['Syn4'], W[('Syn4', 'Err4')]) + b[('Syn4', 'Err4')]
     
     # softmax_cross_entropy_with_logits take in the "logits"
     # if you wanted to know the actual output of the neural net,
     # you could pass "Yish" into tf.nn.softmax(logits)
     cost = tf.reduce_sum(\
-        tf.nn.softmax_cross_entropy_with_logits(logits=Err3_ish, labels=Err3)\
-        + tf.nn.softmax_cross_entropy_with_logits(logits=Err4_ish, labels=Err4))
+    tf.nn.softmax_cross_entropy_with_logits(logits=Err3, labels=Out['Err3'])\
+    + tf.nn.softmax_cross_entropy_with_logits(logits=Err4, labels=Out['Err4']))
 
     # Choose an optimizer
     train_op = tf.train.RMSPropOptimizer(learning_rate, \
         decay=decay_rate, momentum=momentum_val).minimize(cost)
 
     # This is the predict of the network in the active mode
-    predict_Err3 = tf.argmax(Err3_ish, 1)
-    predict_Err4 = tf.argmax(Err4_ish, 1)
+    predict_Err3 = tf.argmax(Err3, 1)
+    predict_Err4 = tf.argmax(Err4, 1)
 
     costs = []
     init = tf.global_variables_initializer()
@@ -199,28 +190,36 @@ def train(filename, param):
                 Err4_batch = trainX.err4_ind[beg : end,]
 
                 session.run(train_op, \
-                    feed_dict={ Syn12: Syn12_batch, \
-                                Syn3: Syn3_batch, Syn4: Syn4_batch, \
-                                Err3: Err3_batch, Err4: Err4_batch})
+                    feed_dict={ In['Syn12']: Syn12_batch, \
+                                In['Syn3']: Syn3_batch, In['Syn4']: Syn4_batch,\
+                                Out['Err3']:Err3_batch, Out['Err4']:Err4_batch})
 
             # do a test in the active mode
             if (verbose):
                 test_cost = session.run(cost, \
-                    feed_dict={ Syn12: Syn12_batch, \
-                                Syn3: Syn3_batch, Syn4: Syn4_batch, \
-                                Err3: Err3_batch, Err4: Err4_batch})
+                    feed_dict={ In['Syn12']: Syn12_batch, \
+                                In['Syn3']: Syn3_batch, In['Syn4']: Syn4_batch,\
+                                Out['Err3']:Err3_batch, Out['Err4']:Err4_batch})
                 costs.append(test_cost)
                 print("Iteration= ", i, ", Cost= ", test_cost)
                 sys.stdout.flush()
 
         ErrX3_predict = session.run(predict_Err3, \
-            feed_dict= {Syn12: testX.syn12, Syn3: testX.syn3, Syn4: testX.syn4})
+            feed_dict= {In['Syn12']: testX.syn12, \
+                        In['Syn3']: testX.syn3, \
+                        In['Syn4']: testX.syn4})
         ErrX4_predict = session.run(predict_Err4, \
-            feed_dict= {Syn12: testX.syn12, Syn3: testX.syn3, Syn4: testX.syn4})
+            feed_dict= {In['Syn12']: testX.syn12, \
+                        In['Syn3']: testX.syn3, \
+                        In['Syn4']: testX.syn4})
         ErrZ3_predict = session.run(predict_Err3, \
-            feed_dict= {Syn12: testZ.syn12, Syn3: testZ.syn3, Syn4: testZ.syn4})
+            feed_dict= {In['Syn12']: testZ.syn12, \
+                        In['Syn3']: testZ.syn3, \
+                        In['Syn4']: testZ.syn4})
         ErrZ4_predict = session.run(predict_Err4, \
-            feed_dict= {Syn12: testZ.syn12, Syn3: testZ.syn3, Syn4: testZ.syn4})
+            feed_dict= {In['Syn12']: testZ.syn12, \
+                        In['Syn3']: testZ.syn3, \
+                        In['Syn4']: testZ.syn4})
 
         fault = error_scale * num_logical_fault( \
             ErrX3_predict, ErrX4_predict, ErrZ3_predict, ErrZ4_predict,\

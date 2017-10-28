@@ -10,6 +10,7 @@ def poly(x, a, b):
     return a * np.power(x, b)
 
 def plot_results(filename):
+
 	with open(filename) as data_file:
 	    res = json.load(data_file)
 	
