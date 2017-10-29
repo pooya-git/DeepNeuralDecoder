@@ -1,9 +1,10 @@
+# -------------------------------------------------------------------------
+# 
+#    Executed the circuit trainer for all noise models.
 #
-# Author: Pooya Ronagh (2017)
-# All rights reserved.
-#
-# 2-hidden layer NN in TensorFlow
-#
+#    Copyright (C) 2017 Pooya Ronagh
+# 
+# ------------------------------------------------------------------------
 
 import sys
 import os

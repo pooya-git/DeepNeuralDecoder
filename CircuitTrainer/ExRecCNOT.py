@@ -1,9 +1,10 @@
+# ------------------------------------------------------------------------------
+# 
+#    CNOTExRec trainer. Uses a feedforward network with latent input layers.
 #
-# Author: Pooya Ronagh (2017)
-# All rights reserved.
-#
-# 2-hidden layer NN in TensorFlow for the ExRecCNOT
-#
+#    Copyright (C) 2017 Pooya Ronagh
+# 
+# ------------------------------------------------------------------------------
 
 from builtins import range
 import numpy as np
@@ -115,14 +116,12 @@ def train(filename, param, nn):
     testZ = ioData(SynZ[-test_size:,], ErrZ[-test_size:,])
 
     N, _ = trainX.syn12.shape
-    _, K = trainX.err3_ind.shape
     n_batches = N // batch_size
 
     output['data']['total data size']= total_size
     output['data']['test set size']= test_size
     output['opt']['batch size']= batch_size
     output['opt']['number of batches']= n_batches
-
 
     # TF IO placehoders
     In= {}

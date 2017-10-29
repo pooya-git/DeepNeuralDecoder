@@ -2,3 +2,5 @@ local/*
 local:*
 .DS_Store
 *.pyc
+BayesOpt/*
+BayesOpt
