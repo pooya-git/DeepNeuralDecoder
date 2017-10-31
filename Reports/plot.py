@@ -14,13 +14,14 @@ def plot_results(filename):
 	with open(filename) as data_file:
 	    res = json.load(data_file)
 	
-	nn_fault= [elt['res']['nn'] for elt in res]
+	nn_fault_mean= [elt['res']['nn avg'] for elt in res]
+	nn_fault_std= [elt['res']['nn std']**2 for elt in res]
 	lu_fault_mean= [elt['res']['lu avg'] for elt in res]
 	lu_fault_std= [elt['res']['lu std'] for elt in res]
 	p= [elt['res']['p'] for elt in res]
 	p, lu_fault_mean= zip(*sorted(zip(p, lu_fault_mean)))
 	_, lu_fault_std= zip(*sorted(zip(p, lu_fault_std)))
-	_, nn_fault= zip(*sorted(zip(p, nn_fault)))
+	_, nn_fault_mean= zip(*sorted(zip(p, nn_fault_mean)))
 
 	fig = figure(figsize=(9, 6))
 	ax = fig.add_subplot(111)
@@ -40,7 +41,9 @@ def plot_results(filename):
 	ax.plot(p, lu_fault_mean, \
 		linestyle= 'None', marker= 'o', color= verydarkred, markersize= 3, \
 		label= 'Look up table')
-	plt.plot(p, nn_fault, \
+	# ax.errorbar(p, nn_fault_mean, yerr=nn_fault_std, \
+	# 	linestyle= 'None', color= darknavy, markersize=8, capsize=3)
+	plt.plot(p, nn_fault_mean, \
 		marker='o', linestyle = 'None', color= darknavy, markersize=3, \
 		label= 'Neural decoder')
 
@@ -50,7 +53,7 @@ def plot_results(filename):
 	ax.xaxis.grid(True, linestyle='-', which='minor', color='lightgrey')
 
 	lu_poly, _ = curve_fit(poly, p, lu_fault_mean)
-	nn_poly, _ = curve_fit(poly, p, nn_fault)
+	nn_poly, _ = curve_fit(poly, p, nn_fault_mean)
 
 	plt.plot(p, poly(p, *lu_poly), linestyle= '--', color= lightred)
 	plt.plot(p, poly(p, *nn_poly), linestyle= '--', color= lightnavy)

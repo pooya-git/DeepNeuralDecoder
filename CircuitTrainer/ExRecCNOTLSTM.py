@@ -20,13 +20,11 @@ G= np.matrix([[0,0,0,1,1,1,1], \
 class ioData:
 
     def __init__(self, syn, err):
-        self.syn12 = syn[:,0:6]
-        self.syn3 = syn[:,6:9]
-        self.syn4 = syn[:,9:12]
+        self.syn = np.array([syn[:,0:6], syn[:,6:12]]).reshape(-1, 6, 2)
         self.err3 = err[:,0]
         self.err4 = err[:,1]
-        self.err3_ind = y2indicator(self.err3, 2**7)
-        self.err4_ind = y2indicator(self.err4, 2**7)
+        self.err3_ind = y2indicator(self.err3, 2**7).reshape(-1, 128)
+        self.err4_ind = y2indicator(self.err4, 2**7).reshape(-1, 128)
 
 def find_logical_fault(recovery, err):
 
@@ -45,16 +43,16 @@ def num_logical_fault(ErrX3_predict, ErrX4_predict, \
                       ErrZ3_predict, ErrZ4_predict,\
                       ErrX3_test, ErrX4_test, ErrZ3_test, ErrZ4_test):
 
-    error_counter = 0
+    error_counter = []
     for i in range(len(ErrX3_predict)):
 
         X3_fault= find_logical_fault(ErrX3_predict[i], ErrX3_test[i])
         X4_fault= find_logical_fault(ErrX4_predict[i], ErrX4_test[i])
         Z3_fault= find_logical_fault(ErrZ3_predict[i], ErrZ3_test[i])
         Z4_fault= find_logical_fault(ErrZ4_predict[i], ErrZ4_test[i])
-        error_counter+= (X3_fault or X4_fault or Z3_fault or Z4_fault)
-
-    return 1.0*error_counter/len(ErrX3_predict)
+        error_counter.append(X3_fault or X4_fault or Z3_fault or Z4_fault)
+    
+    return np.mean(error_counter), np.std(error_counter)
 
 def get_data(filename):
 
@@ -71,17 +69,17 @@ def get_data(filename):
         data_size= int(data_size) 
         for line in file.readlines()[1:]:
             line_list= line.split(' ')
-            syn_X.append([bit for bit in line_list[0]])
-            syn_Z.append([bit for bit in line_list[2]])
-            err_X.append([int(line_list[1][0:7],2), int(line_list[1][7:14],2)])
-            err_Z.append([int(line_list[3][0:7],2), int(line_list[3][7:14],2)])
-    syn_X = np.matrix(syn_X).astype(np.int8)
-    err_X = np.matrix(err_X).astype(np.float32)
-    syn_Z = np.matrix(syn_Z).astype(np.int8)
-    err_Z = np.matrix(err_Z).astype(np.float32)
+            syn_X.append([bit for bit in ''.join(line_list[0:4])])
+            err_X.append([int(err,2) for err in line_list[4:8]])
+            syn_Z.append([bit for bit in ''.join(line_list[8:12])])
+            err_Z.append([int(err,2) for err in line_list[12:16]])
+    syn_X = np.array(syn_X).astype(np.int8)
+    err_X = np.array(err_X).astype(np.float32)
+    syn_Z = np.array(syn_Z).astype(np.int8)
+    err_Z = np.array(err_Z).astype(np.float32)
     return syn_X, err_X, syn_Z, err_Z, p, lu_avg, lu_std, data_size
 
-def train(filename, param, nn):
+def train(filename, param, graph):
 
     test_fraction= param['data']['test fraction']
     batch_size= param['data']['batch size']
@@ -115,7 +113,7 @@ def train(filename, param, nn):
     testX = ioData(SynX[-test_size:,], ErrX[-test_size:,])
     testZ = ioData(SynZ[-test_size:,], ErrZ[-test_size:,])
 
-    N, _ = trainX.syn12.shape
+    N, _, num_inputs = trainX.syn.shape
     n_batches = N // batch_size
 
     output['data']['total data size']= total_size
@@ -124,50 +122,44 @@ def train(filename, param, nn):
     output['opt']['number of batches']= n_batches
 
     # TF IO placehoders
-    In= {}
-    Out= {}
-    for key in nn.keys():
-        if nn[key]['type'] == 'input':
-            In[key]= tf.placeholder(tf.float32, \
-                shape= (None, nn[key]['dim']), name= key)
-    for key in nn.keys():
-        if nn[key]['type'] == 'output':
-            Out[key]= tf.placeholder(tf.float32, \
-                shape= (None, nn[key]['dim']), name= key)
+    num_inputs = 2
+    num_hidden = 30
+    num_outputs = 1
+    num_classes= 128
 
-    # TF weight and bias variables
-    W= {}
-    b= {}
-    for beg in nn.keys():
-        for end in nn[beg]['edges'].keys():
-            init_biases= np.zeros(nn[end]['dim'])
-            init_weights= np.random.randn(nn[beg]['dim'], nn[end]['dim']) * \
-                nn[beg]['edges'][end]['w_std']
-            b[(beg, end)]= tf.Variable(init_biases.astype(np.float32))
-            W[(beg, end)]= tf.Variable(init_weights.astype(np.float32))
+    tf.reset_default_graph()
 
-    # Feedforward rules
-    H = tf.nn.relu(tf.matmul(In['Syn12'], W[('Syn12', 'H')]) +\
-        b[('Syn12', 'H')])
-    Err3 = tf.matmul(H, W[('H', 'Err3')]) + b[('H', 'Err3')] \
-        + tf.matmul(In['Syn3'], W[('Syn3', 'Err3')]) + b[('Syn3', 'Err3')]
-    Err4 = tf.matmul(H, W[('H', 'Err4')]) + b[('H', 'Err4')] \
-        + tf.matmul(In['Syn4'], W[('Syn4', 'Err4')]) + b[('Syn4', 'Err4')]
-    
-    # softmax_cross_entropy_with_logits take in the "logits"
-    # if you wanted to know the actual output of the neural net,
-    # you could pass "Yish" into tf.nn.softmax(logits)
-    cost = tf.reduce_sum(\
-    tf.nn.softmax_cross_entropy_with_logits(logits=Err3, labels=Out['Err3'])\
-    + tf.nn.softmax_cross_entropy_with_logits(logits=Err4, labels=Out['Err4']))
+    In= tf.placeholder(tf.float32, [None, 6, 2])
+    Err3= tf.placeholder(tf.float32, [None, num_classes])
+    Err4= tf.placeholder(tf.float32, [None, num_classes])
+
+    LSTM3 = tf.contrib.rnn.BasicLSTMCell(num_hidden, forget_bias=1.0)
+    Out3, _ = tf.nn.dynamic_rnn(LSTM3, In, dtype=tf.float32)
+    init_biases= np.zeros(num_classes)
+    init_weights= np.random.randn(num_hidden, num_classes)
+    biases= tf.Variable(init_biases.astype(np.float32))
+    weights= tf.Variable(init_weights.astype(np.float32))
+    Err3ish= tf.matmul(Out3[:,-1], weights) + biases
+
+    LSTM4 = tf.contrib.rnn.BasicLSTMCell(num_hidden, forget_bias=1.0, reuse=True)
+    Out4, _ = tf.nn.dynamic_rnn(LSTM4, In, dtype=tf.float32)
+    init_biases= np.zeros(num_classes)
+    init_weights= np.random.randn(num_hidden, num_classes)
+    biases= tf.Variable(init_biases.astype(np.float32))
+    weights= tf.Variable(init_weights.astype(np.float32))
+    Err4ish= tf.matmul(Out4[:,-1], weights) + biases
+
+    cost= tf.reduce_sum(\
+          tf.nn.softmax_cross_entropy_with_logits(logits=Err3ish, labels=Err3)\
+        + tf.nn.softmax_cross_entropy_with_logits(logits=Err4ish, labels=Err4))
 
     # Choose an optimizer
-    train_op = tf.train.RMSPropOptimizer(learning_rate, \
+    train = tf.train.RMSPropOptimizer(learning_rate, \
         decay=decay_rate, momentum=momentum_val).minimize(cost)
 
     # This is the predict of the network in the active mode
-    predict_Err3 = tf.argmax(Err3, 1)
-    predict_Err4 = tf.argmax(Err4, 1)
+    predict_Err3 = tf.argmax(Err3ish, 1)
+    predict_Err4 = tf.argmax(Err4ish, 1)
 
     costs = []
     init = tf.global_variables_initializer()
@@ -182,48 +174,24 @@ def train(filename, param, nn):
                 beg= j * batch_size
                 end= j * batch_size + batch_size
                 
-                Syn12_batch = trainX.syn12[beg : end,]
-                Syn3_batch = trainX.syn3[beg : end,]
-                Syn4_batch = trainX.syn4[beg : end,]
+                Syn_batch = trainX.syn[beg : end,]
                 Err3_batch = trainX.err3_ind[beg : end,]
                 Err4_batch = trainX.err4_ind[beg : end,]
 
-                session.run(train_op, \
-                    feed_dict={ In['Syn12']: Syn12_batch, \
-                                In['Syn3']: Syn3_batch, In['Syn4']: Syn4_batch,\
-                                Out['Err3']:Err3_batch, Out['Err4']:Err4_batch})
+                session.run(train, \
+                feed_dict={ In: Syn_batch, Err3: Err3_batch, Err4: Err4_batch})
 
-            # do a test in the active mode
-            if (verbose):
-                test_cost = session.run(cost, \
-                    feed_dict={ In['Syn12']: Syn12_batch, \
-                                In['Syn3']: Syn3_batch, In['Syn4']: Syn4_batch,\
-                                Out['Err3']:Err3_batch, Out['Err4']:Err4_batch})
-                costs.append(test_cost)
-                print("Iteration= ", i, ", Cost= ", test_cost)
-                sys.stdout.flush()
+        ErrX3_predict = session.run(predict_Err3, feed_dict= {In: testX.syn})
+        ErrX4_predict = session.run(predict_Err4, feed_dict= {In: testX.syn})
+        ErrZ3_predict = session.run(predict_Err3, feed_dict= {In: testZ.syn})
+        ErrZ4_predict = session.run(predict_Err4, feed_dict= {In: testZ.syn})
 
-        ErrX3_predict = session.run(predict_Err3, \
-            feed_dict= {In['Syn12']: testX.syn12, \
-                        In['Syn3']: testX.syn3, \
-                        In['Syn4']: testX.syn4})
-        ErrX4_predict = session.run(predict_Err4, \
-            feed_dict= {In['Syn12']: testX.syn12, \
-                        In['Syn3']: testX.syn3, \
-                        In['Syn4']: testX.syn4})
-        ErrZ3_predict = session.run(predict_Err3, \
-            feed_dict= {In['Syn12']: testZ.syn12, \
-                        In['Syn3']: testZ.syn3, \
-                        In['Syn4']: testZ.syn4})
-        ErrZ4_predict = session.run(predict_Err4, \
-            feed_dict= {In['Syn12']: testZ.syn12, \
-                        In['Syn3']: testZ.syn3, \
-                        In['Syn4']: testZ.syn4})
-
-        fault = error_scale * num_logical_fault( \
+        avg, std= num_logical_fault( \
             ErrX3_predict, ErrX4_predict, ErrZ3_predict, ErrZ4_predict,\
             testX.err3, testX.err4, testZ.err3, testZ.err4)
 
-        output['res']['nn'] = fault
+        output['res']['nn avg'] = error_scale * avg
+        output['res']['nn std'] = np.sqrt(\
+            error_scale * (std**2 + avg**2 * (1 - error_scale)**2))
 
     return output

@@ -12,7 +12,7 @@ import json
 from time import localtime, strftime
 
 sys.path.insert(0, '../CircuitTrainer')
-import ExRecCNOT
+import ExRecCNOTLSTM as trainer
 
 
 if __name__ == '__main__':
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     datafolder= sys.argv[3]
 
     for filename in os.listdir(datafolder):
-        output.append(ExRecCNOT.train(datafolder + filename, param, network))
+        output.append(trainer.train(datafolder + filename, param, network))
 
     outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
     f = open('../Reports/' + outfilename + '.json', 'w')
