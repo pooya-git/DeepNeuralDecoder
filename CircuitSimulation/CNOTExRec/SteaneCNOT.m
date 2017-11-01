@@ -1008,7 +1008,7 @@ function result = CheckLogicalSteane(err)
 % returns 0 if err is a correctable error and 1 otherwise.
 
     % Compute the correction of the error
-    CorrectionFromError(err);
+    corr= CorrectionFromError(err);
 
     % Outputs 0 if err + corr is a stabilizer or 1 if it is a logical fault
     result = mod(sum(mod(err + corr, 2)), 2);

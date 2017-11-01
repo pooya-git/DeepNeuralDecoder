@@ -15,7 +15,7 @@ def plot_results(filename):
 	    res = json.load(data_file)
 	
 	nn_fault_mean= [elt['res']['nn avg'] for elt in res]
-	nn_fault_std= [elt['res']['nn std']**2 for elt in res]
+	nn_fault_std= [elt['res']['nn std'] for elt in res]
 	lu_fault_mean= [elt['res']['lu avg'] for elt in res]
 	lu_fault_std= [elt['res']['lu std'] for elt in res]
 	p= [elt['res']['p'] for elt in res]
@@ -31,7 +31,6 @@ def plot_results(filename):
 	# Pick some colors
 	lightnavy = matplotlib.colors.colorConverter.to_rgb('#0174DF') 
 	darknavy = matplotlib.colors.colorConverter.to_rgb('#084B8A')
-
 	lightred = matplotlib.colors.colorConverter.to_rgb('#F7819F') 
 	darkred = matplotlib.colors.colorConverter.to_rgb('#DF013A')
 	verydarkred = matplotlib.colors.colorConverter.to_rgb('#B40431') 
