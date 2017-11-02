@@ -12,7 +12,7 @@ import json
 from time import localtime, strftime
 
 sys.path.insert(0, '../CircuitTrainer')
-import ExRecCNOTLSTM as trainer
+import ExRecCNOTLabLSTM as trainer
 
 
 if __name__ == '__main__':

@@ -1,0 +1,154 @@
+[
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 1545
+    }, 
+    "res": {
+      "p": 0.0001, 
+      "nn avg": 5.999376941955354e-05, 
+      "lu avg": 4.69e-05, 
+      "lu std": 5.94775403244262e-06, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0001.txt", 
+      "test set size": 17174, 
+      "total data size": 171745, 
+      "fault scale": 0.0171745
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 3160
+    }, 
+    "res": {
+      "p": 0.0002, 
+      "nn avg": 0.0002496300251432802, 
+      "lu avg": 0.0001949, 
+      "lu std": 1.23933879171358e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0002.txt", 
+      "test set size": 35116, 
+      "total data size": 351161, 
+      "fault scale": 0.0351161
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 4574
+    }, 
+    "res": {
+      "p": 0.0003, 
+      "nn avg": 0.0006516985482156625, 
+      "lu avg": 0.0004309, 
+      "lu std": 1.83882080596937e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0003.txt", 
+      "test set size": 50824, 
+      "total data size": 508246, 
+      "fault scale": 0.0508246
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 6101
+    }, 
+    "res": {
+      "p": 0.0004, 
+      "nn avg": 0.0014311017642888906, 
+      "lu avg": 0.0007708, 
+      "lu std": 2.45920416328675e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0004.txt", 
+      "test set size": 67795, 
+      "total data size": 677951, 
+      "fault scale": 0.0677951
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 7560
+    }, 
+    "res": {
+      "p": 0.0005, 
+      "nn avg": 0.002231248590820582, 
+      "lu avg": 0.0012048, 
+      "lu std": 3.08534334937881e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0005.txt", 
+      "test set size": 84008, 
+      "total data size": 840085, 
+      "fault scale": 0.0840085
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 8902
+    }, 
+    "res": {
+      "p": 0.0006, 
+      "nn avg": 0.003153461697834263, 
+      "lu avg": 0.0016577, 
+      "lu std": 3.67705770595611e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0006.txt", 
+      "test set size": 98914, 
+      "total data size": 989144, 
+      "fault scale": 0.0989144
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 10300
+    }, 
+    "res": {
+      "p": 0.0007, 
+      "nn avg": 0.004341914911459629, 
+      "lu avg": 0.0022647, 
+      "lu std": 4.26115112000754e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0007.txt", 
+      "test set size": 114455, 
+      "total data size": 1144551, 
+      "fault scale": 0.1144551
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 100, 
+      "number of batches": 11822
+    }, 
+    "res": {
+      "p": 0.0008, 
+      "nn avg": 0.005913099263490219, 
+      "lu avg": 0.0030506, 
+      "lu std": 4.95892405632806e-05, 
+      "nn std": 0.0
+    }, 
+    "data": {
+      "path": "../TrainingData/CNOTDataLab/e-04/0.0008.txt", 
+      "test set size": 131362, 
+      "total data size": 1313628, 
+      "fault scale": 0.1313628
+    }
+  }
+]
