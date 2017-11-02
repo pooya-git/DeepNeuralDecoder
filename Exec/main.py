@@ -11,7 +11,7 @@ import os
 import json
 from time import localtime, strftime
 
-sys.path.insert(0, '../CircuitTrainer')
+sys.path.insert(0, '../Trainer')
 import ExRecCNOTLabLSTM as trainer
 
 
