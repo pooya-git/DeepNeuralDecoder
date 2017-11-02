@@ -20,9 +20,10 @@ G= np.matrix([[0,0,0,1,1,1,1], \
 class ioData:
 
     def __init__(self, syn, err):
-        self.syn = np.array([syn[:,0:6], syn[:,6:12]]).reshape(-1, 6, 2)
-        self.err3 = err[:,0]
-        self.err4 = err[:,1]
+        self.syn = np.array([syn[:,0:12]]).reshape(-1, 2, 6)
+        np.set_printoptions(threshold='nan')
+        self.err3 = err[:,2]
+        self.err4 = err[:,3]
         self.err3_ind = y2indicator(self.err3, 2**7).reshape(-1, 128)
         self.err4_ind = y2indicator(self.err4, 2**7).reshape(-1, 128)
 
@@ -52,8 +53,8 @@ def num_logical_fault(ErrX3_predict, ErrX4_predict, \
         Z4_fault= find_logical_fault(ErrZ4_predict[i], ErrZ4_test[i])
         error_counter.append(X3_fault or X4_fault or Z3_fault or Z4_fault)
     
-    return np.mean(error_counter), np.std(error_counter)
-
+    return np.mean(error_counter)
+    
 def get_data(filename):
 
     syn_X= []
@@ -129,7 +130,7 @@ def train(filename, param, graph):
 
     tf.reset_default_graph()
 
-    In= tf.placeholder(tf.float32, [None, 6, 2])
+    In= tf.placeholder(tf.float32, [None, 2, 6])
     Err3= tf.placeholder(tf.float32, [None, num_classes])
     Err4= tf.placeholder(tf.float32, [None, num_classes])
 
@@ -186,12 +187,11 @@ def train(filename, param, graph):
         ErrZ3_predict = session.run(predict_Err3, feed_dict= {In: testZ.syn})
         ErrZ4_predict = session.run(predict_Err4, feed_dict= {In: testZ.syn})
 
-        avg, std= num_logical_fault( \
+        avg= num_logical_fault( \
             ErrX3_predict, ErrX4_predict, ErrZ3_predict, ErrZ4_predict,\
             testX.err3, testX.err4, testZ.err3, testZ.err4)
 
         output['res']['nn avg'] = error_scale * avg
-        output['res']['nn std'] = np.sqrt(\
-            error_scale * (std**2 + avg**2 * (1 - error_scale)**2))
+        output['res']['nn std'] = 0
 
     return output
