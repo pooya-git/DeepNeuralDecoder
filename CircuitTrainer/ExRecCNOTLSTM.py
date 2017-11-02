@@ -67,7 +67,7 @@ def get_data(filename):
         lu_avg= float(lu_avg)
         lu_std= float(lu_std)
         data_size= int(data_size) 
-        for line in file.readlines()[1:]:
+        for line in file.readlines():
             line_list= line.split(' ')
             syn_X.append([bit for bit in ''.join(line_list[0:4])])
             err_X.append([int(err,2) for err in line_list[4:8]])
