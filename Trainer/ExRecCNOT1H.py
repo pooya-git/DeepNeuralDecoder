@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # 
-#    CNOTExRec trainer. Uses a feedforward network with latent input layers.
+#    CNOTExRec trainer. Uses a feedforward network with 1 hidden layer.
 #
 #    Copyright (C) 2017 Pooya Ronagh
 # 
