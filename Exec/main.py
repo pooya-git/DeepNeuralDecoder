@@ -12,7 +12,7 @@ import json
 from time import localtime, strftime
 
 sys.path.insert(0, 'Trainer')
-import ExRecCNOTLSTM as trainer
+import ExRecCNOTFullLSTMSeparable as trainer
 
 
 if __name__ == '__main__':
