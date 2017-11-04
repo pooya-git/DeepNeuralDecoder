@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # 
-#    CNOTExRec trainer. Uses a feedforward network with latent input layers.
+#    CNOTExRec trainer. Uses an RNN with two cells to train on X data.
 #
 #    Copyright (C) 2017 Pooya Ronagh
 # 
