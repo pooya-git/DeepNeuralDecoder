@@ -227,3 +227,35 @@ def train(filename, param, nn):
         output['res']['nn'] = fault
 
     return output
+
+'''
+__main__():
+  Args: 
+    json parameter file,
+    json network connectivity graph,
+    data folder.
+'''
+
+if __name__ == '__main__':
+
+    import sys
+    import os
+    import json
+    from time import localtime, strftime
+
+    with open(sys.argv[1]) as paramfile:
+        param = json.load(paramfile)
+    with open(sys.argv[2]) as networkfile:
+        network = json.load(networkfile)
+    datafolder= sys.argv[3]
+
+    output= []
+
+    for filename in os.listdir(datafolder):
+        output.append(train(datafolder + filename, param, network))
+
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open('Reports/' + outfilename + '.json', 'w')
+    f.write(json.dumps(output, indent=2))
+    f.close()
+

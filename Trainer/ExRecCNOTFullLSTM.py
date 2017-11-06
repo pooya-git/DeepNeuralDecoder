@@ -99,10 +99,10 @@ def get_data(filename):
         data[key]= np.array(data[key]).astype(np.float32)
     return data, p, lu_avg, lu_std, data_size
 
-def train(filename, param, raw_data, p, lu_avg, lu_std, data_size):
+def train(param, train_data, test_data, \
+          num_classes, num_inputs, input_size, n_batches):
 
     verbose= param['usr']['verbose']
-    test_fraction= param['data']['test fraction']
     batch_size= param['opt']['batch size']
     learning_rate= param['opt']['learning rate']
     num_iterations= param['opt']['iterations']
@@ -111,30 +111,6 @@ def train(filename, param, raw_data, p, lu_avg, lu_std, data_size):
     num_hidden= param['nn']['num hidden'] 
     W_std= param['nn']['W std'] 
     b_std= param['nn']['b std'] 
-
-    output= {}
-    output['data']= {}
-    output['opt']= {}
-    output['res']= {}
-
-    total_size= np.shape(raw_data['synX12'])[0]
-    test_size= int(test_fraction * total_size)
-    train_size= total_size - test_size
-    n_batches = train_size // batch_size
-    error_scale= 1.0*total_size/data_size
-
-    output['data']['path']= filename
-    output['data']['fault scale']= error_scale
-    output['data']['total data size']= total_size
-    output['data']['test set size']= test_size
-    output['opt']['batch size']= batch_size
-    output['opt']['number of batches']= n_batches
-
-    num_classes= 2**7
-    num_inputs= 2
-    input_size= 6
-
-    train_data, test_data = io_data_factory(raw_data, test_size)
 
     prediction= {}
     for key in error_keys:
@@ -173,12 +149,69 @@ def train(filename, param, raw_data, p, lu_avg, lu_std, data_size):
             prediction[key]= session.run(predict, \
                 feed_dict= {x: test_data.input[key]})
 
-    avg= num_logical_fault(prediction, test_data)
+    return num_logical_fault(prediction, test_data)
 
-    output['res']['p']= p
-    output['res']['lu avg']= lu_avg
-    output['res']['lu std']= lu_std
-    output['res']['nn avg'] = error_scale * avg
-    output['res']['nn std'] = 0
+'''
+__main__():
+  Args: 
+    json parameter file,
+    data folder.
+'''
 
-    return output
+if __name__ == '__main__':
+
+    import sys
+    import os
+    import json
+    from time import localtime, strftime
+
+    with open(sys.argv[1]) as paramfile:
+        param = json.load(paramfile)
+
+    verbose= param['usr']['verbose']
+    output= []
+    datafolder= sys.argv[2]
+
+    num_classes= 2**7
+    num_inputs= 2
+    input_size= 6
+
+    for filename in os.listdir(datafolder):
+        # Read data and find how much null syndromes to assume for error_scale
+        print("Reading data from " + filename)
+        raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
+
+        test_fraction= param['data']['test fraction']
+        total_size= np.shape(raw_data['synX12'])[0]
+        test_size= int(test_fraction * total_size)
+        train_data, test_data = io_data_factory(raw_data, test_size)
+
+        batch_size= param['opt']['batch size']
+        train_size= total_size - test_size
+        n_batches = train_size // batch_size
+        error_scale= 1.0*total_size/data_size
+
+        avg = train(param, train_data, test_data, \
+            num_classes, num_inputs, input_size, n_batches)
+
+        run_log= {}
+        run_log['data']= {}
+        run_log['opt']= {}
+        run_log['res']= {}
+        run_log['data']['path']= filename
+        run_log['data']['fault scale']= error_scale
+        run_log['data']['total data size']= total_size
+        run_log['data']['test set size']= test_size
+        run_log['opt']['batch size']= batch_size
+        run_log['opt']['number of batches']= n_batches
+        run_log['res']['p']= p
+        run_log['res']['lu avg']= lu_avg
+        run_log['res']['lu std']= lu_std
+        run_log['res']['nn avg'] = error_scale * avg
+        run_log['res']['nn std'] = 0
+        output.append(run_log)
+
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open('Reports/' + outfilename + '.json', 'w')
+    f.write(json.dumps(output, indent=2))
+    f.close()

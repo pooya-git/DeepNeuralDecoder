@@ -12,8 +12,8 @@ import json
 from time import localtime, strftime
 
 sys.path.insert(0, 'Trainer')
-from ExRecCNOTFullLSTM import train
-from ExRecCNOTFullLSTM import get_data
+import ExRecCNOTFullLSTM as trainer
+
 
 if __name__ == '__main__':
 
@@ -26,13 +26,7 @@ if __name__ == '__main__':
     datafolder= sys.argv[2]
 
     for filename in os.listdir(datafolder):
-        # Read data and find how much null syndromes to assume for error_scale
-        print("Reading data from " + filename)
-        raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
-
-        # Train over the raw data
-        output.append(train(datafolder + filename, param,\
-            raw_data, p, lu_avg, lu_std, data_size))
+        output.append(trainer.train(datafolder + filename, param))
 
     outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
     f = open('Reports/' + outfilename + '.json', 'w')

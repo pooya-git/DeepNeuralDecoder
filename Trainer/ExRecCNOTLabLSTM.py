@@ -147,7 +147,7 @@ class ioData:
         self.fault_digit= np.dot(self.fault, [[8], [4], [2], [1]]) 
         self.fault_ind = y2indicator(self.fault_digit, 16)
 
-def train(filename, param, graph):
+def train(filename, param):
 
     test_fraction= param['data']['test fraction']
     batch_size= param['data']['batch size']
@@ -241,3 +241,32 @@ def train(filename, param, graph):
         output['res']['nn std'] = np.sqrt(0)
 
     return output
+
+'''
+__main__():
+  Args: 
+    json parameter file,
+    data folder.
+'''
+
+if __name__ == '__main__':
+
+    import sys
+    import os
+    import json
+    from time import localtime, strftime
+
+    with open(sys.argv[1]) as paramfile:
+        param = json.load(paramfile)
+    datafolder= sys.argv[2]
+
+    output= []
+
+    for filename in os.listdir(datafolder):
+        output.append(train(datafolder + filename, param))
+
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open('Reports/' + outfilename + '.json', 'w')
+    f.write(json.dumps(output, indent=2))
+    f.close()
+
