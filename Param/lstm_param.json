@@ -3,16 +3,18 @@
     "verbose": false
   },
   "data": {
-    "batch size": 100, 
     "test fraction": 0.1
   }, 
   "opt": {
+    "batch size": 100, 
     "learning rate": 4e-05, 
     "iterations": 10, 
     "momentum": 0.9, 
     "decay": 0.99
   },
   "nn": {
-    "num hidden": 30
+    "num hidden": 30,
+    "W std": 1.0,
+    "b std": 1.0
   }
 }

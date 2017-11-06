@@ -12,16 +12,41 @@ import numpy as np
 import itertools
 from time import clock
 import sys
+import json
+import os
+
+sys.path.insert(0, 'Trainer')
+from ExRecCNOTFullLSTM import train
+from ExRecCNOTFullLSTM import get_data
+
 
 class BayesOptTest(BayesOptContinuous):
-    
-    def evaluateSample(self, x):
-	    total = 5.0
-	    index= 1
-	    for value in x:
-	        total = total + ((value) - (index + 0.33))**2
-	        index += 1
-	    return total
+
+	def __init__(self, N, filename, param,\
+			raw_data, p, lu_avg, lu_std, data_size):
+		super(BayesOptTest, self).__init__(N)
+		self.filename= filename
+		self.param= param
+		self.raw_data= raw_data
+		self.p= p
+		self.lu_avg= lu_avg
+		self.lu_std= lu_std
+		self.data_size= data_size
+
+	def evaluateSample(self, x):
+
+		param['opt']['batch size']= int(x[0] * 100) 
+		param['opt']['learning rate']= 10**x[1] 
+		param['opt']['iterations']= int(x[2] * 10)
+		param['opt']['momentum']= x[3] 
+		param['opt']['decay']= x[4]
+		param['nn']['num hidden']= int(x[5] * 10)
+		param['nn']['W std']= 10**x[6]
+		param['nn']['b std']= 10**x[7]
+		output= train(self.filename, self.param,\
+			self.raw_data, self.p, self.lu_avg, self.lu_std, self.data_size)
+		nn_avg= output['res']['nn avg']
+		return nn_avg
 
 hyperparam = {}
 hyperparam['n_iterations'] = 50
@@ -35,24 +60,32 @@ hyperparam['kernel_hp_std'] = [5]
 hyperparam['surr_name'] = "sStudentTProcessNIG"
 #hyperparam['crit_name'] = "cMI"
 
-N = 5
-lb = np.zeros((N,))
-ub = 10*np.ones((N,))
+if __name__ == '__main__':
 
-engine = BayesOptTest(N)
-engine.parameters = hyperparam
-engine.lower_bound = lb
-engine.upper_bound = ub
+    with open(sys.argv[1]) as paramfile:
+        param = json.load(paramfile)
 
-engine.x_set = np.asarray([elt for elt in itertools.product(\
-	range(10), repeat= N)], dtype= np.double)
+    output= []
+    datafolder= sys.argv[2]
 
-start = clock()
-mvalue, x_out, error = engine.optimize()
+    for filename in os.listdir(datafolder):
 
-print("Result", mvalue, "at", x_out)
-print("Running time:", clock() - start, "seconds")
+		print("Reading data from " + filename)
+		raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
 
-# value = np.array([engine.evaluateSample(i) for i in engine.x_set])
-# print("Optimum", value.min(), "at", engine.x_set[value.argmin()])
+		N = 8
+		lb = np.array([1., -6., 1., .8, .8, 5., -2., -2.])
+		ub = np.array([10., -2., 10., .99, .99, 100., 1., 1.])
+
+		engine = BayesOptTest(N, datafolder + filename, param,\
+			raw_data, p, lu_avg, lu_std, data_size)
+		engine.parameters = hyperparam
+		engine.lower_bound = lb
+		engine.upper_bound = ub
+
+		start = clock()
+		mvalue, x_out, error = engine.optimize()
+
+		print("Result", mvalue, "at", x_out)
+		print("Running time:", clock() - start, "seconds")
 

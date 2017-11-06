@@ -11,7 +11,6 @@ import numpy as np
 import tensorflow as tf
 import sys
 from util import y2indicator
-from lstm import CustomBasicLSTMCell
 
 # The CSS code generator matrix
 G= np.matrix([[0,0,0,1,1,1,1], \
@@ -100,25 +99,23 @@ def get_data(filename):
         data[key]= np.array(data[key]).astype(np.float32)
     return data, p, lu_avg, lu_std, data_size
 
-def train(filename, param):
+def train(filename, param, raw_data, p, lu_avg, lu_std, data_size):
 
+    verbose= param['usr']['verbose']
     test_fraction= param['data']['test fraction']
-    batch_size= param['data']['batch size']
+    batch_size= param['opt']['batch size']
     learning_rate= param['opt']['learning rate']
     num_iterations= param['opt']['iterations']
     momentum_val= param['opt']['momentum']
     decay_rate= param['opt']['decay']
-    verbose= param['usr']['verbose']
     num_hidden= param['nn']['num hidden'] 
+    W_std= param['nn']['W std'] 
+    b_std= param['nn']['b std'] 
 
     output= {}
     output['data']= {}
     output['opt']= {}
     output['res']= {}
-
-    # Read data and figure out how much null syndromes to assume for error_scale
-    print("Reading data from " + filename)
-    raw_data, p, lu_avg, lu_std, data_size = get_data(filename)
 
     total_size= np.shape(raw_data['synX12'])[0]
     test_size= int(test_fraction * total_size)
@@ -145,10 +142,10 @@ def train(filename, param):
 
         x = tf.placeholder(tf.float32, [None, num_inputs, input_size])
         y = tf.placeholder(tf.float32, [None, num_classes])
-        lstm = tf.contrib.rnn.GRUCell(num_hidden)
+        lstm = tf.contrib.rnn.LSTMCell(num_hidden)
         lstmOut, _ = tf.nn.dynamic_rnn(lstm, x, dtype=tf.float32)
-        W= tf.Variable(tf.random_normal([num_hidden,num_classes]))
-        b= tf.Variable(tf.random_normal([num_classes]))
+        W= tf.Variable(tf.random_normal([num_hidden,num_classes], stddev=W_std))
+        b= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
         logits= tf.matmul(lstmOut[:,-1,:], W) + b
     
         loss= tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y)
