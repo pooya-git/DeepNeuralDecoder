@@ -145,7 +145,7 @@ def train(filename, param):
 
         x = tf.placeholder(tf.float32, [None, num_inputs, input_size])
         y = tf.placeholder(tf.float32, [None, num_classes])
-        lstm = CustomBasicLSTMCell(num_hidden)
+        lstm = tf.contrib.rnn.GRUCell(num_hidden)
         lstmOut, _ = tf.nn.dynamic_rnn(lstm, x, dtype=tf.float32)
         W= tf.Variable(tf.random_normal([num_hidden,num_classes]))
         b= tf.Variable(tf.random_normal([num_classes]))
