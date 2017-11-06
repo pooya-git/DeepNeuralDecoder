@@ -11,6 +11,7 @@ import numpy as np
 import tensorflow as tf
 import sys
 from util import y2indicator
+from lstm import CustomBasicLSTMCell
 
 # The CSS code generator matrix
 G= np.matrix([[0,0,0,1,1,1,1], \
@@ -61,12 +62,12 @@ def find_logical_fault(recovery, err):
     logical_err= np.sum(coset) % 2
     return logical_err
 
-def num_logical_fault(prediction, test_data):
+def num_logical_fault(prediction, test):
 
     error_counter= 0.0
     for i in range(len(prediction[error_keys[0]])):
         for key in error_keys:
-            if (find_logical_fault(prediction[key][i], test_data.output[key][i])):
+            if (find_logical_fault(prediction[key][i], test.output[key][i])):
                 error_counter+=1
                 break
     return error_counter/len(prediction[error_keys[0]])
@@ -117,18 +118,15 @@ def train(filename, param):
 
     # Read data and figure out how much null syndromes to assume for error_scale
     print("Reading data from " + filename)
-    output['data']['path']= filename
-
     raw_data, p, lu_avg, lu_std, data_size = get_data(filename)
-    output['res']['p']= p
-    output['res']['lu avg']= lu_avg
-    output['res']['lu std']= lu_std
 
     total_size= np.shape(raw_data['synX12'])[0]
     test_size= int(test_fraction * total_size)
     train_size= total_size - test_size
     n_batches = train_size // batch_size
     error_scale= 1.0*total_size/data_size
+
+    output['data']['path']= filename
     output['data']['fault scale']= error_scale
     output['data']['total data size']= total_size
     output['data']['test set size']= test_size
@@ -147,7 +145,7 @@ def train(filename, param):
 
         x = tf.placeholder(tf.float32, [None, num_inputs, input_size])
         y = tf.placeholder(tf.float32, [None, num_classes])
-        lstm = tf.contrib.rnn.LSTMCell(num_hidden)
+        lstm = CustomBasicLSTMCell(num_hidden)
         lstmOut, _ = tf.nn.dynamic_rnn(lstm, x, dtype=tf.float32)
         W= tf.Variable(tf.random_normal([num_hidden,num_classes]))
         b= tf.Variable(tf.random_normal([num_classes]))
@@ -180,6 +178,9 @@ def train(filename, param):
 
     avg= num_logical_fault(prediction, test_data)
 
+    output['res']['p']= p
+    output['res']['lu avg']= lu_avg
+    output['res']['lu std']= lu_std
     output['res']['nn avg'] = error_scale * avg
     output['res']['nn std'] = 0
 
