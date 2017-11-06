@@ -11,12 +11,16 @@ import numpy as np
 import tensorflow as tf
 import sys
 from util import y2indicator
+import threading
+import sys
+import os
+import json
+from time import localtime, strftime, clock
 
 # The CSS code generator matrix
 G= np.matrix([[0,0,0,1,1,1,1], \
               [0,1,1,0,0,1,1], \
               [1,0,1,0,1,0,1]]).astype(np.int32)
-
 error_keys= ['errX3', 'errX4', 'errZ3', 'errZ4']
 syndrome_keys= ['synX12', 'synX34', 'synZ12', 'synZ34']
 
@@ -70,7 +74,7 @@ def num_logical_fault(prediction, test):
                 error_counter+=1
                 break
     return error_counter/len(prediction[error_keys[0]])
-    
+
 def get_data(filename):
 
     data= {}
@@ -102,6 +106,7 @@ def get_data(filename):
 def train(param, train_data, test_data, \
           num_classes, num_inputs, input_size, n_batches):
 
+    prediction= {}
     verbose= param['usr']['verbose']
     batch_size= param['opt']['batch size']
     learning_rate= param['opt']['learning rate']
@@ -112,106 +117,126 @@ def train(param, train_data, test_data, \
     W_std= param['nn']['W std'] 
     b_std= param['nn']['b std'] 
 
-    prediction= {}
-    for key in error_keys:
-        tf.reset_default_graph()
-
-        x = tf.placeholder(tf.float32, [None, num_inputs, input_size])
-        y = tf.placeholder(tf.float32, [None, num_classes])
-        lstm = tf.contrib.rnn.LSTMCell(num_hidden)
-        lstmOut, _ = tf.nn.dynamic_rnn(lstm, x, dtype=tf.float32)
-        W= tf.Variable(tf.random_normal([num_hidden,num_classes], stddev=W_std))
-        b= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
-        logits= tf.matmul(lstmOut[:,-1,:], W) + b
+    # define all parts of the tf graph
+    tf.reset_default_graph()
+    x = {}
+    y = {}
+    lstm = {}
+    lstmOut = {}
+    W= {}
+    b= {}
+    logits= {}
+    loss= {}
+    predict= {}
     
-        loss= tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y)
-        cost= tf.reduce_sum(loss)
+    for key in error_keys:
+        with tf.variable_scope(key):
 
-        train = tf.train.RMSPropOptimizer(learning_rate, \
-            decay=decay_rate, momentum=momentum_val).minimize(cost)
+            x[key] = tf.placeholder(tf.float32, [None, num_inputs, input_size])
+            y[key] = tf.placeholder(tf.float32, [None, num_classes])
+            lstm[key] = tf.contrib.rnn.LSTMCell(num_hidden)
+            lstmOut[key], _ = tf.nn.dynamic_rnn(\
+                lstm[key], x[key], dtype=tf.float32)
+            W[key]= tf.Variable(\
+                tf.random_normal([num_hidden,num_classes], stddev=W_std))
+            b[key]= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
+            logits[key]= tf.matmul(lstmOut[key][:,-1,:], W[key]) + b[key]
+            loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
+                logits=logits[key], labels=y[key])
+            predict[key]= tf.argmax(logits[key], 1)
+    
+    cost= tf.reduce_sum(sum(loss[key] for key in error_keys))
+    train = tf.train.RMSPropOptimizer(\
+        learning_rate, decay=decay_rate, momentum=momentum_val).minimize(cost)
+    init = tf.global_variables_initializer()
+    costs= []
 
-        predict= tf.argmax(logits, 1)
-        init = tf.global_variables_initializer()
+    with tf.Session() as session:
+        if (verbose): print('session begins '),
+        session.run(init)
 
-        with tf.Session() as session:
-            session.run(init)
+        for i in range(num_iterations):
+            if (verbose): print('.'),
 
-            for i in range(num_iterations):
-                for j in range(n_batches):
-                    beg= j * batch_size
-                    end= j * batch_size + batch_size
-                    
-                    feed_dict={}
-                    feed_dict[x]= train_data.input[key][beg:end,]
-                    feed_dict[y]= train_data.output_ind[key][beg:end,]
-                    session.run(train, feed_dict)
-            
-            prediction[key]= session.run(predict, \
-                feed_dict= {x: test_data.input[key]})
+            for j in range(n_batches):
+                beg= j * batch_size
+                end= j * batch_size + batch_size
+                feed_dict={}
+                for key in error_keys:
+                    feed_dict[x[key]]= train_data.input[key][beg:end,]
+                    feed_dict[y[key]]= train_data.output_ind[key][beg:end,]
+                session.run(train, feed_dict)
+
+        for key in error_keys:
+            prediction[key] = session.run(predict[key], \
+                feed_dict= {x[key]: test_data.input[key]})
+        if (verbose): print(' session ends.')
 
     return num_logical_fault(prediction, test_data)
 
-'''
-__main__():
-  Args: 
-    json parameter file,
-    data folder.
-'''
+### Run an entire benchmark
 
-if __name__ == '__main__':
+param= {}
+param['nn']= {}
+param['opt']= {}
+param['data']= {}
+param['usr']= {}
+param['nn']['num hidden']= 500
+param['nn']['W std']= 10.0**(-1.02861985)
+param['nn']['b std']= 0.0
+param['opt']['batch size']= 1000
+param['opt']['learning rate']= 10.0**(-3.84178815)
+param['opt']['iterations']= 10
+param['opt']['momentum']= 0.99
+param['opt']['decay']= 0.98
+param['data']['test fraction']= 0.1
+param['usr']['verbose']= True
+ 
+verbose= param['usr']['verbose']
+output= []
+num_classes= 2**7
+num_inputs= 2
+input_size= 6
 
-    import sys
-    import os
-    import json
-    from time import localtime, strftime
+datafolder= '../e-04/'
+file_list= os.listdir(datafolder)
 
-    with open(sys.argv[1]) as paramfile:
-        param = json.load(paramfile)
+for filename in file_list:
+    # Read data and find how much null syndromes to assume for error_scale
+    print("Reading data from " + filename)
+    raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
 
-    verbose= param['usr']['verbose']
-    output= []
-    datafolder= sys.argv[2]
+    test_fraction= param['data']['test fraction']
+    total_size= np.shape(raw_data['synX12'])[0]
+    test_size= int(test_fraction * total_size)
+    train_data, test_data = io_data_factory(raw_data, test_size)
 
-    num_classes= 2**7
-    num_inputs= 2
-    input_size= 6
+    batch_size= param['opt']['batch size']
+    train_size= total_size - test_size
+    n_batches = train_size // batch_size
+    error_scale= 1.0*total_size/data_size
 
-    for filename in os.listdir(datafolder):
-        # Read data and find how much null syndromes to assume for error_scale
-        print("Reading data from " + filename)
-        raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
+    avg= train(param, train_data, test_data, \
+        num_classes, num_inputs, input_size, n_batches)
 
-        test_fraction= param['data']['test fraction']
-        total_size= np.shape(raw_data['synX12'])[0]
-        test_size= int(test_fraction * total_size)
-        train_data, test_data = io_data_factory(raw_data, test_size)
+    run_log= {}
+    run_log['data']= {}
+    run_log['opt']= {}
+    run_log['res']= {}
+    run_log['data']['path']= filename
+    run_log['data']['fault scale']= error_scale
+    run_log['data']['total data size']= total_size
+    run_log['data']['test set size']= test_size
+    run_log['opt']['batch size']= batch_size
+    run_log['opt']['number of batches']= n_batches
+    run_log['res']['p']= p
+    run_log['res']['lu avg']= lu_avg
+    run_log['res']['lu std']= lu_std
+    run_log['res']['nn avg'] = error_scale * avg
+    run_log['res']['nn std'] = 0
+    output.append(run_log)
 
-        batch_size= param['opt']['batch size']
-        train_size= total_size - test_size
-        n_batches = train_size // batch_size
-        error_scale= 1.0*total_size/data_size
-
-        avg = train(param, train_data, test_data, \
-            num_classes, num_inputs, input_size, n_batches)
-
-        run_log= {}
-        run_log['data']= {}
-        run_log['opt']= {}
-        run_log['res']= {}
-        run_log['data']['path']= filename
-        run_log['data']['fault scale']= error_scale
-        run_log['data']['total data size']= total_size
-        run_log['data']['test set size']= test_size
-        run_log['opt']['batch size']= batch_size
-        run_log['opt']['number of batches']= n_batches
-        run_log['res']['p']= p
-        run_log['res']['lu avg']= lu_avg
-        run_log['res']['lu std']= lu_std
-        run_log['res']['nn avg'] = error_scale * avg
-        run_log['res']['nn std'] = 0
-        output.append(run_log)
-
-    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
-    f = open('Reports/' + outfilename + '.json', 'w')
-    f.write(json.dumps(output, indent=2))
-    f.close()
+outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+f = open('Reports/' + outfilename + '.json', 'w')
+f.write(json.dumps(output, indent=2))
+f.close()
