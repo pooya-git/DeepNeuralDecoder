@@ -57,8 +57,7 @@ def train(param, train_data, test_data, num_classes, n_batches):
             W2[key]= tf.Variable(\
                 tf.random_normal([num_hidden, num_classes], stddev=W_std))
             b2[key]= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
-            logits[key]= tf.nn.sigmoid(\
-                tf.matmul(hidden[key], W2[key]) + b2[key])
+            logits[key]= tf.nn.sigmoid(tf.matmul(hidden[key], W2[key]) +b2[key])
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)
@@ -81,21 +80,21 @@ def train(param, train_data, test_data, num_classes, n_batches):
                 end= j * batch_size + batch_size
                 feed_dict={}
                 for key in err_keys:
-                    feed_dict[x[key]]= train_data.input[key][beg:end,]
-                    feed_dict[y[key]]= train_data.output_ind[key][beg:end,]
+                    feed_dict[x[key]]= train_data.syn[key][beg:end,]
+                    feed_dict[y[key]]= train_data.log_1hot[key][beg:end,]
                 session.run(train, feed_dict)
             
             if (verbose>1):
                 feed_dict={}
                 for key in err_keys:
-                    feed_dict[x[key]]= test_data.input[key]
-                    feed_dict[y[key]]= test_data.output_ind[key]
+                    feed_dict[x[key]]= test_data.syn[key]
+                    feed_dict[y[key]]= test_data.log_1hot[key]
                 test_cost = session.run(cost, feed_dict)
                 costs.append(test_cost)
 
         for key in err_keys:
             prediction[key] = session.run(predict[key], \
-                feed_dict= {x[key]: test_data.input[key]})
+                feed_dict= {x[key]: test_data.syn[key]})
         if (verbose): print(' session ends.')
 
     if (verbose>1):

@@ -56,7 +56,7 @@ def train(param, train_data, test_data, \
                 padding= 'same', activation=tf.nn.relu)
             pool[key] = tf.layers.max_pooling3d(conv[key],\
                 pool_size=[2, 2, 2], strides=1)
-            pool_flat[key]= tf.reshape(pool[key], [-1, 2*3*3*num_filters])
+            pool_flat[key]= tf.reshape(pool[key], [-1, 2 * 3 * 3 * num_filters])
             dense[key] = tf.layers.dense(inputs=pool_flat[key],\
                 units=num_hiddens, activation=tf.nn.relu)
             logits[key] = tf.layers.dense(dense[key], units=num_classes)
@@ -83,14 +83,14 @@ def train(param, train_data, test_data, \
                 feed_dict={}
                 for key in err_keys:
                     feed_dict[x[key]]= train_data.input[key][beg:end,]
-                    feed_dict[y[key]]= train_data.output_ind[key][beg:end,]
+                    feed_dict[y[key]]= train_data.log_1hot[key][beg:end,]
                 session.run(train, feed_dict)
             
             if (verbose>1):
                 feed_dict={}
                 for key in err_keys:
                     feed_dict[x[key]]= test_data.input[key]
-                    feed_dict[y[key]]= test_data.output_ind[key]
+                    feed_dict[y[key]]= test_data.log_1hot[key]
                 test_cost = session.run(cost, feed_dict)
                 costs.append(test_cost)
 
