@@ -1,0 +1,154 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 172
+    }, 
+    "res": {
+      "p": 0.0001, 
+      "nn avg": 0.0005540260692251385, 
+      "lu avg": 3.87e-05, 
+      "lu std": 1.9672e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError1.000e-04.txt", 
+      "test set size": 19126, 
+      "total data size": 191269, 
+      "fault scale": 0.0191269
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 339
+    }, 
+    "res": {
+      "p": 0.0002, 
+      "nn avg": 0.001233003264322779, 
+      "lu avg": 0.0001525, 
+      "lu std": 3.9048e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError2.000e-04.txt", 
+      "test set size": 37772, 
+      "total data size": 377721, 
+      "fault scale": 0.0377721
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 505
+    }, 
+    "res": {
+      "p": 0.0003, 
+      "nn avg": 0.0019420207615416139, 
+      "lu avg": 0.0003457, 
+      "lu std": 5.8786e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.txt", 
+      "test set size": 56123, 
+      "total data size": 561236, 
+      "fault scale": 0.0561236
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 666
+    }, 
+    "res": {
+      "p": 0.0004, 
+      "nn avg": 0.0026410106914419884, 
+      "lu avg": 0.0006312, 
+      "lu std": 7.9423e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.txt", 
+      "test set size": 74106, 
+      "total data size": 741063, 
+      "fault scale": 0.0741063
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 825
+    }, 
+    "res": {
+      "p": 0.0005, 
+      "nn avg": 0.0034200000000000003, 
+      "lu avg": 0.0009696, 
+      "lu std": 9.8421e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.txt", 
+      "test set size": 91697, 
+      "total data size": 916970, 
+      "fault scale": 0.091697
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 981
+    }, 
+    "res": {
+      "p": 0.0006, 
+      "nn avg": 0.00415602667277895, 
+      "lu avg": 0.0014, 
+      "lu std": 1.4606e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.txt", 
+      "test set size": 109070, 
+      "total data size": 1090707, 
+      "fault scale": 0.1090707
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1133
+    }, 
+    "res": {
+      "p": 0.0007, 
+      "nn avg": 0.005015003982719049, 
+      "lu avg": 0.0019, 
+      "lu std": 1.3652e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError7.000e-04.txt", 
+      "test set size": 125919, 
+      "total data size": 1259191, 
+      "fault scale": 0.1259191
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1284
+    }, 
+    "res": {
+      "p": 0.0008, 
+      "nn avg": 0.006005037882186366, 
+      "lu avg": 0.0024, 
+      "lu std": 1.5487e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError8.000e-04.txt", 
+      "test set size": 142666, 
+      "total data size": 1426669, 
+      "fault scale": 0.1426669
+    }
+  }
+]
