@@ -45,7 +45,7 @@ def train(param, train_data, test_data, num_classes, n_batches):
     loss= {}
     predict= {}
     
-    for key in err_keys:
+    for key in pauli_keys:
         with tf.variable_scope(key):
 
             x[key] = tf.placeholder(tf.float32, [None, 12])
@@ -62,7 +62,7 @@ def train(param, train_data, test_data, num_classes, n_batches):
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)
     
-    cost= tf.reduce_sum(sum(loss[key] for key in err_keys))
+    cost= tf.reduce_sum(sum(loss[key] for key in pauli_keys))
     train = tf.train.RMSPropOptimizer(\
         learning_rate, decay=decay_rate, momentum=momentum_val).minimize(cost)
     init = tf.global_variables_initializer()
@@ -79,20 +79,20 @@ def train(param, train_data, test_data, num_classes, n_batches):
                 beg= j * batch_size
                 end= j * batch_size + batch_size
                 feed_dict={}
-                for key in err_keys:
+                for key in pauli_keys:
                     feed_dict[x[key]]= train_data.syn[key][beg:end,]
                     feed_dict[y[key]]= train_data.log_1hot[key][beg:end,]
                 session.run(train, feed_dict)
             
             if (verbose>1):
                 feed_dict={}
-                for key in err_keys:
+                for key in pauli_keys:
                     feed_dict[x[key]]= test_data.syn[key]
                     feed_dict[y[key]]= test_data.log_1hot[key]
                 test_cost = session.run(cost, feed_dict)
                 costs.append(test_cost)
 
-        for key in err_keys:
+        for key in pauli_keys:
             prediction[key] = session.run(predict[key], \
                 feed_dict= {x[key]: test_data.syn[key]})
         if (verbose): print(' session ends.')

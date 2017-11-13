@@ -139,11 +139,11 @@ def get_data(filename):
         lu_std= float(lu_std)
         data_size= int(data_size)
         for line in file.readlines():
-            line_list= line.split(' ')
+            line_list= line.strip('\n').split(' ')
             data['synX'].append([bit for bit in ''.join(line_list[0:3])])
             data['synZ'].append([bit for bit in ''.join(line_list[6:9])])
-            data['errX'].append([int(line_list[5],2)])
-            data['errZ'].append([int(line_list[11],2)])
+            data['errX'].append([bit for bit in line_list[5]])
+            data['errZ'].append([bit for bit in line_list[11]])
     for key in data.keys():
         data[key]= np.array(data[key]).astype(np.float32)
     return data, p, lu_avg, lu_std, data_size
