@@ -175,68 +175,71 @@ def train(param, train_data, test_data, \
     return num_logical_fault(prediction, test_data)
 
 ### Run an entire benchmark
+if __name__ == '__main__':
 
-param= {}
-param['nn']= {}
-param['opt']= {}
-param['data']= {}
-param['usr']= {}
-param['nn']['num hidden']= 500
-param['nn']['W std']= 10.0**(-1.02861985)
-param['nn']['b std']= 0.0
-param['opt']['batch size']= 1000
-param['opt']['learning rate']= 10.0**(-3.84178815)
-param['opt']['iterations']= 10
-param['opt']['momentum']= 0.99
-param['opt']['decay']= 0.98
-param['data']['test fraction']= 0.1
-param['usr']['verbose']= True
- 
-verbose= param['usr']['verbose']
-output= []
-num_classes= 2**7
-num_inputs= 2
-input_size= 6
+    param= {}
+    param['nn']= {}
+    param['opt']= {}
+    param['data']= {}
+    param['usr']= {}
+    param['nn']['num hidden']= 500
+    param['nn']['W std']= 10.0**(-1.02861985)
+    param['nn']['b std']= 0.0
+    param['opt']['batch size']= 1000
+    param['opt']['learning rate']= 10.0**(-3.84178815)
+    param['opt']['iterations']= 10
+    param['opt']['momentum']= 0.99
+    param['opt']['decay']= 0.98
+    param['data']['test fraction']= 0.1
+    param['usr']['verbose']= True
+    param['nn']['type']= 'ExRecCNOTLSTM'
+    
+    verbose= param['usr']['verbose']
+    output= []
+    num_classes= 2**7
+    num_inputs= 2
+    input_size= 6
 
-datafolder= '../e-04/'
-file_list= os.listdir(datafolder)
+    datafolder= '../e-04/'
+    file_list= os.listdir(datafolder)
 
-for filename in file_list:
-    # Read data and find how much null syndromes to assume for error_scale
-    print("Reading data from " + filename)
-    raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
+    for filename in file_list:
+        # Read data and find how much null syndromes to assume for error_scale
+        print("Reading data from " + filename)
+        raw_data, p, lu_avg, lu_std, data_size = get_data(datafolder + filename)
 
-    test_fraction= param['data']['test fraction']
-    total_size= np.shape(raw_data['synX12'])[0]
-    test_size= int(test_fraction * total_size)
-    train_data, test_data = io_data_factory(raw_data, test_size)
+        test_fraction= param['data']['test fraction']
+        total_size= np.shape(raw_data['synX12'])[0]
+        test_size= int(test_fraction * total_size)
+        train_data, test_data = io_data_factory(raw_data, test_size)
 
-    batch_size= param['opt']['batch size']
-    train_size= total_size - test_size
-    n_batches = train_size // batch_size
-    error_scale= 1.0*total_size/data_size
+        batch_size= param['opt']['batch size']
+        train_size= total_size - test_size
+        n_batches = train_size // batch_size
+        error_scale= 1.0*total_size/data_size
 
-    avg= train(param, train_data, test_data, \
-        num_classes, num_inputs, input_size, n_batches)
+        avg= train(param, train_data, test_data, \
+            num_classes, num_inputs, input_size, n_batches)
 
-    run_log= {}
-    run_log['data']= {}
-    run_log['opt']= {}
-    run_log['res']= {}
-    run_log['data']['path']= filename
-    run_log['data']['fault scale']= error_scale
-    run_log['data']['total data size']= total_size
-    run_log['data']['test set size']= test_size
-    run_log['opt']['batch size']= batch_size
-    run_log['opt']['number of batches']= n_batches
-    run_log['res']['p']= p
-    run_log['res']['lu avg']= lu_avg
-    run_log['res']['lu std']= lu_std
-    run_log['res']['nn avg'] = error_scale * avg
-    run_log['res']['nn std'] = 0
-    output.append(run_log)
+        run_log= {}
+        run_log['data']= {}
+        run_log['opt']= {}
+        run_log['res']= {}
+        run_log['param']= param
+        run_log['data']['path']= filename
+        run_log['data']['fault scale']= error_scale
+        run_log['data']['total data size']= total_size
+        run_log['data']['test set size']= test_size
+        run_log['opt']['batch size']= batch_size
+        run_log['opt']['number of batches']= n_batches
+        run_log['res']['p']= p
+        run_log['res']['lu avg']= lu_avg
+        run_log['res']['lu std']= lu_std
+        run_log['res']['nn avg'] = error_scale * avg
+        run_log['res']['nn std'] = 0
+        output.append(run_log)
 
-outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
-f = open('Reports/' + outfilename + '.json', 'w')
-f.write(json.dumps(output, indent=2))
-f.close()
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open('Reports/' + outfilename + '.json', 'w')
+    f.write(json.dumps(output, indent=2))
+    f.close()

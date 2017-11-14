@@ -1,0 +1,242 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 143
+    }, 
+    "res": {
+      "p": 0.0001, 
+      "nn avg": 3.6000901577761084e-05, 
+      "lu avg": 4.69e-05, 
+      "lu std": 5.9478e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError1.000e-04.txt", 
+      "test set size": 15972, 
+      "total data size": 159724, 
+      "fault scale": 0.0159724
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 297
+    }, 
+    "res": {
+      "p": 0.0002, 
+      "nn avg": 0.00017900216923682856, 
+      "lu avg": 0.0001949, 
+      "lu std": 0.00012393, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError2.000e-04.txt", 
+      "test set size": 33007, 
+      "total data size": 330074, 
+      "fault scale": 0.0330074
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 429
+    }, 
+    "res": {
+      "p": 0.0003, 
+      "nn avg": 0.00033000138454760954, 
+      "lu avg": 0.0004309, 
+      "lu std": 1.8388e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.txt", 
+      "test set size": 47669, 
+      "total data size": 476692, 
+      "fault scale": 0.0476692
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 578
+    }, 
+    "res": {
+      "p": 0.0004, 
+      "nn avg": 0.0005350041623875766, 
+      "lu avg": 0.0007708, 
+      "lu std": 2.4592e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.txt", 
+      "test set size": 64266, 
+      "total data size": 642665, 
+      "fault scale": 0.0642665
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 721
+    }, 
+    "res": {
+      "p": 0.0005, 
+      "nn avg": 0.0008900033307967715, 
+      "lu avg": 0.0012, 
+      "lu std": 3.0853e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.txt", 
+      "test set size": 80161, 
+      "total data size": 801613, 
+      "fault scale": 0.0801613
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 849
+    }, 
+    "res": {
+      "p": 0.0006, 
+      "nn avg": 0.001179, 
+      "lu avg": 0.0017, 
+      "lu std": 3.6771e-05, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.txt", 
+      "test set size": 94397, 
+      "total data size": 943970, 
+      "fault scale": 0.094397
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 10, 
+        "learning rate": 0.001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": 2
+      }, 
+      "nn": {
+        "W std": 0, 
+        "b std": 0.0, 
+        "num hidden": 250, 
+        "type": "ExRecCNOTLSTM"
+      }
+    }
+  }
+]
