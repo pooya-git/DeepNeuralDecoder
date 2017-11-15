@@ -125,6 +125,7 @@ def num_logical_fault(prediction, test_data):
     error_counter= 0.0
     for i in range(len(prediction[error_keys[0]])):
         for key in error_keys:
+            if not 1 in test_data.input[key][i]: prediction[key][i]=0
             if (find_logical_fault(prediction[key][i] * np.ones(7)\
                 + test_data.rec[key][i] % 2)):
                 error_counter+=1
@@ -161,12 +162,12 @@ def get_data(filename):
 
 if __name__ == '__main__':
 
-    datafolder= '../Data/CNOT/e-04/'
+    datafolder= '../Data/Knill/e-04/'
     file_list= os.listdir(datafolder)
 
     for filename in file_list:
 
-        with open('../Data/CNOTPkl/e-04/'+ \
+        with open('../Data/KnillPkl/e-04/'+ \
             filename.replace('.txt', '.pkl'), "wb") as output_file:
             print("Reading data from " + filename)
             model= Model(datafolder+ filename)
