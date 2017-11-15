@@ -53,11 +53,11 @@ def train(param, train_data, test_data, num_classes, n_batches):
             W1[key]= tf.Variable(\
                 tf.random_normal([12, num_hidden], stddev=W_std))
             b1[key]= tf.Variable(tf.random_normal([num_hidden], stddev=b_std))
-            hidden[key]= tf.nn.sigmoid(tf.matmul(x[key], W1[key]) + b1[key])
+            hidden[key]= tf.nn.relu(tf.matmul(x[key], W1[key]) + b1[key])
             W2[key]= tf.Variable(\
                 tf.random_normal([num_hidden, num_classes], stddev=W_std))
             b2[key]= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
-            logits[key]= tf.nn.sigmoid(tf.matmul(hidden[key], W2[key]) +b2[key])
+            logits[key]= tf.nn.relu(tf.matmul(hidden[key], W2[key]) +b2[key])
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)
@@ -101,3 +101,63 @@ def train(param, train_data, test_data, num_classes, n_batches):
         plt.plot(costs)
         plt.show()
     return num_logical_fault(prediction, test_data)
+
+if __name__ == '__main__':
+
+    param= {}
+    param['nn']= {}
+    param['opt']= {}
+    param['data']= {}
+    param['usr']= {}
+    param['nn']['num hidden']= 1000
+    param['nn']['W std']= 10.0**(-1.6)
+    param['nn']['b std']= 0.0
+    param['opt']['batch size']= 1000
+    param['opt']['learning rate']= 10.0**(-5)
+    param['opt']['iterations']= 20
+    param['opt']['momentum']= 0.99
+    param['opt']['decay']= 0.99
+    param['data']['test fraction']= 0.1
+    param['usr']['verbose']= 2
+    param['nn']['type']= 'SurfaceD3VCB'
+
+    verbose= param['usr']['verbose']
+    output= []
+    num_classes= 2
+
+    datafolder= '../Data/SurfaceD3FFPkl/e-04/'
+    file_list= os.listdir(datafolder)
+
+    for filename in file_list:
+
+        with open(datafolder + filename, 'rb') as input_file:
+            print("Pickling model from " + filename)
+            m = pickle.load(input_file)
+        
+        batch_size= param['opt']['batch size']
+        n_batches = m.train_size // batch_size
+
+        avg= train(param, m.train_data, m.test_data, num_classes, n_batches)
+        
+        run_log= {}
+        run_log['data']= {}
+        run_log['opt']= {}
+        run_log['res']= {}
+        run_log['param']= param
+        run_log['data']['path']= filename
+        run_log['data']['fault scale']= m.error_scale
+        run_log['data']['total data size']= m.total_size
+        run_log['data']['test set size']= m.test_size
+        run_log['opt']['batch size']= batch_size
+        run_log['opt']['number of batches']= n_batches
+        run_log['res']['p']= m.p
+        run_log['res']['lu avg']= m.lu_avg
+        run_log['res']['lu std']= m.lu_std
+        run_log['res']['nn avg'] = m.error_scale * avg
+        run_log['res']['nn std'] = 0
+        output.append(run_log)
+
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open('../Reports/SurfaceD3Lab/' + outfilename + '.json', 'w')
+    f.write(json.dumps(output, indent=2))
+    f.close()   

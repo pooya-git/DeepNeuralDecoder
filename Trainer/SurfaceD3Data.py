@@ -12,17 +12,21 @@ from util import y2indicator
 import cPickle as pickle
 import os
 
+
 # --- d3 surface code generator matrices and look up table ---#
 
-gZ = np.matrix([[1, 0, 0, 1, 0, 0, 0, 0, 0], \
+g= {}
+L= {}
+correctionMat= {}
+g['Z'] = np.matrix([[1, 0, 0, 1, 0, 0, 0, 0, 0], \
                 [0, 1, 1, 0, 1, 1, 0, 0, 0], \
                 [0, 0, 0, 1, 1, 0, 1, 1, 0], \
                 [0, 0, 0, 0, 0, 1, 0, 0, 1]]).astype(np.int32);
-gX = np.matrix([[1, 1, 0, 1, 1, 0, 0, 0, 0], \
+g['X'] = np.matrix([[1, 1, 0, 1, 1, 0, 0, 0, 0], \
                 [0, 0, 0, 0, 0, 0, 1, 1, 0], \
                 [0, 1, 1, 0, 0, 0, 0, 0, 0], \
                 [0, 0, 0, 0, 1, 1, 0, 1, 1]]).astype(np.int32);
-XcorrectionMat = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
+correctionMat['X'] = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
                             [0, 0, 0, 0, 0, 0, 0, 0, 1], \
                             [0, 0, 0, 0, 0, 0, 1, 0, 0], \
                             [0, 0, 0, 0, 1, 1, 0, 0, 0], \
@@ -38,7 +42,7 @@ XcorrectionMat = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
                             [1, 0, 0, 0, 0, 1, 0, 0, 0], \
                             [1, 0, 0, 0, 1, 0, 0, 0, 0], \
                             [0, 0, 0, 1, 0, 1, 0, 0, 0]]).astype(np.int32);
-ZcorrectionMat = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
+correctionMat['Z'] = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
                             [0, 0, 0, 0, 0, 1, 0, 0, 0], \
                             [0, 0, 1, 0, 0, 0, 0, 0, 0], \
                             [0, 1, 0, 0, 1, 0, 0, 0, 0], \
@@ -54,15 +58,20 @@ ZcorrectionMat = np.matrix([[0, 0, 0, 0, 0, 0, 0, 0, 0], \
                             [1, 0, 0, 0, 0, 0, 0, 1, 0], \
                             [0, 1, 0, 0, 0, 0, 1, 0, 0], \
                             [0, 1, 0, 0, 0, 0, 0, 1, 0]]).astype(np.int32);
-ZL = np.matrix([[1,0,0,0,1,0,0,0,1]]).astype(np.int32);
-XL = np.matrix([[0,0,1,0,1,0,1,0,0]]).astype(np.int32);
+L['Z'] = np.matrix([[1,0,0,0,1,0,0,0,1]]).astype(np.int32);
+L['X'] = np.matrix([[0,0,1,0,1,0,1,0,0]]).astype(np.int32);
 
 pauli_keys= ['X', 'Z']
 
-#--- Model creation modules ---#
+def perp(key):
+    if (key=='X'):
+        return 'Z'
+    if (key=='Z'):
+        return 'X'
+    print('Error: Unrecognized key!')
 
-def logical(syn, err, key):
-    
+def correction_from_syn(syn, key):
+
     syn1= syn[0:4]
     syn2= syn[4:8]
     syn3= syn[8:12]
@@ -75,18 +84,28 @@ def logical(syn, err, key):
     else:
         syndrome= syn3
     correction_index= int(np.asscalar(np.dot([[8, 4, 2, 1]], syndrome)))
+    return correctionMat[key][correction_index,:]
+
+def syn_from_err(err, key):
+    return np.dot(g[perp(key)], err.transpose()) % 2
+
+def check_fault_from_err(err, key):
+
+    syndrome= syn_from_err(err, key)
+    correction_index= int(np.asscalar(np.dot([[8, 4, 2, 1]], syndrome)))
+    correction= correctionMat[key][correction_index,:]
+    errFinal = (correction + err) % 2
+    logical_err = np.dot(L[perp(key)], errFinal.transpose()) % 2
+    return logical_err
+
+
+#--- Model creation modules ---#
+
+def check_lu_fault(syn, err, key):
     
-    if (key=='X'):
-        correction = XcorrectionMat[correction_index,:]
-        errFinal = (correction + err) % 2
-        logical_err = np.dot(ZL, errFinal.transpose()) % 2
-        return logical_err
-    elif (key=='Z'):
-        correction = ZcorrectionMat[correction_index,:]
-        errFinal = (correction + err) % 2
-        logical_err = np.dot(XL, errFinal.transpose()) % 2
-        return logical_err
-    else: print('Key not recognized.')
+    correction= correction_from_syn(syn, key)
+    errFinal = (correction + err) % 2
+    return check_fault_from_err(errFinal, key)
 
 class Data:
 
@@ -102,9 +121,11 @@ class Data:
         self.log['X']= []
         self.log['Z']= []
         for i in range(len(data['synX'])):
-            self.log['X'].append(logical(data['synX'][i], data['errX'][i], 'X'))
+            self.log['X'].append(\
+                check_lu_fault(data['synX'][i], data['errX'][i], 'X'))
         for i in range(len(data['synZ'])):
-            self.log['Z'].append(logical(data['synZ'][i], data['errZ'][i], 'Z'))
+            self.log['Z'].append(\
+                check_lu_fault(data['synZ'][i], data['errZ'][i], 'Z'))
         for key in pauli_keys:
             self.log[key]= np.array(self.log[key]).astype(np.float32)
             self.log_1hot[key]=y2indicator(self.log[key], 2).astype(np.float32)
@@ -166,6 +187,7 @@ class Model:
         self.train_size= total_size - test_size
         self.error_scale= 1.0 * total_size/data_size
 
+
 #--- check modules for the active model ---#
 
 def error_rate(pred, truth):
@@ -178,41 +200,22 @@ def error_rate(pred, truth):
                 break
     return error_counter/len(pred[pauli_keys[0]])
 
-def check_fault(syn, err, key, pred):
+def check_nn_fault(syn, err, key, pred):
     
-    syn1= syn[0:4]
-    syn2= syn[4:8]
-    syn3= syn[8:12]
-    if (max(syn1) + max(syn2) + max(syn3)<=1) :
-        syndrome = np.zeros(4);
-    elif np.array_equal(syn1, syn2) or np.array_equal(syn1, syn3):
-        syndrome= syn1
-    elif np.array_equal(syn2, syn3):
-        syndrome= syn2
-    else:
-        syndrome= syn3
-    correction_index= int(np.asscalar(np.dot([[8, 4, 2, 1]], syndrome)))
-    
-    if (key=='X'):
-        correction = XcorrectionMat[correction_index,:]
-        if (pred): correction+= XL
-        errFinal = (correction + err) % 2
-        logical_err = np.dot(ZL, errFinal.transpose()) % 2
-        return logical_err
-    elif (key=='Z'):
-        correction = ZcorrectionMat[correction_index,:]
-        if (pred): correction+= ZL
-        errFinal = (correction + err) % 2
-        logical_err = np.dot(XL, errFinal.transpose()) % 2
-        return logical_err
-    else: print('Key not recognized.')
+    correction= correction_from_syn(syn, key)
+    errFinal = (correction + err) % 2
+    if (pred): correction+= L[key]
+    return check_fault_from_err(errFinal, key)
 
 def num_logical_fault(pred, truth):
 
     error_counter= 0.0
     for i in range(len(pred[pauli_keys[0]])):
-        if (check_fault(truth.syn['X'][i], truth.err['X'][i], 'X',pred['X'][i])\
-         or check_fault(truth.syn['Z'][i], truth.err['Z'][i], 'Z',pred['Z'][i])):
+        if not 1 in truth.syn['X'][i]: pred['X'][i]=0
+        if not 1 in truth.syn['Z'][i]: pred['Z'][i]=0
+        if (\
+    check_nn_fault(truth.syn['X'][i], truth.err['X'][i], 'X', pred['X'][i]) or \
+    check_nn_fault(truth.syn['Z'][i], truth.err['Z'][i], 'Z', pred['Z'][i])):
             error_counter+=1
     return error_counter/len(pred[pauli_keys[0]])
     
@@ -223,8 +226,8 @@ if __name__ == '__main__':
 
     for filename in file_list:
 
-        with open('../Data/SurfaceD3ConvPkl/e-04/'+ \
+        with open('../Data/SurfaceD3FFPkl/e-04/'+ \
             filename.replace('.txt', '.pkl'), "wb") as output_file:
             print("Reading data from " + filename)
-            model= Model(datafolder+ filename, padding= True)
+            model= Model(datafolder+ filename, padding= False)
             pickle.dump(model, output_file)
