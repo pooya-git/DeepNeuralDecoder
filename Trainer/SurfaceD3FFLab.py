@@ -54,6 +54,19 @@ def train(param, train_data, test_data, num_classes, n_batches):
                 tf.random_normal([12, num_hidden], stddev=W_std))
             b1[key]= tf.Variable(tf.random_normal([num_hidden], stddev=b_std))
             hidden[key]= tf.nn.relu(tf.matmul(x[key], W1[key]) + b1[key])
+#             hidden[key] = tf.contrib.layers.fully_connected(
+#                 inputs=x[key],
+#                 num_outputs= 1000,
+#                 activation_fn= tf.nn.relu,
+#                 weights_initializer=tf.random_normal_initializer(W_std),
+#                 biases_initializer=tf.random_normal_initializer(b_std))
+#             logits[key] = tf.contrib.layers.fully_connected(
+#                 inputs=hidden[key],
+#                 num_outputs= 2,
+#                 activation_fn= None,
+#                 weights_initializer=tf.random_normal_initializer(W_std),
+#                 biases_initializer=tf.random_normal_initializer(b_std))
+            
             W2[key]= tf.Variable(\
                 tf.random_normal([num_hidden, num_classes], stddev=W_std))
             b2[key]= tf.Variable(tf.random_normal([num_classes], stddev=b_std))
@@ -109,11 +122,11 @@ if __name__ == '__main__':
     param['opt']= {}
     param['data']= {}
     param['usr']= {}
-    param['nn']['num hidden']= 1000
+    param['nn']['num hidden']= 400
     param['nn']['W std']= 10.0**(-1.6)
     param['nn']['b std']= 0.0
     param['opt']['batch size']= 1000
-    param['opt']['learning rate']= 10.0**(-5)
+    param['opt']['learning rate']= 10.0**(-4)
     param['opt']['iterations']= 20
     param['opt']['momentum']= 0.99
     param['opt']['decay']= 0.99
@@ -128,7 +141,10 @@ if __name__ == '__main__':
     datafolder= '../Data/SurfaceD3FFPkl/e-04/'
     file_list= os.listdir(datafolder)
 
+    count= 0
     for filename in file_list:
+        if count>5: break
+        else: count+=1
 
         with open(datafolder + filename, 'rb') as input_file:
             print("Pickling model from " + filename)
@@ -138,6 +154,7 @@ if __name__ == '__main__':
         n_batches = m.train_size // batch_size
 
         avg= train(param, m.train_data, m.test_data, num_classes, n_batches)
+        print m.error_scale * avg
         
         run_log= {}
         run_log['data']= {}
@@ -160,4 +177,4 @@ if __name__ == '__main__':
     outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
     f = open('../Reports/SurfaceD3Lab/' + outfilename + '.json', 'w')
     f.write(json.dumps(output, indent=2))
-    f.close()   
+    f.close()
