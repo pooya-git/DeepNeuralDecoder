@@ -17,7 +17,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import cPickle as pickle
 from util import y2indicator
-from SurfaceD3Data import *
+from SurfaceD31ECData import *
 
 def train(param, train_data, test_data, \
           num_classes, kernel_size, num_filters, n_batches):

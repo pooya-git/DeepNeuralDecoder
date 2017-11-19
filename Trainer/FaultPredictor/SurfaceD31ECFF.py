@@ -17,7 +17,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import cPickle as pickle
 from util import y2indicator
-from SurfaceD3Data import *
+from SurfaceD31ECData import *
 
 def train(param, train_data, test_data, num_classes, n_batches):
 
@@ -138,7 +138,7 @@ if __name__ == '__main__':
     output= []
     num_classes= 2
 
-    datafolder= '../Data/SurfaceD3FFPkl/e-04/'
+    datafolder= '../../Data/SurfaceD31EC_Pkl/e-04/'
     file_list= os.listdir(datafolder)
 
     count= 0
@@ -175,6 +175,6 @@ if __name__ == '__main__':
         output.append(run_log)
 
     outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
-    f = open('../Reports/SurfaceD3Lab/' + outfilename + '.json', 'w')
+    f = open('../../Reports/SurfaceD3/' + outfilename + '.json', 'w')
     f.write(json.dumps(output, indent=2))
     f.close()

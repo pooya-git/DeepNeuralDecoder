@@ -141,7 +141,7 @@ if __name__== '__main__':
     num_inputs= 2
     input_size= 6
 
-    datafolder= '../Data/CNOTPkl/e-04/'
+    datafolder= '../../Data/CNOTPkl/e-04/'
     file_list= os.listdir(datafolder)
 
     count= 0
@@ -185,6 +185,6 @@ if __name__== '__main__':
         output.append(run_log)
 
     outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
-    f = open('../Reports/CNOTLab/' + outfilename + '.json', 'w')
+    f = open('../../Reports/SteaneCNOT/' + outfilename + '.json', 'w')
     f.write(json.dumps(output, indent=2))
     f.close()

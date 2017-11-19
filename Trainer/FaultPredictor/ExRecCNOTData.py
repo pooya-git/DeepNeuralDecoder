@@ -138,12 +138,12 @@ def get_data(filename):
 
 if __name__ == '__main__':
 
-    datafolder= '../Data/CNOT/e-04/'
+    datafolder= '../../Data/SteaneCNOT/e-04/'
     file_list= os.listdir(datafolder)
 
     for filename in file_list:
 
-        with open('../Data/CNOTPkl/e-04/'+ \
+        with open('../../Data/SteaneCNOT_Pkl/e-04/'+ \
             filename.replace('.txt', '.pkl'), "wb") as output_file:
             print("Reading data from " + filename)
             model= Model(datafolder+ filename)
