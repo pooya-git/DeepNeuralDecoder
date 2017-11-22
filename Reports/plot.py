@@ -40,8 +40,8 @@ def plot_results(filename):
 	ax.plot(p, lu_avg, \
 		linestyle= 'None', marker= 'o', color= verydarkred, markersize= 3, \
 		label= 'Look up table')
-	# ax.errorbar(p, nn_avg, yerr=nn_std, \
-	# 	linestyle= 'None', color= darknavy, markersize=8, capsize=3)
+	ax.errorbar(p, nn_avg, yerr=nn_std, \
+		linestyle= 'None', color= darknavy, markersize=8, capsize=3)
 	plt.plot(p, nn_avg, \
 		marker='o', linestyle = 'None', color= darknavy, markersize=3, \
 		label= 'Neural decoder')
@@ -57,7 +57,7 @@ def plot_results(filename):
 	plt.plot(p, poly(p, *lu_poly), linestyle= '--', color= lightred)
 	plt.plot(p, poly(p, *nn_poly), linestyle= '--', color= lightnavy)
 	plt.plot(p, p, linestyle= '--', color= 'black', linewidth= 1)
-	plt.plot(p, upper, linestyle= '--', color= 'grey')
+	# plt.plot(p, upper, linestyle= '--', color= 'grey')
 
 	ymin, ymax= ax.get_ylim()
 	xmin, xmax= ax.get_xlim()

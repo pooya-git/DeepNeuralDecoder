@@ -18,15 +18,15 @@ from util import *
 def train(m, num_classes, num_inputs, input_size, trial):
 
     prediction= {}
-    verbose= param['usr']['verbose']
-    batch_size= param['opt']['batch size']
-    learning_rate= param['opt']['learning rate']
-    num_iterations= param['opt']['iterations']
-    momentum_val= param['opt']['momentum']
-    decay_rate= param['opt']['decay']
-    num_hiddens= param['nn']['num hidden'] 
-    W_std= param['nn']['W std'] 
-    b_std= param['nn']['b std']
+    verbose= m.param['usr']['verbose']
+    batch_size= m.param['opt']['batch size']
+    learning_rate= m.param['opt']['learning rate']
+    num_iterations= m.param['opt']['iterations']
+    momentum_val= m.param['opt']['momentum']
+    decay_rate= m.param['opt']['decay']
+    num_hiddens= m.param['nn']['num hidden'] 
+    W_std= m.param['nn']['W std'] 
+    b_std= m.param['nn']['b std']
     pointer= m.test_size * trial
     test_beg= (m.train_size + pointer) % m.data_size
     test_end= (m.train_size + m.test_size + pointer) % m.data_size
@@ -141,7 +141,7 @@ if __name__== '__main__':
     num_inputs= 2
     input_size= 6
 
-    datafolder= '../../Data/CNOTPkl/e-04/'
+    datafolder= '../../Data/SteaneCNOT_Pkl/e-04/'
     file_list= os.listdir(datafolder)
 
     count= 0

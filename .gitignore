@@ -6,3 +6,4 @@ BayesOpt/*
 BayesOpt
 .ipynb_checkpoints/*
 Data/*
+sftp-config.json

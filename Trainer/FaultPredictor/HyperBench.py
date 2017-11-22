@@ -1,5 +1,5 @@
 from builtins import range
-import bayesopt, os, sys
+import bayesopt, os, sys, json
 from bayesoptmodule import BayesOptContinuous, BayesOptDiscrete
 import ExRecCNOTLSTM as decoder
 import numpy as np
@@ -45,8 +45,8 @@ class BayesOptTest(BayesOptContinuous):
 
         fault_rates= []
         for i in range(num_trials):
-            fault_rates.append(\
-                train(m, self.num_classes, self.num_inputs, self.input_size, i))
+            fault_rates.append(decoder.train(\
+                self.m, self.num_classes, self.num_inputs, self.input_size, i))
 
         solution= np.mean(fault_rates)
         if (self.best_solution == None or solution < self.best_solution):
