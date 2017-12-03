@@ -1,0 +1,186 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 457
+    }, 
+    "res": {
+      "nn res": [
+        0.003738391311191563
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.003738391311191563, 
+      "p": 0.0003, 
+      "lu avg": 0.0004309, 
+      "lu std": 1.83882080596937e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.pkl", 
+      "train size": 457422, 
+      "total size": 10000000, 
+      "test size": 50824, 
+      "fault scale": 0.0508246
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.11002889463480883, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 500, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 610
+    }, 
+    "res": {
+      "nn res": [
+        0.005398628217420163
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.005398628217420163, 
+      "p": 0.0004, 
+      "lu avg": 0.0007708, 
+      "lu std": 2.45920416328675e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.pkl", 
+      "train size": 610156, 
+      "total size": 10000000, 
+      "test size": 67795, 
+      "fault scale": 0.0677951
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.11002889463480883, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 500, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 756
+    }, 
+    "res": {
+      "nn res": [
+        0.006975526140367584
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.006975526140367584, 
+      "p": 0.0005, 
+      "lu avg": 0.0012048, 
+      "lu std": 3.08534334937881e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.pkl", 
+      "train size": 756077, 
+      "total size": 10000000, 
+      "test size": 84008, 
+      "fault scale": 0.0840085
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.11002889463480883, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 500, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 890
+    }, 
+    "res": {
+      "nn res": [
+        0.007450916958165679
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.007450916958165679, 
+      "p": 0.0006, 
+      "lu avg": 0.0016577, 
+      "lu std": 3.67705770595611e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.pkl", 
+      "train size": 890230, 
+      "total size": 10000000, 
+      "test size": 98914, 
+      "fault scale": 0.0989144
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.98, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.11002889463480883, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 500, 
+        "num classes": 2
+      }
+    }
+  }
+]

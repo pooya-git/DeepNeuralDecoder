@@ -1,0 +1,32 @@
+{
+  "env": {
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD5", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/",
+    "pickle folder": "../../Data/Pkl/Surface_1EC_D5/e-04/",
+    "report folder": "../../Reports/Surface_1EC_D5/"
+  },
+  "opt": {
+    "batch size": 1000, 
+    "decay": 0.95, 
+    "momentum": 0.95, 
+    "iterations": 20, 
+    "learning rate": 1e-6
+  }, 
+  "data": {
+    "test fraction": 0.1,
+    "num trials": 1
+  }, 
+  "nn": {
+    "W std": 1e-3, 
+    "type": "Conv3d", 
+    "b std": 0.0, 
+    "num hidden": 1000, 
+    "keep rate": 0.4,
+    "num filters": 20,
+    "kernel size": 3
+  },
+  "usr": {
+    "verbose": false
+  }
+}

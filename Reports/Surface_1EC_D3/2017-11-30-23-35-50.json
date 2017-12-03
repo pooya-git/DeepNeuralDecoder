@@ -1,0 +1,326 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        3.81900544659175e-05
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 3.81900544659175e-05, 
+      "p": 0.0001, 
+      "lu avg": 3.87e-05, 
+      "lu std": 1.9672e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 105001632, 
+      "test size": 199999, 
+      "fault scale": 0.01904731347413724
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0001470585858225755
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.0001470585858225755, 
+      "p": 0.0002, 
+      "lu avg": 0.0001525, 
+      "lu std": 3.9048e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 52972324, 
+      "test size": 199999, 
+      "fault scale": 0.037755545707226286
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  },
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.00031049146704645786
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.00031049146704645786, 
+      "p": 0.0003, 
+      "lu avg": 0.0003457, 
+      "lu std": 5.8786e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 35621107, 
+      "test size": 199999, 
+      "fault scale": 0.05614645833438023
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0005574779695521729
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.0005574779695521729, 
+      "p": 0.0004, 
+      "lu avg": 0.0006312, 
+      "lu std": 7.9423e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 27014642, 
+      "test size": 199999, 
+      "fault scale": 0.07403388873337652
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0008368161710515392
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.0008368161710515392, 
+      "p": 0.0005, 
+      "lu avg": 0.0009696, 
+      "lu std": 9.8421e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 21797000, 
+      "test size": 199999, 
+      "fault scale": 0.0917557003257329
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0011717755654477888
+      ], 
+      "nn std": 0.0, 
+      "nn avg": 0.0011717755654477888, 
+      "p": 0.0006, 
+      "lu avg": 0.0014, 
+      "lu std": 1.4606e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 18339772, 
+      "test size": 199999, 
+      "fault scale": 0.10905255528803738
+    }, 
+    "param": {
+      "opt": {
+        "learning rate": 1e-05, 
+        "batch size": 1000, 
+        "iterations": 20, 
+        "momentum": 0.95, 
+        "decay": 0.95
+      }, 
+      "data": {
+        "num trials": 1, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.01, 
+        "b std": 0.0, 
+        "num hidden": 1000, 
+        "num filters": 20, 
+        "kernel size": 3, 
+        "type": "LSTM"
+      }, 
+      "env": {
+        "EC scheme": "SurfaceD3", 
+        "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "FT scheme": "Surface1EC", 
+        "report folder": "../../Reports/Surface_1EC_D3/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

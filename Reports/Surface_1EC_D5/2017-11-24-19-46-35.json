@@ -1,0 +1,166 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "p": 0.0004, 
+      "nn avg": 0.000174055070629092, 
+      "lu avg": 0.0001685, 
+      "lu std": 4.1045e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.pkl", 
+      "test set size": 199999, 
+      "total data size": 1999999, 
+      "fault scale": 0.3027029571369371
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.99, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.025118864315095794, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 400, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "p": 0.0005, 
+      "nn avg": 0.10686435279113148, 
+      "lu avg": 0.0003094, 
+      "lu std": 5.5615e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.pkl", 
+      "test set size": 199999, 
+      "total data size": 1999999, 
+      "fault scale": 0.36302550691092
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.99, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.025118864315095794, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 400, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "p": 0.0006, 
+      "nn avg": 0.30919393263283124, 
+      "lu avg": 0.0005161, 
+      "lu std": 7.1822e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.pkl", 
+      "test set size": 199999, 
+      "total data size": 1999999, 
+      "fault scale": 0.4181609481386079
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.99, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.025118864315095794, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 400, 
+        "num classes": 2
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "p": 0.0007, 
+      "nn avg": 0.24479812017188535, 
+      "lu avg": 0.0008012, 
+      "lu std": 8.9474e-06, 
+      "nn std": 0
+    }, 
+    "data": {
+      "path": "SyndromeAndError7.000e-04.pkl", 
+      "test set size": 199999, 
+      "total data size": 1999999, 
+      "fault scale": 0.46824643728666976
+    }, 
+    "param": {
+      "opt": {
+        "batch size": 1000, 
+        "decay": 0.99, 
+        "momentum": 0.99, 
+        "iterations": 20, 
+        "learning rate": 0.0001
+      }, 
+      "data": {
+        "test fraction": 0.1
+      }, 
+      "usr": {
+        "verbose": false
+      }, 
+      "nn": {
+        "W std": 0.025118864315095794, 
+        "type": "LSTM", 
+        "b std": 0.0, 
+        "num hidden": 400, 
+        "num classes": 2
+      }
+    }
+  }
+]
