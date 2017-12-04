@@ -28,12 +28,14 @@ class Model(object):
     def num_logical_fault(self, prediction, test_beg):
         pass
 
-    def cost_function(self, param, x, y, predict, keep_rate):
+    def cost_function(self, param, x, y, predict, keep_rate, key= None):
 
         if param['type']=='LogReg':
             return nn.logistic_regression(param, self.spec, x, y, predict)
         elif param['type']=='FF':
             return nn.ff_cost(param, self.spec, x, y, predict)
+        elif param['type']=='MixedFF':
+            return nn.mixed_ff(param, self.spec, x, y, predict)
         elif param['type']=='XFF':
             return nn.cross_ff_cost(param, self.spec, x, y, predict)
         elif param['type']=='Conv3d':
@@ -46,6 +48,10 @@ class Model(object):
             return nn.deep_lstm_cost(param, self.spec, x, y, predict, keep_rate)
         elif param['type']=='TwoDeepLSTM':
             return nn.two_deep_lstm_cost(param, self.spec, x, y, predict, keep_rate)
+        elif param['type']=='MixedConv3d':
+            return nn.mixed_conv3d(param, self.spec, x, y, predict)
+        elif param['type']=='LSTMSep':
+            return nn.lstm_separated(param, self.spec, x, y, predict, key)
         else:
             print('Neural network type not supportd.')
 
@@ -122,6 +128,87 @@ class Model(object):
                 feed_dict[x[key]]= self.syn[key][t_beg:t_end]
             feed_dict[keep_rate]= 1.0
             for key in self.spec.err_keys:
+                prediction[key] = session.run(predict[key], feed_dict)
+
+        if verbose:
+            plt.plot(costs)
+            plt.show()
+
+        return prediction, t_beg
+
+    def isolated_train(self, param, trial= 0):
+
+        verbose= param['usr']['verbose']
+        batch_size= param['opt']['batch size']
+        learning_rate= param['opt']['learning rate']
+        num_iterations= param['opt']['iterations']
+        momentum_val= param['opt']['momentum']
+        decay_rate= param['opt']['decay']
+        pointer= self.test_size * trial
+        t_beg= (self.train_size + pointer) % self.data_size
+        t_end= (self.train_size + self.test_size + pointer) % self.data_size
+        if not t_end: t_end = None
+
+        tf.reset_default_graph()
+        x, y, predict, cost, train= {}, {}, {}, {}, {}
+        for key in self.spec.err_keys:
+            with tf.variable_scope(key):
+                x[key] = tf.placeholder(tf.float32, [None, self.spec.input_size])
+                y[key] = tf.placeholder(tf.float32, [None, 2])
+                keep_rate= tf.placeholder(tf.float32)
+                cost[key]= self.cost_function(param['nn'], x[key], y[key], predict, keep_rate, key)
+                train[key] = tf.train.RMSPropOptimizer(learning_rate, decay=decay_rate, \
+            momentum=momentum_val).minimize(cost[key])
+        init = tf.global_variables_initializer()
+
+        costs= []
+        prediction= {}
+
+        # inputs= {}
+        # for key in self.spec.err_keys:
+        #     # mu = self.syn[key].mean(axis=0)
+        #     # std = self.syn[key].std(axis=0)
+        #     # inputs[key]= (self.syn[key] - mu) / std
+        #     inputs[key]= self.syn[key]
+
+        with tf.Session() as session:
+            session.run(init)
+
+            for i in tqdm.tqdm(range(num_iterations)):
+                for j in range(self.num_batches):
+                    beg= (j*batch_size + pointer) % self.data_size
+                    end= (j*batch_size + batch_size + pointer) % self.data_size
+                    if not end: end = None
+                    for key in self.spec.err_keys:
+                        feed_dict={}
+                        if (beg < end):
+                            feed_dict[x[key]]= self.syn[key][beg:end]
+                            feed_dict[y[key]]= self.log_1hot[key][beg:end]
+                        else:
+                            feed_dict[x[key]]= np.concatenate(\
+                                (self.syn[key][beg:],\
+                                 self.syn[key][:end]), axis=0)
+                            feed_dict[y[key]]= np.concatenate(\
+                                (self.log_1hot[key][beg:],\
+                                 self.log_1hot[key][:end]), axis=0)
+                        feed_dict[keep_rate]= param['nn']['keep rate']
+                        session.run(train[key], feed_dict)
+                
+                if verbose:
+                    test_cost= []
+                    for key in self.spec.err_keys:
+                        feed_dict={}
+                        feed_dict[x[key]]= self.syn[key][t_beg:t_end]
+                        feed_dict[y[key]]= self.log_1hot[key][t_beg:t_end]
+                        feed_dict[keep_rate]= 1.0
+                        test_cost.append(session.run(cost[key], feed_dict))
+                    costs.append(test_cost)
+
+            start_time= time()
+            feed_dict={}
+            for key in self.spec.err_keys:
+                feed_dict[x[key]]= self.syn[key][t_beg:t_end]
+                feed_dict[keep_rate]= 1.0
                 prediction[key] = session.run(predict[key], feed_dict)
 
         if verbose:
