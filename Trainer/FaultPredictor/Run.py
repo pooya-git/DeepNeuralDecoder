@@ -3,6 +3,31 @@ from time import time, strftime, localtime
 import cPickle as pickle
 from ExRecCNOT import *
 from Surface1EC import *
+from HyperTune import BayesOptTest
+
+def run_hypertune(spec, param, hyperparam):
+
+    filename= hyperparam['env']['filename']
+    with open(param['env']['pickle folder'] + filename, 'rb') as input_file:
+        start_time= time()
+        print('Pickling model from ' + filename + ' ...'),
+        m = pickle.load(input_file)
+        print('Done in ' + '{0:.2f}'.format(time() - start_time) + 's.')
+
+    m.test_size= int(param['data']['test fraction'] * m.data_size)
+    m.train_size= m.data_size - m.test_size
+    m.num_batches= m.train_size // param['opt']['batch size']
+    m.spec= spec
+
+    engine = BayesOptTest(m, param, hyperparam)
+    mvalue, x_out, error = engine.optimize()
+    print('### Best value: ' + str(mvalue))
+    print('### Best query: ' + ' '.join(str(x) for x in x_out))
+
+    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+    f = open(param['env']['param folder'] + outfilename + '.json', 'w')
+    f.write(json.dumps(engine.best_param, indent=2))
+    f.close()
 
 def run_pickler(spec, param):
 
@@ -37,7 +62,12 @@ def run_benchmark(spec, param):
 
         fault_rates= []
         for i in range(param['data']['num trials']):
-            prediction, test_beg= m.train(param, i)
+            if (param['nn']['iso']):
+                prediction, test_beg= m.iso_train(param)
+            elif (param['nn']['mixed']):                
+                prediction, test_beg= m.mixed_train(param)
+            else:
+                prediction, test_beg= m.train(param)
             print('Testing ...'),
             start_time= time()
             result= m.num_logical_fault(prediction, test_beg)
@@ -89,8 +119,11 @@ if __name__=='__main__':
 
     if (sys.argv[1]=='gen'):
         run_pickler(spec, param)
-
     elif (sys.argv[1]=='bench'):
         run_benchmark(spec, param)
+    elif (sys.argv[1]=='tune'):
+        with open(sys.argv[3]) as hyperparam:
+            hyperparam = json.load(hyperparam)
+        run_hypertune(spec, param, hyperparam)
     else:
-        print('Error: Unrecognized flag!')
+        print('Error: Unrecognized command!')

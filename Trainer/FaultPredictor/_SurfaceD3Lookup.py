@@ -6,6 +6,8 @@ class Spec:
 
         self.d= 3
         self.err_keys= ['X', 'Z']
+        self.perp_keys= [('X', 'Z')]
+
         self.num_syn= 3
         self.syn_size= 4
         self.input_size= 12
@@ -34,6 +36,19 @@ class Spec:
                                 [0,0,0,0,0,0,1,1,0], \
                                 [0,1,1,0,0,0,0,0,0], \
                                 [0,0,0,0,1,1,0,1,1]]).astype(np.int8)
+
+        self.T= {}
+        self.T['X'] = np.matrix([ \
+                                [1,0,0,0,0,0,0,0,0], \
+                                [0,0,1,0,0,0,0,0,0], \
+                                [0,0,0,0,0,0,0,1,0], \
+                                [0,0,0,0,0,0,0,0,1]]).astype(np.int8)
+
+        self.T['X'] = np.matrix([ \
+                                [0,0,0,1,0,0,0,0,0], \
+                                [0,0,0,0,0,0,1,0,0], \
+                                [0,1,0,1,0,0,0,0,0], \
+                                [0,0,0,0,0,1,0,0,0]]).astype(np.int8)
 
         self.correctionMat= {}
         self.correctionMat['X'] = np.matrix([ \

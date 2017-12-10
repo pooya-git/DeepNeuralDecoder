@@ -2,9 +2,10 @@
   "env": {
     "FT scheme": "ExRecCNOT", 
     "EC scheme": "ColorD5", 
-    "raw folder": "../../Data/Compact/Knill_CNOT_D5/e-04/",
-    "pickle folder": "../../Data/Pkl/Knill_CNOT_D5/e-04/",
-    "report folder": "../../Reports/Knill_CNOT_D5/"
+    "raw folder": "../../Data/Compact/Steane_CNOT_D5/e-04/",
+    "pickle folder": "../../Data/Pkl/Steane_CNOT_D5/e-04/",
+    "report folder": "../../Reports/Steane_CNOT_D5/",
+    "param folder": "../../Param/Steane_CNOT_D5/"
   },
   "opt": {
     "batch size": 1000, 

@@ -37,3 +37,35 @@ def perp(key):
     if (key=='errZ4'):
         return 'errX4'
     print('Error: Unrecognized key for perp module!')
+
+def raise_ten(elt):
+
+    return 10**elt
+
+def int_times_ten(elt):
+
+    return int(10 * elt)
+
+def identity(elt):
+
+    return elt
+
+def activation_category(elt):
+
+    if (elt < 1):
+        return 'id'
+    if (elt < 2):
+        return 'relu'
+    if (elt < 3):
+        return 'sigmoid'
+    if (elt < 4):
+        return 'tanh'
+
+def cyc_pick(vec, beg, num_rows):
+
+    total_num_rows= np.shape(vec)[0]
+    end= (beg + num_rows) % total_num_rows
+    if not end: end = None
+    if (beg < end):
+        return vec[beg:end]
+    return np.concatenate((vec[beg:], vec[:end]), axis=0)

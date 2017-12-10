@@ -70,7 +70,7 @@ class Surface1EC(Model):
         syn_dic= {}
         for i in range(self.spec.d):
             syn_dic[i]= syn[0, self.spec.syn_size*i : self.spec.syn_size*(i+1)]
-        if (self.spec.d==5):
+        if (self.spec.d==3):
             syndrome_index= 0
             syn_eq_flag= False
             for i in range(self.spec.d-1):
@@ -80,16 +80,8 @@ class Surface1EC(Model):
             if not syn_eq_flag:
                 syndrome_index= self.spec.d-1
             syndrome= syn_dic[syndrome_index]
-        elif (self.spec.d==3):
-            if (np.max(syn_dic[0])+ np.max(syn_dic[1])+ np.max(syn_dic[2])<=1):
-                syndrome = np.matrix(np.zeros(4)).astype(np.int8)
-            elif np.array_equal(syn_dic[0], syn_dic[1]) \
-                or np.array_equal(syn_dic[0], syn_dic[2]):
-                syndrome= syn_dic[0]
-            elif np.array_equal(syn_dic[1], syn_dic[2]):
-                syndrome= syn_dic[1]
-            else:
-                syndrome= syn_dic[2]
+        elif (self.spec.d==5):
+            raise Exception('Method not implemented.')
 
         correction_index= np.asscalar(util.vec_to_index(syndrome))
         return self.spec.correctionMat[key][correction_index]

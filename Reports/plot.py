@@ -70,9 +70,11 @@ def plot_results(filename):
 		"$%f x^{%f}$" % (nn_poly[0], nn_poly[1]), va= 'bottom', \
 		fontsize=9, rotation= 180/ (pi * plot_slope) * arctan(nn_poly[1]))
 
-	ax.set_xlabel('Noise model (p)')
-	ax.set_ylabel('Fault rate')
-	ax.set_title('Fault rate comparison')
+	ax.set_xlabel('Physical fault rate')
+	ax.set_ylabel('Logical fault rate')
+	ax.set_title(res[0]['param']['nn']['type'])
+    # + ' ' + '-'.join([str(elt) for elt in res[0]['param']['nn']['activations']]
+		
 	plt.legend()
 	plt.savefig(filename+'.pdf')
 	plt.show()

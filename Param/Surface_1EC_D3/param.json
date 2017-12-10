@@ -1,0 +1,35 @@
+{
+  "env": {
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD3", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/",
+    "pickle folder": "../../Data/Pkl/Surface_1EC_D3/e-04-tmp/",
+    "report folder": "../../Reports/Surface_1EC_D3/",
+    "param folder": "../../Param/Surface_1EC_D3/"
+  },
+  "opt": {
+    "batch size": 1000, 
+    "decay": 0.95, 
+    "momentum": 0.95, 
+    "iterations": 20, 
+    "learning rate": 1e-5
+  }, 
+  "data": {
+    "test fraction": 0.1,
+    "num trials": 1
+  }, 
+  "nn": {
+    "type": "RNN",
+    "unit type": "LSTM",
+    "peepholes": false, 
+    "mixed": false,
+    "iso": false,
+    "W std": 1e-3, 
+    "b std": 0.0, 
+    "num hidden": [1000],
+    "keep rate": 1.0
+  },
+  "usr": {
+    "verbose": false
+  }
+}

@@ -4,7 +4,8 @@
     "EC scheme": "SurfaceD3", 
     "raw folder": "../../Data/Compact/Surface_ExRec_D3/e-04/",
     "pickle folder": "../../Data/Pkl/Surface_ExRec_D3/e-04/",
-    "report folder": "../../Reports/Surface_ExRec_D3/"
+    "report folder": "../../Reports/Surface_ExRec_D3/",
+    "param folder": "../../Param/Surface_ExRec_D3/"
   },
   "opt": {
     "batch size": 1000, 

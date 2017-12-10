@@ -44,7 +44,6 @@ class ExRecCNOT(Model):
             data[key]= np.matrix(data[key]).astype(np.int8)
         return data, p, lu_avg, lu_std, data_size
 
-
     def init_data(self, raw_data):
         
         self.syn= {}
@@ -66,35 +65,32 @@ class ExRecCNOT(Model):
 
         self.rec= {}
         self.rec['errX3']= np.matrix((raw_data['errX3'] + rep_X1 + \
-          self.lookup_correction_from_err((rep_X1 + rep_X3) % 2)) \
-          % 2).astype(np.int8)
+            self.lookup_correction_from_err((rep_X1 + rep_X3) % 2)) \
+            % 2).astype(np.int8)
         self.rec['errZ3']= np.matrix((raw_data['errZ3'] + rep_Z1 + rep_Z2 + \
-          self.lookup_correction_from_err((rep_Z1 + rep_Z2 + rep_Z3) % 2)) \
-          % 2).astype(np.int8)
+            self.lookup_correction_from_err((rep_Z1 + rep_Z2 + rep_Z3) % 2)) \
+            % 2).astype(np.int8)
         self.rec['errX4']= np.matrix((raw_data['errX4'] + rep_X1 + rep_X2 + \
-          self.lookup_correction_from_err((rep_X1 + rep_X2 + rep_X4) % 2)) \
-          % 2).astype(np.int8)    
+            self.lookup_correction_from_err((rep_X1 + rep_X2 + rep_X4) % 2)) \
+            % 2).astype(np.int8)    
         self.rec['errZ4']= np.matrix((raw_data['errZ4'] + rep_Z2 + \
-          self.lookup_correction_from_err((rep_Z2 + rep_Z4) % 2)) \
-          % 2).astype(np.int8)
+            self.lookup_correction_from_err((rep_Z2 + rep_Z4) % 2)) \
+            % 2).astype(np.int8)
 
         self.log_1hot= {}
         for key in self.spec.err_keys:
             err = np.matrix(\
-            np.sum((self.rec[key] \
-                + self.lookup_correction_from_err(self.rec[key])), axis= 1) % 2)
+            np.sum(self.rec[key] + \
+                self.lookup_correction_from_err(self.rec[key], axis= 1)) % 2)
             self.log_1hot[key]= util.y2indicator(err, 2).astype(np.int8)
 
     def syn_from_err(self, err):
+
         return np.dot(err, self.spec.G.transpose()) % 2
 
     def lookup_correction(self, syn):
 
         correction_index= util.vec_to_index(syn)
-        # correction= np.zeros((np.shape(syn)[0], self.spec.num_qubit))
-        # for i in range(np.shape(syn)[0]):
-        #     correction[i, :]= self.spec.correctionMat[\
-        #         np.asscalar(correction_index[i]), :]
         correction= self.spec.correctionMat[\
                     correction_index.transpose().tolist()]
         assert (np.shape(syn)[1] == self.spec.syn_size)
@@ -118,7 +114,7 @@ class ExRecCNOT(Model):
 
         error_counter= 0.0
         for i in range(self.test_size):
-            t_index= i + t_beg % self.data_size
+            t_index= (i + t_beg) % self.data_size
             for key in self.spec.err_keys:
                 if not 1 in self.syn[key][t_index]: pred[key][i]=0
                 if (self.check_log_fault((\
