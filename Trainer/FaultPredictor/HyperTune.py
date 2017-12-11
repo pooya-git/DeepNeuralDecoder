@@ -1,5 +1,6 @@
 from bayesoptmodule import BayesOptContinuous, BayesOptDiscrete
-from util import raise_ten, int_times_ten, identity, activation_category
+from util import raise_ten, int_times_ten, identity, \
+    activation_category, boolean_category
 import numpy as np
 import traceback
 import logging
@@ -35,6 +36,8 @@ class Domain():
                     self.func.append(identity)
                 elif (vars[key][2]=='activation_category'):
                     self.func.append(activation_category)
+                elif (vars[key][2]=='boolean_category'):
+                    self.func.append(boolean_category)
                 else:
                     raise Exception('Function not recognized.')                    
         self.num_vars= len(self.lb)
@@ -70,12 +73,13 @@ class BayesOptTest(BayesOptContinuous):
         
         print('## Interation: '+ str(self.count))
         print('## New query: '+ ' '.join(str(elt) for elt in x))
+        print('## Items: '+ ' '.join('.'.join(str(s) for s in elt) \
+                                     for elt in self.domain.loc))
         self.count+=1
 
         depth_counter= 0
         activation_counter= 0
         for loc, func, val in zip(self.domain.loc, self.domain.func, x):
-            print loc
             if (loc[-1]=='num hidden'):
                 leaf= reduce(dict.get, loc[:-1], self.param)
                 leaf[loc[-1]][depth_counter]= func(val)

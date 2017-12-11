@@ -1,8 +1,8 @@
 import sys, os, json
 from time import time, strftime, localtime
 import cPickle as pickle
-from ExRecCNOT import *
-from Surface1EC import *
+from ModelExRecCNOT import *
+from ModelSurface1EC import *
 from HyperTune import BayesOptTest
 
 def run_hypertune(spec, param, hyperparam):
@@ -36,18 +36,30 @@ def run_pickler(spec, param):
         with open(param['env']['pickle folder'] + \
             filename.replace('.txt', '.pkl'), "wb") as output_file:
             print("Reading data from " + filename)
-            if (param['env']['FT scheme']=='ExRecCNOT'):
-                model= ExRecCNOT(param['env']['raw folder']+ filename, spec)
-            elif (param['env']['FT scheme']=='Surface1EC'):
-                model= Surface1EC(param['env']['raw folder']+ filename, spec)
+            if (param['env']['look up']):
+                if (param['env']['FT scheme']=='ExRecCNOT'):
+                    model= LookUpExRecCNOT(\
+                        param['env']['raw folder']+ filename, spec)
+                elif (param['env']['FT scheme']=='Surface1EC'):
+                    model= LookUpSurface1EC(\
+                        param['env']['raw folder']+ filename, spec)
+                else:
+                    raise ValueError('Unknown look up model requested.')
             else:
-                raise ValueError('Unknown circuit type.')
+                if (param['env']['FT scheme']=='ExRecCNOT'):
+                    model= PureErrorExRecCNOT(\
+                        param['env']['raw folder']+ filename, spec)
+                elif (param['env']['FT scheme']=='Surface1EC'):
+                    model= PureErrorSurface1EC(\
+                        param['env']['raw folder']+ filename, spec)
+                else:
+                    raise ValueError('Unknown pure error model requested.')
             pickle.dump(model, output_file)
 
 def run_benchmark(spec, param):
 
     output= []
-    for filename in os.listdir(param['env']['pickle folder']):
+    for filename in os.listdir(param['env']['pickle folder'])[:6]:
 
         with open(param['env']['pickle folder'] + filename, 'rb') as input_file:
             start_time= time()

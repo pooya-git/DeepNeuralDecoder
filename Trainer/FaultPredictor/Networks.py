@@ -206,6 +206,19 @@ def iso_conv3d(param, spec, x, y, predict, key):
 def rnn_cost(param, spec, x, y, predict):
 
     num_hiddens= param['num hidden'][0]
+    activations= []
+    for i in range(len(param['activations'])):
+        if param['activations'][i]=='relu':
+            activations.append(tf.nn.relu)
+        elif param['activations'][i]=='sigmoid':
+            activations.append(tf.nn.sigmoid)
+        elif param['activations'][i]=='id':
+            activations.append(tf.identity)
+        elif param['activations'][i]=='tanh':
+            activations.append(tf.tanh)
+        else:
+            raise Exception('Activation function not recognized.')
+    assert(len(activations)==2)
     use_peepholes= param['peepholes']
     W_std= param['W std'] 
     b_std= param['b std']
@@ -224,14 +237,17 @@ def rnn_cost(param, spec, x, y, predict):
         with tf.variable_scope(key):
             lstmIn[key]= tf.reshape(x[key], \
                 [-1, spec.num_epochs, spec.lstm_input_size])
-            lstm[key] = lstm_cell(num_hiddens)
+            lstm[key] = lstm_cell( \
+                num_units= num_hiddens, \
+                use_peepholes= use_peepholes, \
+                activation= activations[0]) 
             lstmOut[key], _ = tf.nn.dynamic_rnn(\
                 lstm[key], lstmIn[key], dtype=tf.float32)
             W= tf.Variable(\
                 tf.random_normal([num_hiddens, spec.num_labels], stddev=W_std))
             b= tf.Variable(\
                 tf.random_normal([spec.num_labels], stddev=b_std))
-            logits[key]= tf.matmul(lstmOut[key][:, -1, :], W) + b
+            logits[key]= activations[1](tf.matmul(lstmOut[key][:,-1,:], W) + b)
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)
@@ -293,16 +309,15 @@ def two_deep_lstm_cost(param, spec, x, y, predict, drop_rate):
                 tf.random_normal([num_hiddens, num_hiddens], stddev=W_std))
             b1[key]= tf.Variable(\
                 tf.random_normal([num_hiddens], stddev=b_std))
-            fc_layer1[key]= tf.nn.relu(tf.matmul(lstmOut[key][:, -1, :], W1[key]) + b1[key])
-            
+            fc_layer1[key]= tf.nn.relu(tf.matmul(\
+                lstmOut[key][:, -1, :], W1[key]) + b1[key])
             W2[key]= tf.Variable(\
                 tf.random_normal([num_hiddens, num_hiddens], stddev=W_std))
             b2[key]= tf.Variable(\
                 tf.random_normal([num_hiddens], stddev=b_std))
-            fc_layer2[key]= tf.nn.relu(tf.matmul(fc_layer1[key], W2[key]) + b2[key])
-
+            fc_layer2[key]= tf.nn.relu(\
+                tf.matmul(fc_layer1[key], W2[key]) + b2[key])
             out[key] = tf.nn.dropout(fc_layer2[key], drop_rate)
-
             W3[key]= tf.Variable(\
                 tf.random_normal([num_hiddens, spec.num_labels], stddev=W_std))
             b3[key]= tf.Variable(\

@@ -25,13 +25,13 @@ class Spec:
         self.L['Z'] = np.matrix([[1,0,0,0,1,0,0,0,1]]).astype(np.int8)
         self.L['X'] = np.matrix([[0,0,1,0,1,0,1,0,0]]).astype(np.int8)
 
-        self.g= {}
-        self.g['Z'] = np.matrix([ \
+        self.G= {}
+        self.G['Z'] = np.matrix([ \
                                 [1,0,0,1,0,0,0,0,0], \
                                 [0,1,1,0,1,1,0,0,0], \
                                 [0,0,0,1,1,0,1,1,0], \
                                 [0,0,0,0,0,1,0,0,1]]).astype(np.int8)
-        self.g['X'] = np.matrix([ \
+        self.G['X'] = np.matrix([ \
                                 [1,1,0,1,1,0,0,0,0], \
                                 [0,0,0,0,0,0,1,1,0], \
                                 [0,1,1,0,0,0,0,0,0], \

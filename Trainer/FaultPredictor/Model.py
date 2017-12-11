@@ -6,7 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import Networks as nn
 from random import randint
-from util import cyc_pick
+from util import cyc_pick, vec_to_index, perp, y2indicator
 
 class Model(object):
     
@@ -14,7 +14,9 @@ class Model(object):
         self.spec = spec
         raw_data, p, lu_avg, lu_std, total_size = self.get_data(path)
         self.data_size = np.shape(raw_data[raw_data.keys()[0]])[0]
-        self.init_data(raw_data)
+        self.init_syn(raw_data)
+        self.init_rec(raw_data)
+        self.init_log_1hot()
         self.p = p
         self.lu_avg = lu_avg
         self.lu_std = lu_std
@@ -27,8 +29,63 @@ class Model(object):
     def init_data(self, raw_data):
         pass
 
-    def num_logical_fault(self, prediction, test_beg):
-        pass
+    def init_log_1hot(self):
+
+        self.log_1hot= {}
+        for key in self.spec.err_keys:
+            err = self.check_fault_after_correction(\
+                (self.rec[key] + \
+                self.lookup_correction_from_error(self.rec[key], key)) % 2, key)
+            self.log_1hot[key]= y2indicator(err, 2).astype(np.int8)
+
+    def syn_from_generators(self, err, key):
+
+        return np.dot(err, self.spec.G[perp(key)].transpose()) % 2
+
+    def pure_correction(self, syn, key):
+
+        assert (np.shape(syn)[1] == self.spec.syn_size)
+        return np.dot(syn, self.spec.T[key]) % 2
+
+    def lookup_correction(self, syn, key):
+
+        assert (np.shape(syn)[1] == self.spec.syn_size)
+        index= vec_to_index(syn)
+        return self.spec.correctionMat[key][index.transpose().tolist()]
+
+    def pure_correction_from_error(self, err, key):
+
+        syn= self.syn_from_generators(err, key)
+        return self.pure_correction(syn, key)
+
+    def lookup_correction_from_error(self, err, key):
+
+        syn= self.syn_from_generators(err, key)
+        return self.lookup_correction(syn, key)
+
+    def check_fault_after_correction(self, err, key):
+
+        return np.dot(err, self.spec.L[perp(key)].transpose()) % 2
+
+    def check_logical_fault(self, err, key):
+
+        correction = self.lookup_correction_from_error(err, key)
+        err_final= (correction + err) % 2
+        return self.check_fault_after_correction(err_final, key)
+
+    def num_logical_fault(self, pred, t_beg):
+
+        error_counter= 0.0
+        for i in range(self.test_size):
+            t_index= (i + t_beg) % self.data_size
+            for key in self.spec.err_keys:
+                if not 1 in self.syn[key][t_index]: pred[key][i]=0
+                if (self.check_logical_fault(( \
+                        pred[key][i] * self.spec.L[key] \
+                        + self.rec[key][t_index]) % 2, key)):
+                    error_counter+=1
+                    break
+        return error_counter/self.test_size
 
     def cost_function(self, param, x, y, predict, keep_rate):
 

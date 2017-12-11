@@ -19,29 +19,39 @@ class Spec:
 
         #-- The 7 qubit CSS code generator --#
 
-        self.G= np.matrix([ \
-                          [0,0,0,1,1,1,1], \
-                          [0,1,1,0,0,1,1], \
-                          [1,0,1,0,1,0,1]]).astype(np.int8)
+        self.L= {}
+        for key in self.err_keys:
+            self.L[key]= np.matrix([\
+            [1,1,1,1,1,1,1]]).astype(np.int8)
+
+        self.G= {}
+        for key in self.err_keys:
+            self.G[key] = np.matrix([ \
+                [0,0,0,1,1,1,1], \
+                [0,1,1,0,0,1,1], \
+                [1,0,1,0,1,0,1]]).astype(np.int8)
 
         self.T= {}
-        self.T['X']= np.matrix([\
-                          [0,0,0,1,0,0,0], \
-                          [0,1,0,0,0,0,0], \
-                          [1,0,0,0,0,0,0]]).astype(np.int8)
+        for key in ['errX3','errX4']:
+            self.T[key]= np.matrix([\
+                [0,0,0,1,0,0,0], \
+                [0,1,0,0,0,0,0], \
+                [1,0,0,0,0,0,0]]).astype(np.int8)
 
-        self.T['Z']= np.matrix([\
-                          [0,0,1,0,0,0,1], \
-                          [0,0,0,0,1,0,1], \
-                          [0,0,0,0,0,1,1]]).astype(np.int8)
+        for key in ['errZ3', 'errZ4']:
+            self.T[key]= np.matrix([\
+                [0,0,1,0,0,0,1], \
+                [0,0,0,0,1,0,1], \
+                [0,0,0,0,0,1,1]]).astype(np.int8)
 
-
-        self.correctionMat= np.matrix([ \
-                          [0,0,0,0,0,0,0], \
-                          [1,0,0,0,0,0,0], \
-                          [0,1,0,0,0,0,0], \
-                          [0,0,1,0,0,0,0], \
-                          [0,0,0,1,0,0,0], \
-                          [0,0,0,0,1,0,0], \
-                          [0,0,0,0,0,1,0], \
-                          [0,0,0,0,0,0,1]]).astype(np.int8)
+        self.correctionMat= {}
+        for key in self.err_keys:
+            self.correctionMat[key] = np.matrix([ \
+                [0,0,0,0,0,0,0], \
+                [1,0,0,0,0,0,0], \
+                [0,1,0,0,0,0,0], \
+                [0,0,1,0,0,0,0], \
+                [0,0,0,1,0,0,0], \
+                [0,0,0,0,1,0,0], \
+                [0,0,0,0,0,1,0], \
+                [0,0,0,0,0,0,1]]).astype(np.int8)

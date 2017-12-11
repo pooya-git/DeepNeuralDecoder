@@ -1,0 +1,34 @@
+{
+  "env": {
+    "FT scheme": "ExRecCNOT", 
+    "EC scheme": "ColorD5", 
+    "raw folder": "../../Data/Compact/Knill_CNOT_D5/e-04/",
+    "pickle folder": "../../Data/Pkl/LookUp/Knill_CNOT_D5/e-04/",
+    "report folder": "../../Reports/LookUp/Knill_CNOT_D5/",
+    "param folder": "../../Param/LookUp/Knill_CNOT_D5/",
+    "look up": true    
+  },
+  "opt": {
+    "batch size": 1000, 
+    "decay": 0.98, 
+    "momentum": 0.99, 
+    "iterations": 10, 
+    "learning rate": 1e-06
+  }, 
+  "data": {
+    "test fraction": 0.1,
+    "num trials": 1
+  }, 
+  "nn": {
+    "type": "LSTM", 
+    "W std": 1e-3,
+    "b std": 0.0, 
+    "num hidden": 1000, 
+    "keep rate": 0.4,
+    "num filters": 20,
+    "kernel size": 3
+  },
+  "usr": {
+    "verbose": false
+  }
+}

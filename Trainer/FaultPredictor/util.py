@@ -60,6 +60,15 @@ def activation_category(elt):
         return 'sigmoid'
     if (elt < 4):
         return 'tanh'
+    raise Exception('Activation function not determined.')
+
+def boolean_category(elt):
+
+    if (elt < 1):
+        return True
+    if (elt < 2):
+        return False
+    raise Exception('Truth value not determined.')
 
 def cyc_pick(vec, beg, num_rows):
 
