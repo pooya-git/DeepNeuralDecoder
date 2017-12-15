@@ -1,0 +1,44 @@
+{
+  "opt": {
+    "learning rate": 0.0003434315697112945, 
+    "decay": 0.8861332846245722, 
+    "momentum": 0.755042076161069, 
+    "iterations": 20, 
+    "batch size": 2000
+  }, 
+  "data": {
+    "num trials": 1, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": true, 
+    "FT scheme": "ExRecCNOT", 
+    "EC scheme": "ColorD3", 
+    "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+    "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+    "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+    "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+  }, 
+  "nn": {
+    "W std": 0.04155786692936097, 
+    "b std": 0.0, 
+    "num hidden": [
+      954, 
+      259, 
+      183
+    ], 
+    "keep rate": 1.0, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "relu", 
+      "tanh", 
+      "relu"
+    ], 
+    "type": "FF"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

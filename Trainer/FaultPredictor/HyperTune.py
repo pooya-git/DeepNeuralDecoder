@@ -21,7 +21,7 @@ class Domain():
             if (key.split('.')[-1]=='num hidden'):
                 num_rounds= depth
             elif (key.split('.')[-1]=='activations'):
-                num_rounds= depth + 1            
+                num_rounds= depth          
             else:
                 num_rounds= 1
             for i in range(num_rounds):
@@ -71,7 +71,7 @@ class BayesOptTest(BayesOptContinuous):
         
     def evaluateSample(self, x):
         
-        print('## Interation: '+ str(self.count))
+        print('## Iteration: '+ str(self.count))
         print('## New query: '+ ' '.join(str(elt) for elt in x))
         print('## Items: '+ ' '.join('.'.join(str(s) for s in elt) \
                                      for elt in self.domain.loc))
@@ -132,6 +132,7 @@ class BayesOptTest(BayesOptContinuous):
             self.best_solution = this_solution
             self.best_sample= x
             self.best_param= deepcopy(self.param)
+            self.best_param['opt']['tune value']= this_solution
         else:
             print('### Best observed value: ' + str(self.best_solution))
             print('### Best observed query: ' + \

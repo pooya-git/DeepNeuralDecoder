@@ -1,0 +1,22 @@
+{
+  "bayesopt": {
+    "n_iterations": 50,
+    "n_iter_relearn": 1,
+    "epsilon": 0.2,
+    "noise": 1e-10
+  },
+  "vars": {
+    "opt.decay": [0.85, 0.999999, "identity"], 
+    "opt.momentum": [0.85, 0.999999, "identity"], 
+    "opt.learning rate": [-5.0, -1.0, "raise_ten"],
+    "nn.W std": [-3.0, -1.0, "raise_ten"], 
+    "nn.num hidden": [10.0, 100.0999999, "int_times_ten"],
+    "nn.activations###": [0.0, 3.999999, "activation_category"],
+    "nn.peepholes###": [0.0, 1.999999, "boolean_category"]
+  },
+  "env": {
+    "filename": "SyndromeAndError4.000e-04.pkl",
+    "inner iterations": 5, 
+    "database usage": 0.1
+  }
+}

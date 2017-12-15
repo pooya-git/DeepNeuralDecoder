@@ -1,10 +1,10 @@
 {
   "opt": {
-    "learning rate": 0.0015028739196780497, 
-    "decay": 0.9474179502739573, 
-    "momentum": 0.9142531805039762, 
+    "learning rate": 0.04467409451137717, 
+    "decay": 0.917757118774967, 
+    "momentum": 0.9127891592673241, 
     "iterations": 20, 
-    "batch size": 916
+    "batch size": 2000
   }, 
   "data": {
     "num trials": 1, 
@@ -20,21 +20,19 @@
     "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
   }, 
   "nn": {
-    "W std": 0.02543245465327482, 
+    "W std": 0.0035323489139345125, 
     "b std": 0.0, 
     "num hidden": [
-      375
+      226
     ], 
-    "unit type": "LSTM", 
-    "peepholes": "false", 
+    "keep rate": 1.0, 
     "mixed": false, 
     "iso": false, 
     "activations": [
-      "tanh", 
-      "tanh"
+      "sigmoid", 
+      "id"
     ], 
-    "type": "RNN", 
-    "keep rate": 1.0
+    "type": "FF"
   }, 
   "usr": {
     "verbose": false

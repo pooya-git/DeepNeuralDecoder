@@ -8,9 +8,9 @@ class Spec:
         self.err_keys= ['X', 'Z']
         self.perp_keys= [('X', 'Z')]
 
-        self.num_syn= 5
+        self.num_syn= 5 # TODO: this become 6
         self.syn_size= 12
-        self.input_size= 60
+        self.input_size= 60 # TODO: update
         self.num_labels= 2
 
         self.num_epochs= 5

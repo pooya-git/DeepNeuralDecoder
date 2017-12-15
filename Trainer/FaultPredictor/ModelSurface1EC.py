@@ -63,7 +63,7 @@ class Surface1EC(Model):
                 syndrome_index= self.spec.d-1
             syndrome= syn_dic[syndrome_index]
             return syndrome
-        elif (self.spec.d==5):
+        elif (self.spec.d>=5):
             raise Exception('Method not implemented.')
 
     def abstract_init_rec(self, raw_data, abs_corr):

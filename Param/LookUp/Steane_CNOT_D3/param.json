@@ -20,15 +20,13 @@
     "num trials": 1
   }, 
   "nn": {
-    "type": "RNN",
-    "unit type": "LSTM",
+    "type": "FF",
     "iso": false,
     "mixed": false,
-    "peepholes": false,
     "W std": 0.09362248191243315, 
     "b std": 0.0, 
-    "num hidden": [500],
-    "activations": ["relu", "id"],
+    "num hidden": [500, 500],
+    "activations": ["relu", "relu", "id"],
     "keep rate": 1.0
   },
   "usr": {

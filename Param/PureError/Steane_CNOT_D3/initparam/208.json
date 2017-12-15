@@ -10,23 +10,23 @@
   },
   "opt": {
     "batch size": 2000, 
-    "decay": 0.98, 
-    "momentum": 0.99, 
+    "decay": -1.0, 
+    "momentum": -1.0, 
     "iterations": 20, 
-    "learning rate": 0.00014395005992278665
+    "learning rate": -1.0
   }, 
   "data": {
     "test fraction": 0.1,
-    "num trials": 1
+    "num trials": 10
   }, 
   "nn": {
     "type": "FF",
     "iso": false,
     "mixed": false,
-    "W std": 0.09362248191243315, 
+    "W std": -1.0, 
     "b std": 0.0, 
-    "num hidden": [],
-    "activations": ["id"],
+    "num hidden": [-1, -1],
+    "activations": ["tanh", "id", "id"],
     "keep rate": 1.0
   },
   "usr": {
