@@ -56,10 +56,10 @@ def run_pickler(spec, param):
                     raise ValueError('Unknown pure error model requested.')
             pickle.dump(model, output_file)
 
-def run_benchmark(spec, param):
+def run_benchmark(spec, param, f0= None, f1= None):
 
     output= []
-    for filename in os.listdir(param['env']['pickle folder'])[:6]:
+    for filename in sorted(os.listdir(param['env']['pickle folder']))[f0:f1]:
 
         with open(param['env']['pickle folder'] + filename, 'rb') as input_file:
             start_time= time()
@@ -132,7 +132,10 @@ if __name__=='__main__':
     if (sys.argv[1]=='gen'):
         run_pickler(spec, param)
     elif (sys.argv[1]=='bench'):
-        run_benchmark(spec, param)
+        if (len(sys.argv)>3):
+            run_benchmark(spec, param, int(sys.argv[3]), int(sys.argv[4]))
+        else: 
+            run_benchmark(spec, param)        
     elif (sys.argv[1]=='tune'):
         with open(sys.argv[3]) as hyperparam:
             hyperparam = json.load(hyperparam)

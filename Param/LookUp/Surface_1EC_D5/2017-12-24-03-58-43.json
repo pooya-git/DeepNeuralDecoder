@@ -1,0 +1,45 @@
+{
+  "opt": {
+    "decay": 0.999999, 
+    "learning rate": 1e-05, 
+    "tune value": 0.0002901527218703326, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 0.0
+  }, 
+  "data": {
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": true, 
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD5", 
+    "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+    "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+    "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+  }, 
+  "nn": {
+    "W std": 0.0010000413356007064, 
+    "b std": 0.0, 
+    "num hidden": [
+      100, 
+      1000, 
+      100
+    ], 
+    "keep rate": 1.0, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "relu", 
+      "relu", 
+      "id"
+    ], 
+    "type": "FF"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

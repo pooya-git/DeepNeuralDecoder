@@ -47,43 +47,50 @@ def cross_ff_cost(param, spec, x, y, predict):
             predict[key]= tf.argmax(logits[key], 1)
     return tf.reduce_sum(sum(loss[key] for key in spec.err_keys))
 
-def surface_conv3d_cost(param, spec, x, y, predict):
+def surface_conv3d_cost(param, spec, x, y, predict, keep_rate):
 
     num_hiddens= param['num hidden'][0]
     num_filters= param['num filters']
     kernel_size= param['kernel size']
     pad_size= param['padding size']
-    flat_size= (spec.d) * \
-               (2 * pad_size + spec.syn_w) * \
-               (2 * pad_size + spec.syn_h) * num_filters
+    flat_size= (spec.num_syn) * \
+               (2 * pad_size + spec.syn_w['Z']) * \
+               (2 * pad_size + spec.syn_h['Z']) * num_filters
     W_std= param['W std'] 
     b_std= param['b std']
-    conv_input, padded_input, conv, pool, pool_flat= {}, {}, {}, {}, {}
+    conv_input, padded_input, conv1, conv2, pool, pool_flat= \
+        {}, {}, {}, {}, {}, {}
     hidden, logits, loss = {}, {}, {}
 
     for key in spec.err_keys:
         with tf.variable_scope(key):
             conv_input[key] = tf.reshape(\
-                x[key],[-1, spec.d, spec.syn_w, spec.syn_h, 1])
-            padded_input[key] = tf.pad(conv_input[key], \
-                tf.constant([[0,0],[0,0],[pad_size,pad_size],[pad_size,pad_size],[0,0]]),\
-                'SYMMETRIC')
-            conv[key] = tf.layers.conv3d(\
+                x[key],[-1, spec.num_syn, spec.syn_w[key], spec.syn_h[key], 1])
+            padded_input[key] = tf.pad(conv_input[key], tf.constant([\
+                [0, 0], [0, 0],\
+                [pad_size, pad_size],\
+                [pad_size, pad_size],\
+                [0, 0]]), 'SYMMETRIC')
+            conv1[key] = tf.layers.conv3d(\
                 padded_input[key], filters= num_filters,\
                 kernel_size= kernel_size,\
                 padding= 'same', activation=tf.nn.relu)
-            # pool[key] = tf.layers.max_pooling3d(conv[key],\
-            #     pool_size=2, strides=1)
-            pool_flat[key]= tf.reshape(conv[key], [-1, flat_size])
-            # W1[key]= tf.Variable(\
-            #     tf.random_normal([flat_size, num_hiddens], stddev=W_std))
-            # b1[key]= tf.Variable(tf.random_normal([num_hiddens], stddev=b_std))
-            # hidden[key]= tf.nn.relu(tf.matmul(pool_flat[key], W1[key])+ b1[key])
+            conv2[key] = tf.layers.conv3d(\
+                conv1[key], filters= num_filters,\
+                kernel_size= kernel_size + 1,\
+                padding= 'same', activation=tf.nn.relu)
+#             pool[key] = tf.layers.max_pooling3d(conv[key],\
+#                 pool_size=2, strides=1)
+            pool_flat[key]= tf.reshape(conv2[key], [-1, flat_size])
             W= tf.Variable(\
-                tf.random_normal([flat_size, spec.num_labels], stddev=W_std))
-            b= tf.Variable(\
-                tf.random_normal([spec.num_labels], stddev=b_std))
-            logits[key]= (tf.matmul(pool_flat[key], W) +b)
+                tf.random_normal([flat_size, num_hiddens], stddev=W_std))
+            b= tf.Variable(tf.random_normal([num_hiddens], stddev=b_std))
+            hidden[key]= tf.nn.dropout(\
+                tf.nn.relu(tf.matmul(pool_flat[key], W) + b), keep_rate)
+            W= tf.Variable(\
+                tf.random_normal([num_hiddens, spec.num_labels], stddev=W_std))
+            b= tf.Variable(tf.random_normal([spec.num_labels], stddev=b_std))
+            logits[key]= (tf.matmul(hidden[key], W) + b)
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)    

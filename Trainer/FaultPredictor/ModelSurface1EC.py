@@ -32,11 +32,14 @@ class Surface1EC(Model):
             for line in file.readlines():
                 line_list= line.strip('\n').split(' ')
                 data['synX'].append([bit for bit in \
-                    ''.join(line_list[0:self.spec.d])])
+                    ''.join(line_list[0:self.spec.num_syn])])
                 data['synZ'].append([bit for bit in \
-                    ''.join(line_list[2*self.spec.d:3*self.spec.d])])
-                data['errX'].append([bit for bit in line_list[2*self.spec.d-1]])
-                data['errZ'].append([bit for bit in line_list[4*self.spec.d-1]])
+                    ''.join(line_list[2*self.spec.num_syn \
+                                     :3*self.spec.num_syn])])
+                data['errX'].append([bit for bit in \
+                    line_list[2*self.spec.num_syn - 1]])
+                data['errZ'].append([bit for bit in \
+                    line_list[4*self.spec.num_syn - 1]])
         for key in data.keys():
             data[key]= np.matrix(data[key]).astype(np.int8)
         return data, p, lu_avg, lu_std, data_size
@@ -50,21 +53,21 @@ class Surface1EC(Model):
     def choose_syndrome(self, syn):
 
         syn_dic= {}
-        for i in range(self.spec.d):
+        for i in range(self.spec.num_syn):
             syn_dic[i]= syn[0, self.spec.syn_size*i : self.spec.syn_size*(i+1)]
         if (self.spec.d==3):
+            assert(self.spec.d == self.spec.num_syn)
             syndrome_index= 0
             syn_eq_flag= False
-            for i in range(self.spec.d-1):
+            for i in range(self.spec.num_syn-1):
                 if np.array_equal(syn_dic[i], syn_dic[i+1]):
                     syn_eq_flag= True
                     syndrome_index= i
             if not syn_eq_flag:
-                syndrome_index= self.spec.d-1
-            syndrome= syn_dic[syndrome_index]
-            return syndrome
+                syndrome_index= self.spec.num_syn-1
         elif (self.spec.d>=5):
-            raise Exception('Method not implemented.')
+            syndrome_index= self.spec.num_syn-1
+        return syn_dic[syndrome_index]
 
     def abstract_init_rec(self, raw_data, abs_corr):
 

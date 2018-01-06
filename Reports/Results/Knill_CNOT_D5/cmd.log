@@ -1,0 +1,3 @@
+python multiplot.py 0.000004 3 PureError/Knill_CNOT_D5/2017-12-29-07-05-18.json FF-1Hidden no
+
+python multiplot.py 0.000004 3 LookUp/Knill_CNOT_D5/2017-12-29-07-03-17.json FF-1Hidden -0.000001

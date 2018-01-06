@@ -1,0 +1,446 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        3.59996024641317e-05, 
+        3.5047232028572664e-05, 
+        3.09520391556688e-05, 
+        3.076156506855699e-05, 
+        3.4475809767237244e-05, 
+        3.5047232028572664e-05, 
+        3.314249115745459e-05, 
+        3.4856757941460855e-05, 
+        3.36186763752341e-05, 
+        3.209488367833964e-05
+      ], 
+      "nn std": 1.7273384947065056e-06, 
+      "nn avg": 3.359962896652292e-05, 
+      "p": 0.0001, 
+      "lu avg": 3.87e-05, 
+      "lu std": 1.9672e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 105001632, 
+      "test size": 199999, 
+      "fault scale": 0.01904731347413724
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.00013082361999363905, 
+        0.00013667575883895335, 
+        0.00013082361999363905, 
+        0.00012685926787261967, 
+        0.0001262929318553312, 
+        0.00013006850530392108, 
+        0.00013101239866606854, 
+        0.00012459392380346576, 
+        0.00012062957168244639, 
+        0.0001400737749426842
+      ], 
+      "nn std": 5.372237708344762e-06, 
+      "nn avg": 0.00012978533729527682, 
+      "p": 0.0002, 
+      "lu avg": 0.0001525, 
+      "lu std": 3.9048e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 52972324, 
+      "test size": 199999, 
+      "fault scale": 0.037755545707226286
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.00027961076055901633, 
+        0.0002841024996844624, 
+        0.00029140157576331224, 
+        0.00028943643989592954, 
+        0.0002812951627310586, 
+        0.0002852254344658239, 
+        0.0002998235866235235, 
+        0.00029392817902137557, 
+        0.0002950511138027371, 
+        0.0002995428529281832
+      ], 
+      "nn std": 6.870580816471848e-06, 
+      "nn avg": 0.0002899417605475422, 
+      "p": 0.0003, 
+      "lu avg": 0.0003457, 
+      "lu std": 5.8786e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 35621107, 
+      "test size": 199999, 
+      "fault scale": 0.05614645833438023
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0005182398123326973, 
+        0.00048233319676393185, 
+        0.0005167591271546039, 
+        0.0005100960438531835, 
+        0.0005360080344698183, 
+        0.0004941786781886792, 
+        0.0004949190207777259, 
+        0.0005038031318462864, 
+        0.0005367483770588651, 
+        0.0004897366226543989
+      ], 
+      "nn std": 1.7799389445237933e-05, 
+      "nn avg": 0.000508282204510019, 
+      "p": 0.0004, 
+      "lu avg": 0.0006312, 
+      "lu std": 7.9423e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 27014642, 
+      "test size": 199999, 
+      "fault scale": 0.07403388873337652
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0007863502835429487, 
+        0.0008092893233195808, 
+        0.0008005724882044605, 
+        0.0007886441875206119, 
+        0.0007725868596769693, 
+        0.000797361022635732, 
+        0.0007877266259295466, 
+        0.0007996549266133952, 
+        0.0008092893233195808, 
+        0.0008001137074089279
+      ], 
+      "nn std": 1.0784374271474233e-05, 
+      "nn avg": 0.0007951588748171753, 
+      "p": 0.0005, 
+      "lu avg": 0.0009696, 
+      "lu std": 9.8421e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 21797000, 
+      "test size": 199999, 
+      "fault scale": 0.0917557003257329
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0011145226876571803, 
+        0.001116703749668251, 
+        0.0010812614919883505, 
+        0.0011161584841654834, 
+        0.0011466933523204747, 
+        0.0011254279977125344, 
+        0.0011194300771820895, 
+        0.001105798439612897, 
+        0.0011036173776018264, 
+        0.0011068889706184325
+      ], 
+      "nn std": 1.592922032002529e-05, 
+      "nn avg": 0.001113650262852752, 
+      "p": 0.0006, 
+      "lu avg": 0.0014, 
+      "lu std": 1.4606e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 18339772, 
+      "test size": 199999, 
+      "fault scale": 0.10905255528803738
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9610678374862627, 
+        "learning rate": 0.001, 
+        "tune value": 0.0005078978716045432, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.19940475946344038, 
+        "old rate": 0.0036445603063426065
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.024641528299653655, 
+        "b std": 0.0, 
+        "num hidden": [
+          703
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "opt": {
+    "decay": 0.9459913957384019, 
+    "learning rate": 0.0012625357082487365, 
+    "tune value": 0.000479605381444491, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 0.3446554205647577
+  }, 
+  "data": {
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": false, 
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD5", 
+    "param folder": "../../Param/PureError/Surface_1EC_D5/", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+    "report folder": "../../Reports/PureError/Surface_1EC_D5/", 
+    "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D5/e-04/"
+  }, 
+  "nn": {
+    "W std": 0.089762375162558, 
+    "b std": 0.0, 
+    "num hidden": [
+      178, 
+      990, 
+      485, 
+      463, 
+      709
+    ], 
+    "keep rate": 1.0, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "relu", 
+      "relu", 
+      "relu", 
+      "relu", 
+      "id"
+    ], 
+    "type": "FF"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

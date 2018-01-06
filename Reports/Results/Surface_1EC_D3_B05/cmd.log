@@ -1,0 +1,6 @@
+python multiplot.py 0.000003 2 PureError/Surface_1EC_D3_Biased/2017-12-28-14-46-56.json FF-1Hidden -0.000001
+
+python multiplot.py 0.000003 2 LookUp/Surface_1EC_D3_Biased/2017-12-28-14-44-20.json FF-1Hidden -0.000001
+
+python multiplot.py 0.000002 2 PureError/Surface_1EC_D3_Biased/2017-12-28-14-46-56.json PE-FF-1Hidden -0.000009 LookUp/Surface_1EC_D3_Biased/2017-12-28-14-44-20.json LU-FF-1Hidden 0.0
+

@@ -1,0 +1,5 @@
+python multiplot.py 0.0 2 PureError/Steane_CNOT_D3/2017-12-15-21-28-24.json Softmax-Reg no PureError/Steane_CNOT_D3/2017-12-16-01-04-27.json FF-1Hidden -0.000007 PureError/Steane_CNOT_D3/2017-12-16-03-28-00.json FF-2Hidden 1 PureError/Steane_CNOT_D3/2017-12-17-18-38-50.json LSTM -0.0000045 PureError/Steane_CNOT_D3/2017-12-18-10-30-59.json LSTM-Peep 0.0000004
+
+python multiplot.py 0.000001 LookUp/Steane_CNOT_D3/2017-12-16-17-10-21.json Softmax-Reg -0.0000001 LookUp/Steane_CNOT_D3/2017-12-16-19-32-16.json FF-1Hidden -0.000006 LookUp/Steane_CNOT_D3/2017-12-16-20-21-34.json FF-2Hidden -0.000004 LookUp/Steane_CNOT_D3/2017-12-17-19-44-43.json LSTM 0.0 LookUp/Steane_CNOT_D3/2017-12-18-08-24-23.json LSTM-Peep 1
+
+python multiplot.py 0.000001 PureError/Steane_CNOT_D3/2017-12-16-01-04-27.json PE-FF-1Hidden -0.000004 LookUp/Steane_CNOT_D3/2017-12-16-19-32-16.json LU-FF-1Hidden 0.0 

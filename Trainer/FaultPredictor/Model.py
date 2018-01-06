@@ -91,8 +91,6 @@ class Model(object):
 
         if param['type']=='FF':
             return nn.ff_cost(param, self.spec, x, y, predict)
-        elif param['type']=='Conv3d':
-            return nn.surface_conv3d_cost(param, self.spec, x, y, predict)
         elif param['type']=='RNN':
             return nn.rnn_cost(param, self.spec, x, y, predict)
         elif param['type']=='W-LSTM':
@@ -100,7 +98,11 @@ class Model(object):
         elif param['type']=='DeepLSTM':
             return nn.deep_lstm_cost(param, self.spec, x, y, predict, keep_rate)
         elif param['type']=='TwoDeepLSTM':
-            return nn.two_deep_lstm_cost(param,self.spec,x,y,predict, keep_rate)
+            return nn.two_deep_lstm_cost(\
+                param, self.spec, x, y, predict, keep_rate)
+        elif param['type']=='3DCNN':
+            return nn.surface_conv3d_cost(\
+                param, self.spec, x, y, predict, keep_rate)
         else:
             print('Neural network type not supported.')
 
@@ -156,14 +158,24 @@ class Model(object):
                     test_cost = session.run(cost, feed_dict)
                     costs.append(test_cost)
 
-            start_time= time()
-            feed_dict={}
-            for key in self.spec.err_keys:
-                feed_dict[x[key]]= \
-                    cyc_pick(self.syn[key], t_beg, self.test_size)
-            feed_dict[keep_rate]= 1.0
-            for key in self.spec.err_keys:
-                prediction[key] = session.run(predict[key], feed_dict)
+            num_test_batches= param['data']['num test batch'] if \
+                'num test batch' in param['data'].keys() else 1
+            test_batch_size= self.test_size / num_test_batches
+            for j in range(num_test_batches):
+                beg= (j * test_batch_size + t_beg) % self.data_size
+                if j==num_test_batches-1:
+                    test_batch_size+= self.test_size % num_test_batches
+                feed_dict={}
+                for key in self.spec.err_keys:
+                    feed_dict[x[key]]= \
+                        cyc_pick(self.syn[key], beg, test_batch_size)
+                feed_dict[keep_rate]= 1.0
+                for key in self.spec.err_keys:
+                    res= session.run(predict[key], feed_dict)
+                    if key in prediction.keys():
+                        prediction[key]= np.append(prediction[key], res, axis=0)
+                    else:
+                        prediction[key]= res
 
         if verbose:
             plt.plot(costs)

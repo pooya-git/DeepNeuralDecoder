@@ -1,0 +1,452 @@
+[
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        4.3428091861492214e-05, 
+        4.171382507748594e-05, 
+        3.895195081436473e-05, 
+        4.2285247338821366e-05, 
+        3.990432124992376e-05, 
+        4.199953620815365e-05, 
+        4.2856669600156786e-05, 
+        4.1428113946818226e-05, 
+        4.295190664371269e-05, 
+        4.685662542950476e-05
+      ], 
+      "nn std": 2.0217413461601734e-06, 
+      "nn avg": 4.223762881704341e-05, 
+      "p": 0.0001, 
+      "lu avg": 3.87e-05, 
+      "lu std": 1.9672e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 105001632, 
+      "test size": 199999, 
+      "fault scale": 0.01904731347413724
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.00017480905066971105, 
+        0.00015328828201274878, 
+        0.00016310477297908248, 
+        0.0001587628635132041, 
+        0.0001549872900646142, 
+        0.00016272721563422347, 
+        0.00015102293794359487, 
+        0.00014554835644313955, 
+        0.0001644262236860889, 
+        0.00015744141280619764
+      ], 
+      "nn std": 7.774289879794033e-06, 
+      "nn avg": 0.00015861184057526048, 
+      "p": 0.0002, 
+      "lu avg": 0.0001525, 
+      "lu std": 3.9048e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 52972324, 
+      "test size": 199999, 
+      "fault scale": 0.037755545707226286
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.00035540885830091833, 
+        0.00034052997244787836, 
+        0.0003144217387812232, 
+        0.00034558317896400513, 
+        0.0003307042931109651, 
+        0.0003438987767919628, 
+        0.0003416529072292399, 
+        0.0003905005702184656, 
+        0.0006310893471251694, 
+        0.00032565108659483833
+      ], 
+      "nn std": 8.849431891154256e-05, 
+      "nn avg": 0.00037194407295646663, 
+      "p": 0.0003, 
+      "lu avg": 0.0003457, 
+      "lu std": 5.8786e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 35621107, 
+      "test size": 199999, 
+      "fault scale": 0.05614645833438023
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0005634007102645466, 
+        0.0005730251639221539, 
+        0.0006626066171968059, 
+        0.000597086298066172, 
+        0.0005212011826888841, 
+        0.0005915337286483217, 
+        0.0006229982886828068, 
+        0.0005789479046345275, 
+        0.0005508148862507525, 
+        0.0006063405804292558
+      ], 
+      "nn std": 3.736853091618983e-05, 
+      "nn avg": 0.0005867955360784226, 
+      "p": 0.0004, 
+      "lu avg": 0.0006312, 
+      "lu std": 7.9423e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 27014642, 
+      "test size": 199999, 
+      "fault scale": 0.07403388873337652
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0009322425765223288, 
+        0.0007927732146804057, 
+        0.0008982927976529133, 
+        0.000898751578448446, 
+        0.0008859057161735319, 
+        0.0013534033468212943, 
+        0.0011492458928092685, 
+        0.000866636922761161, 
+        0.0008473681293487901, 
+        0.0008542498412817797
+      ], 
+      "nn std": 0.0001623216053512864, 
+      "nn avg": 0.000947887001649992, 
+      "p": 0.0005, 
+      "lu avg": 0.0009696, 
+      "lu std": 9.8421e-06
+    }, 
+    "data": {
+      "path": "SyndromeAndError5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 21797000, 
+      "test size": 199999, 
+      "fault scale": 0.0917557003257329
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 1000, 
+      "number of batches": 1800
+    }, 
+    "res": {
+      "nn res": [
+        0.0012453864083214286, 
+        0.001240479018796519, 
+        0.0011826808755031428, 
+        0.001238843222288216, 
+        0.0012982771620898954, 
+        0.0013048203481231078, 
+        0.0011941314510612647, 
+        0.0011717755654477888, 
+        0.0012083083541332249, 
+        0.0012835549935151676
+      ], 
+      "nn std": 4.524721431529579e-05, 
+      "nn avg": 0.0012368257399279754, 
+      "p": 0.0006, 
+      "lu avg": 0.0014, 
+      "lu std": 1.4606e-05
+    }, 
+    "data": {
+      "path": "SyndromeAndError6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 18339772, 
+      "test size": 199999, 
+      "fault scale": 0.10905255528803738
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.7591870912148176, 
+        "learning rate": 0.006877289750620534, 
+        "tune value": 0.0005530608018784165, 
+        "iterations": 20, 
+        "batch size": 1000, 
+        "momentum": 0.7369279162761604
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.042421994269630364, 
+        "b std": 0.0, 
+        "num hidden": [
+          361
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD3", 
+        "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

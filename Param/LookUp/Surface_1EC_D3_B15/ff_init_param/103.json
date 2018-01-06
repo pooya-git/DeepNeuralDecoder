@@ -1,0 +1,35 @@
+{
+  "env": {
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD3", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D3_B15/e-04/",
+    "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D3_B15/e-04/",
+    "report folder": "../../Reports/LookUp/Surface_1EC_D3_B15/",
+    "param folder": "../../Param/LookUp/Surface_1EC_D3_B15/",
+    "look up": true
+  },
+  "opt": {
+    "batch size": 2000, 
+    "decay": -1.0, 
+    "momentum": -1.0, 
+    "iterations": 20, 
+    "learning rate": -1.0
+  }, 
+  "data": {
+    "test fraction": 0.1,
+    "num trials": 10
+  }, 
+  "nn": {
+    "type": "FF",
+    "iso": false,
+    "mixed": false,
+    "W std": -1.0, 
+    "b std": 0.0, 
+    "num hidden": [-1],
+    "activations": ["relu", "id"],
+    "keep rate": 1.0
+  },
+  "usr": {
+    "verbose": false
+  }
+}

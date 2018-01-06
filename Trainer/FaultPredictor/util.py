@@ -7,7 +7,6 @@
 # ------------------------------------------------------------------------------
 
 import numpy as np
-from builtins import range
 
 def y2indicator(y, width):
 

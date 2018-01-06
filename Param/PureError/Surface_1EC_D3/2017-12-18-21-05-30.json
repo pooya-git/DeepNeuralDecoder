@@ -1,0 +1,38 @@
+{
+  "opt": {
+    "decay": 0.34198951305932296, 
+    "learning rate": 0.004957840325985592, 
+    "tune value": 0.004154249209290221, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 0.5524268155318036
+  }, 
+  "data": {
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": false, 
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD3", 
+    "param folder": "../../Param/PureError/Surface_1EC_D3/", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D3/e-04/", 
+    "report folder": "../../Reports/PureError/Surface_1EC_D3/", 
+    "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D3/e-04/"
+  }, 
+  "nn": {
+    "W std": 0.0035947331344330633, 
+    "b std": 0.0, 
+    "num hidden": [], 
+    "keep rate": 1.0, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "id"
+    ], 
+    "type": "FF"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}
