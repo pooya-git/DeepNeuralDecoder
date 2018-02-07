@@ -85,7 +85,7 @@ def plot_results(filenames, titles= None, shifts= None, global_shift= 0.0):
 	p= [elt['res']['p'] for elt in res]
 	p, lu_avg = zip(*sorted(zip(p, lu_avg)))
 	lu_poly, _ = curve_fit(quad_poly, p, lu_avg)
-	ax.text(p[0], quad_poly(p[0], *lu_poly) + global_shift, \
+	ax.text(p[0]+0.000005, quad_poly(p[0]+0.000005, *lu_poly) + global_shift, \
 		"$%.2e x^%d$" % (lu_poly[0], poly_deg), va= 'bottom', \
 		fontsize=9, rotation= 260 / (pi * plot_slope) * arctan(3.0))
 
@@ -101,7 +101,7 @@ def plot_results(filenames, titles= None, shifts= None, global_shift= 0.0):
 		nn_poly, _ = curve_fit(quad_poly, p, nn_avg)
 		if shifts:
 			this_shift= next(shift_iter)
-		ax.text(p[0], quad_poly(p[0], *nn_poly) \
+		ax.text(p[0]+0.000005, quad_poly(p[0]+0.000005, *nn_poly) \
 				+ global_shift + float(this_shift) \
 								 if shifts and not this_shift=='no' \
 								 else 0.0, \

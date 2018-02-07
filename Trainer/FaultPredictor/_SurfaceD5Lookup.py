@@ -13,7 +13,7 @@ class Spec:
         self.input_size= 72
         self.num_labels= 2
 
-        self.num_epochs= 5
+        self.num_epochs= 6
         self.lstm_input_size = 12
 
         self.syn_h= {'Z':4, 'X':3}

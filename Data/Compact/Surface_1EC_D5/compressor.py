@@ -10,40 +10,25 @@
 # If the entire matrix is all zeros, it is excluded.
 # 
 
-from __future__ import print_function, division
-from builtins import range
-import numpy as np
-import sys
-import os
-import json
+import sys, os
 
-# Some older version had this data!
-# headers= [[1e-4, 4e-6, 6.3245e-7, 43776590], \
-#           [2e-4, 2.45e-5, 1.5652e-6, 22523070], \
-#           [3e-4, 7.2e-5, 2.6832e-6, 15307669], \
-#           [4e-4, 1.685e-4, 4.1045e-6, 11718547], \
-#           [5e-4, 3.094e-4, 5.5615e-6, 9580680], \
-#           [6e-4, 5.161e-4, 7.1822e-6, 8172870], \
-#           [7e-4, 8.012e-4, 8.9474e-6, 7134426], \
-#           [8e-4, 0.0012, 1.0776e-5, 6365382], \
-#           [9e-4, 0.0016, 1.2732e-5, 5817385]]
 
-# headers= [[1e-4, 3.3e-6, 5.7446e-7, 43776590] \
-            # [2e-4, 2.59e-5, 1.6093e-6, 22523070] \
-            # [3e-4, 9.36e-5, 3.0593e-6, 15307669] \
-            # [4e-4, 2.099e-4, 4.5810e-6, 11718547] \
-            # [5e-4, 3.96e-4, 6.2916e-6, 9580680] \
-            # [6e-4, 6.635e-4, 8.1428e-6, 8172870] \
-            # [7e-4, 0.0010, 1.0228e-5, 7134426] \
-            # [8e-4, 0.0015, 1.2418e-5, 6365382] \
-            # [9e-4, 0.0021, 1.4644e-5, 5817385]]
+headers= [[3e-4, 9.36e-5, 3.0593e-6, 133443824], \
+          [4e-4, 2.099e-4, 4.5810e-6, 102734148], \
+          [5e-4, 3.96e-4, 6.2916e-6, 84332489], \
+          [6e-4, 6.635e-4, 8.1428e-6, 72160925], \
+          [7e-4, 0.0010, 1.0228e-5, 63397696], \
+          [8e-4, 0.0015, 1.2418e-5, 56898453]]
 
-headers= [[1e-3, 0.0029, 1.7062e-5, 4783965], \
-          [2e-3, 0.0193, 4.3481e-5, 3024051]]
-
+## new data set.
+# headers= [[5e-4, 3.96e-4, 6.2916e-6, 47857280], \
+#           [6e-4, 6.635e-4, 8.1428e-6, 41865355], \
+#           [7e-4, 0.0010, 1.0228e-5, 37644806], \
+#           [8e-4, 0.0015, 1.2418e-5, 34525192]]
+   
 def run(syn_folder, err_folder, output_folder, filename, header_line):
 
-    print_epoch= 100000
+    print_epoch= 1000000
 
     with open(syn_folder + filename) as file:
         print(filename + ' ...')
@@ -66,9 +51,10 @@ def run(syn_folder, err_folder, output_folder, filename, header_line):
         errz= []
         for i in range(6):
             xz_syn_str=  ''.join(syn_lines[6*line_num + i].split('\t')).strip()
-            xz_err_str=  ''.join(err_lines[6*line_num + i].split('\t')).strip()
             synx.append(xz_syn_str[0:12])
             synz.append(xz_syn_str[12:24])
+        for i in range(6):
+            xz_err_str=  ''.join(err_lines[6*line_num + i].split('\t')).strip()
             errx.append(xz_err_str[0:25])
             errz.append(xz_err_str[25:50])
         result= ' '.join(synx) + ' ' + ' '.join(errx) \
@@ -84,7 +70,7 @@ def run(syn_folder, err_folder, output_folder, filename, header_line):
 if __name__ == '__main__':
 
     counter= 0
-    for filename in os.listdir(sys.argv[1]):
+    for filename in sorted(os.listdir(sys.argv[1])):
         run(sys.argv[1], sys.argv[2], sys.argv[3], filename, headers[counter])
         sys.stdout.flush()
         counter+=1

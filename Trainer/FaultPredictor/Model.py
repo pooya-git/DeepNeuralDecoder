@@ -80,6 +80,8 @@ class Model(object):
             t_index= (i + t_beg) % self.data_size
             for key in self.spec.err_keys:
                 if not 1 in self.syn[key][t_index]: pred[key][i]=0
+                ## DANGEROURS TEST FOR PERFECT AND IMPERFECT NN INFERENCE ##
+                # pred[key][i]= 0 # or self.log_1hot[key][t_index, 1] 
                 if (self.check_logical_fault(( \
                         pred[key][i] * self.spec.L[key] \
                         + self.rec[key][t_index]) % 2, key)):
@@ -106,7 +108,7 @@ class Model(object):
         else:
             print('Neural network type not supported.')
 
-    def train(self, param):
+    def train(self, param, tune= False, save= False, save_path= None):
 
         verbose= param['usr']['verbose']
         batch_size= param['opt']['batch size']
@@ -116,21 +118,30 @@ class Model(object):
         decay_rate= param['opt']['decay']
         pointer= randint(0, self.data_size - 1) # self.test_size * trial
         t_beg= (self.train_size + pointer) % self.data_size
+        num_test_batches= param['data']['num test batch'] if \
+            'num test batch' in param['data'].keys() else 1
+        test_batch_size= self.test_size / num_test_batches
 
         tf.reset_default_graph()
         x, y, predict= {}, {}, {}
         for key in self.spec.err_keys:
             with tf.variable_scope(key):
-                x[key] = tf.placeholder(tf.float32, [None,self.spec.input_size])
-                y[key] = tf.placeholder(tf.float32, [None,2])
-        keep_rate= tf.placeholder(tf.float32)
+                x[key] = tf.placeholder(\
+                    tf.float32, [None,self.spec.input_size], name= 'x'+key)
+                y[key] = tf.placeholder(\
+                    tf.float32, [None,2], name= 'y'+key)
+        keep_rate= tf.placeholder(tf.float32, name= 'keep_rate')
         cost= self.cost_function(param['nn'], x, y, predict, keep_rate)
         train = tf.train.RMSPropOptimizer(learning_rate, decay=decay_rate, \
             momentum=momentum_val).minimize(cost)
         init = tf.global_variables_initializer()
 
-        costs= []
+        cost_curve= []
+        final_cost= []
         prediction= {}
+
+        if save:
+            saver= tf.train.Saver()
 
         with tf.Session() as session:
             session.run(init)
@@ -156,29 +167,40 @@ class Model(object):
                             cyc_pick(self.log_1hot[key], t_beg, self.test_size)
                     feed_dict[keep_rate]= 1.0
                     test_cost = session.run(cost, feed_dict)
-                    costs.append(test_cost)
+                    cost_curve.append(test_cost)
 
-            num_test_batches= param['data']['num test batch'] if \
-                'num test batch' in param['data'].keys() else 1
-            test_batch_size= self.test_size / num_test_batches
+            if save:
+                print('Saving the trained network.')
+                saver.save(session, save_path)
+
             for j in range(num_test_batches):
                 beg= (j * test_batch_size + t_beg) % self.data_size
                 if j==num_test_batches-1:
                     test_batch_size+= self.test_size % num_test_batches
                 feed_dict={}
+                feed_dict[keep_rate]= 1.0
                 for key in self.spec.err_keys:
                     feed_dict[x[key]]= \
                         cyc_pick(self.syn[key], beg, test_batch_size)
-                feed_dict[keep_rate]= 1.0
-                for key in self.spec.err_keys:
-                    res= session.run(predict[key], feed_dict)
-                    if key in prediction.keys():
-                        prediction[key]= np.append(prediction[key], res, axis=0)
-                    else:
-                        prediction[key]= res
+                    if tune:
+                        feed_dict[y[key]]= \
+                            cyc_pick(self.log_1hot[key], beg, test_batch_size)
+                if tune:
+                    final_cost.append(session.run(cost, feed_dict))
+                else:
+                    for key in self.spec.err_keys:
+                        prediction_result= session.run(predict[key], feed_dict)
+                        if key in prediction.keys():
+                            prediction[key]= np.append( \
+                                prediction[key], prediction_result, axis=0)
+                        else:
+                            prediction[key]= prediction_result
 
+        if tune:
+            return np.sum(final_cost)
+        
         if verbose:
-            plt.plot(costs)
+            plt.plot(cost_curve)
             plt.show()
 
         return prediction, t_beg

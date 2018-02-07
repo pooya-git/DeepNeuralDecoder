@@ -34,12 +34,12 @@ class ExRecCNOT(Model):
                 line_list= line.strip('\n').split(' ')
                 data['synX12'].append([bit for bit in ''.join(line_list[0:2])])
                 data['synX34'].append([bit for bit in ''.join(line_list[2:4])])
-                data['synZ12'].append([bit for bit in ''.join(line_list[8:10])])
-                data['synZ34'].append([bit for bit in ''.join(line_list[10:12])])
-                data['errX3'].append([bit for bit in line_list[6]])
-                data['errX4'].append([bit for bit in line_list[7]])
-                data['errZ3'].append([bit for bit in line_list[14]])
-                data['errZ4'].append([bit for bit in line_list[15]])
+                data['synZ12'].append([bit for bit in ''.join(line_list[6:8])])
+                data['synZ34'].append([bit for bit in ''.join(line_list[8:10])])
+                data['errX3'].append([bit for bit in line_list[4]])
+                data['errX4'].append([bit for bit in line_list[5]])
+                data['errZ3'].append([bit for bit in line_list[10]])
+                data['errZ4'].append([bit for bit in line_list[11]])
         for key in data.keys():
             data[key]= np.matrix(data[key]).astype(np.int8)
         return data, p, lu_avg, lu_std, data_size

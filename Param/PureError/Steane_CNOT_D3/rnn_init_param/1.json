@@ -4,11 +4,12 @@
     "decay": -1, 
     "momentum": -1, 
     "iterations": 20, 
-    "batch size": 1000
+    "batch size": 2000
   }, 
   "data": {
-    "num trials": 1, 
-    "test fraction": 0.1
+    "num trials": 10, 
+    "test fraction": 0.1,
+    "num test batch": 100
   }, 
   "env": {
     "look up": false, 

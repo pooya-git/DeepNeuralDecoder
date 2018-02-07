@@ -1,0 +1,36 @@
+{
+  "env": {
+    "FT scheme": "ExRecCNOT", 
+    "EC scheme": "ColorD3", 
+    "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/",
+    "pickle folder": "../../Data/Pkl/LookUp/Knill_CNOT_D3/e-04/",
+    "report folder": "../../Reports/LookUp/Knill_CNOT_D3/",
+    "param folder": "../../Param/LookUp/Knill_CNOT_D3/",
+    "look up": true
+  },
+  "opt": {
+    "batch size": 2000, 
+    "decay": -1.0, 
+    "momentum": -1.0, 
+    "iterations": 20, 
+    "learning rate": -1.0
+  }, 
+  "data": {
+    "test fraction": 0.1,
+    "num trials": 10,
+    "num test batch": 100
+  }, 
+  "nn": {
+    "type": "FF",
+    "iso": false,
+    "mixed": false,
+    "W std": -1.0, 
+    "b std": 0.0, 
+    "num hidden": [-1, -1, -1, -1],
+    "activations": ["relu", "relu", "relu", "relu", "id"],
+    "keep rate": 1.0
+  },
+  "usr": {
+    "verbose": false
+  }
+}

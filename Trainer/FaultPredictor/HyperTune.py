@@ -98,35 +98,27 @@ class BayesOptTest(BayesOptContinuous):
         self.m.num_batches = self.m.train_size // batch_size
         self.m.error_scale= 1.0 * self.m.data_size / self.m.total_size
 
-        fault_rates= []
+        costs= []
         for i in range(self.inner_iter):
             try:
-                if (self.param['nn']['iso']):
-                    prediction, test_beg= self.m.iso_train(self.param)
-                elif (self.param['nn']['mixed']):                
-                    prediction, test_beg= self.m.mixed_train(self.param)
-                else:
-                    prediction, test_beg= self.m.train(self.param)
-                print('Testing ...'),
-                start_time= time()
-                result= self.m.error_scale * \
-                    self.m.num_logical_fault(prediction, test_beg)
-                print('Done in ' + '{0:.2f}'.format(time() - start_time) + 's.')
-                print('# Result: ' + str(result))
-                fault_rates.append(result)
+                cost= self.m.train(self.param, tune= True)
+                print("this cost: " + str(cost))
+                if (np.isnan(1.0 * cost)):
+                    raise Exception()
+                costs.append(cost)
             except Exception as e:
                 logging.error(traceback.format_exc())
-                if not fault_rates:
+                if not costs:
                     if (self.best_solution == None):
-                        return 1.0
+                        return 10**10
                     else:
-                        return 10.0 * self.best_solution
+                        return 1000 * self.best_solution
                 else:
                     break
 
-        this_solution= np.mean(fault_rates)
+        this_solution= 1.0 * np.mean(costs)
         print('## This value: ' + str(this_solution))
-
+        
         if (self.best_solution == None or this_solution < self.best_solution):
             print('** New best **')
             self.best_solution = this_solution

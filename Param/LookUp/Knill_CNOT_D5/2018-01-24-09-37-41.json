@@ -1,0 +1,44 @@
+{
+  "opt": {
+    "decay": 0.9994225915164153, 
+    "learning rate": 1.2905835184558101e-05, 
+    "tune value": 12961.7724609375, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 0.9924259907716059
+  }, 
+  "data": {
+    "num test batch": 100, 
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": true, 
+    "FT scheme": "ExRecCNOT", 
+    "EC scheme": "ColorD5", 
+    "param folder": "../../Param/LookUp/Knill_CNOT_D5/", 
+    "raw folder": "../../Data/Compact/Knill_CNOT_D5/e-04/", 
+    "report folder": "../../Reports/LookUp/Knill_CNOT_D5/", 
+    "pickle folder": "../../Data/Pkl/LookUp/Knill_CNOT_D5/e-04/"
+  }, 
+  "nn": {
+    "W std": 1.0019865388992915e-05, 
+    "b std": 0.0, 
+    "num hidden": [
+      100, 
+      1000
+    ], 
+    "keep rate": 1.0, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "relu", 
+      "id"
+    ], 
+    "type": "FF"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

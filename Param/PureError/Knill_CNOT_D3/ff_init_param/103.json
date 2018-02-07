@@ -17,7 +17,8 @@
   }, 
   "data": {
     "test fraction": 0.1,
-    "num trials": 10
+    "num trials": 10,
+    "num test batch": 100
   }, 
   "nn": {
     "type": "FF",

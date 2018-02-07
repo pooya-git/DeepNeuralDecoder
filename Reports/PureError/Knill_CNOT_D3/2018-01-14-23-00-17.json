@@ -1,0 +1,458 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        4.557648839522467e-05, 
+        4.4385653781572726e-05, 
+        4.8932476851880165e-05, 
+        4.6442549932426095e-05, 
+        4.535997301092432e-05, 
+        4.557648839522467e-05, 
+        4.990679608123177e-05, 
+        4.600951916382539e-05, 
+        4.730861146962751e-05, 
+        4.6767323008876626e-05
+      ], 
+      "nn std": 1.606487249557617e-06, 
+      "nn avg": 4.662658800908139e-05, 
+      "p": 0.0001, 
+      "lu avg": 5.38e-05, 
+      "lu std": 6.1415e-06
+    }, 
+    "data": {
+      "path": "1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 92372189, 
+      "test size": 200000, 
+      "fault scale": 0.021651538430035474
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.00017639693537167803, 
+        0.0001725622193853372, 
+        0.00018726196399964368, 
+        0.0001710709409462047, 
+        0.00016957966250707212, 
+        0.0001768230149257159, 
+        0.00017043182161514787, 
+        0.00017000574206110997, 
+        0.00017895341269590523, 
+        0.0001710709409462047
+      ], 
+      "nn std": 5.290125568288913e-06, 
+      "nn avg": 0.00017441566544540194, 
+      "p": 0.0002, 
+      "lu avg": 0.0002308, 
+      "lu std": 1.2766e-05
+    }, 
+    "data": {
+      "path": "2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 46939591, 
+      "test size": 200000, 
+      "fault scale": 0.042607955403786965
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.00038558307406231796, 
+        0.0003956636773057773, 
+        0.00038778820602182473, 
+        0.0003865281306163923, 
+        0.0003953486584544192, 
+        0.0003786526593324397, 
+        0.0003950336396030611, 
+        0.0003893633002786152, 
+        0.00039440360190034487, 
+        0.0003893633002786152
+      ], 
+      "nn std": 5.205060970907485e-06, 
+      "nn avg": 0.00038977282478538076, 
+      "p": 0.0003, 
+      "lu avg": 0.0004861, 
+      "lu std": 1.8796e-05
+    }, 
+    "data": {
+      "path": "3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 31744132, 
+      "test size": 200000, 
+      "fault scale": 0.06300377027162059
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0007597946155186682, 
+        0.0007888393958348943, 
+        0.0007341173459637437, 
+        0.00074758738900895, 
+        0.0007395895509508586, 
+        0.0007256985690604897, 
+        0.0007547433493767159, 
+        0.0007480083278541128, 
+        0.0007370639178798826, 
+        0.0007972581727381481
+      ], 
+      "nn std": 2.209447811765173e-05, 
+      "nn avg": 0.0007532700634186464, 
+      "p": 0.0004, 
+      "lu avg": 0.000892, 
+      "lu std": 2.575e-05
+    }, 
+    "data": {
+      "path": "4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 23756420, 
+      "test size": 200000, 
+      "fault scale": 0.08418776903253941
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0011537967077148413, 
+        0.0011768098786756086, 
+        0.0011741947456118853, 
+        0.0011114315520825194, 
+        0.0010779578488668577, 
+        0.001106724312567817, 
+        0.001097309833538412, 
+        0.001136013802881521, 
+        0.0011841322512540348, 
+        0.0011333986698177975
+      ], 
+      "nn std": 3.476234912748204e-05, 
+      "nn avg": 0.0011351769603011295, 
+      "p": 0.0005, 
+      "lu avg": 0.0015, 
+      "lu std": 3.8869e-05
+    }, 
+    "data": {
+      "path": "5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 19119486, 
+      "test size": 200000, 
+      "fault scale": 0.104605322548943
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0016381788281320119, 
+        0.0016406684616094161, 
+        0.0016867266809413952, 
+        0.001650004587149682, 
+        0.0016556062624738417, 
+        0.0015958550590161392, 
+        0.0016686768382302142, 
+        0.0016089256347725117, 
+        0.0016425356867174694, 
+        0.0016468925453029268
+      ], 
+      "nn std": 2.491064605322728e-05, 
+      "nn avg": 0.001643407058434561, 
+      "p": 0.0006, 
+      "lu avg": 0.002, 
+      "lu std": 3.8869e-05
+    }, 
+    "data": {
+      "path": "6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 16066622, 
+      "test size": 200000, 
+      "fault scale": 0.12448167387021367
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9643025569729304, 
+        "learning rate": 0.0002194689056274672, 
+        "tune value": 8961.8212890625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.8378305164495794
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.029230036470212075, 
+        "b std": 0.0, 
+        "num hidden": [
+          321
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

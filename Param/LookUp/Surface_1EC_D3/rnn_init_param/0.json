@@ -7,7 +7,7 @@
     "batch size": 1000
   }, 
   "data": {
-    "num trials": 1, 
+    "num trials": 10, 
     "test fraction": 0.1
   }, 
   "env": {

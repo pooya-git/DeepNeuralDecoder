@@ -15,28 +15,31 @@ import sys
 import os
 import json
 
-headers= [[1e-4, 5.38e-5, 6.1415e-6, 109324791], \
-          [2e-4, 2.308e-4, 1.2766e-5, 52643517], \
-          [3e-4, 4.861e-4, 1.8796e-5, 36493534], \
-          [4e-4, 8.920e-4, 2.575e-5, 27044364], \
-          [5e-4, 0.0015, 3.8869e-5, 21789456], \
-          [6e-4, 0.0020, 3.8869e-5, 18533191], \
-          [7e-4, 0.0027, 4.5300e-5, 16085191], \
-          [8e-4, 0.0036, 5.2132e-5, 14118500], \
-          [9e-4, 0.0045, 5.8510e-5, 12643002]]
+headers= [[1e-4, 5.38e-5, 6.1415e-6, 92372189], \
+          [2e-4, 2.308e-4, 1.2766e-5, 46939591], \
+          [3e-4, 4.861e-4, 1.8796e-5, 31744132], \
+          [4e-4, 8.920e-4, 2.575e-5, 23756420], \
+          [5e-4, 0.0015, 3.8869e-5, 19119486], \
+          [6e-4, 0.0020, 3.8869e-5, 16066622], \
+          [7e-4, 0.0027, 4.5300e-5, 14153973]]
 
-def run(input_folder, output_folder, filename, header_line):
+def run(syn_folder, err_folder, output_folder, filename, header_line):
 
-    print_epoch= 1000000
+    print_epoch= 100000
 
-    with open(input_folder + filename) as file:
+    with open(syn_folder + filename) as file:
         print(filename + ' ...')
-        all_lines = file.readlines()
+        syn_lines = file.readlines()
 
-    print(len(all_lines)/4)
+    with open(err_folder + filename) as file:
+        print(filename + ' ...')
+        err_lines = file.readlines()
+
+    assert(len(syn_lines)==2*len(err_lines))
+    print(len(syn_lines)/4)
     outstream= open(output_folder + filename, 'w+')
     outstream.write(' '.join([str(elt) for elt in header_line]) + '\n')
-    for line_num in range(len(all_lines)/4):
+    for line_num in range(len(syn_lines)/4):
         if (not line_num % print_epoch):
             print(line_num)
         synx= []
@@ -44,11 +47,13 @@ def run(input_folder, output_folder, filename, header_line):
         synz= []
         errz= []
         for i in range(4):
-            xz_str=  ''.join(all_lines[4*line_num + i].split('\t')).strip()
-            synx.append(xz_str[0:3])
-            synz.append(xz_str[3:6])
-            errx.append(xz_str[6:13])
-            errz.append(xz_str[13:20])
+            xz_syn_str=  ''.join(syn_lines[4*line_num + i].split('\t')).strip()
+            synx.append(xz_syn_str[0:3])
+            synz.append(xz_syn_str[3:6])
+        for i in range(2):
+            xz_err_str=  ''.join(err_lines[2*line_num + i].split('\t')).strip()
+            errx.append(xz_err_str[0:7])
+            errz.append(xz_err_str[7:14])
         result= ' '.join(synx) + ' ' + ' '.join(errx) \
         + ' ' + ' '.join(synz) + ' ' + ' '.join(errz)
         if '1' in result:
@@ -62,7 +67,7 @@ def run(input_folder, output_folder, filename, header_line):
 if __name__ == '__main__':
 
     counter= 0
-    for filename in os.listdir(sys.argv[1]):
-        run(sys.argv[1], sys.argv[2], filename, headers[counter])
+    for filename in sorted(os.listdir(sys.argv[1])):
+        run(sys.argv[1], sys.argv[2], sys.argv[3], filename, headers[counter])
         sys.stdout.flush()
         counter+=1

@@ -128,7 +128,7 @@ def ff_cost(param, spec, x, y, predict):
                     activations[l](tf.matmul(layer[key][-1], W) + b))
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=layer[key][-1], labels=y[key])
-            predict[key]= tf.argmax(layer[key][-1], 1)
+            predict[key]= tf.argmax(layer[key][-1], 1, name='predict')
     return tf.reduce_sum(sum(loss[key] for key in spec.err_keys))
 
 def weighted_lstm(param, spec, x, y, predict):

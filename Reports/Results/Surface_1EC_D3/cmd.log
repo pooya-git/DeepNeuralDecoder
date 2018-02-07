@@ -1,5 +1,5 @@
-python multiplot.py 0.00003 2 LookUp/Surface_1EC_D3/2017-12-19-00-15-12.json Softmax-Reg -0.000007 LookUp/Surface_1EC_D3/2017-12-19-01-24-58.json FF-1Hidden -0.000021 LookUp/Surface_1EC_D3/2017-12-19-02-42-41.json FF-2Hidden -0.000017 LookUp/Surface_1EC_D3/2017-12-20-15-20-13.json LSTM -0.000012
+python multiplot.py 0.00003 2 LookUp/Surface_1EC_D3/2017-12-19-00-15-12.json LU-FF0 -0.000007 LookUp/Surface_1EC_D3/2017-12-19-01-24-58.json LU-FF1 -0.000021 LookUp/Surface_1EC_D3/2017-12-19-02-42-41.json LU-FF2 -0.000017 LookUp/Surface_1EC_D3/2017-12-20-15-20-13.json LU-RNN -0.000012
 
-python multiplot.py 0.000001 2 PureError/Surface_1EC_D3/2017-12-19-00-08-38.json Softmax-Reg no PureError/Surface_1EC_D3/2017-12-20-15-00-07.json FF-1Hidden -0.000011 PureError/Surface_1EC_D3/2017-12-19-02-03-46.json FF-2Hidden -0.00005 PureError/Surface_1EC_D3/2017-12-20-10-15-09.json LSTM -0.000011
+python multiplot.py 0.000002 2 PureError/Surface_1EC_D3/2017-12-20-10-15-09.json PE-RNN -0.000011 PureError/Surface_1EC_D3/2017-12-20-15-00-07.json PE-FF1 -0.00001 PureError/Surface_1EC_D3/2017-12-19-02-03-46.json PE-FF2 -0.00005
 
-python multiplot.py 0.000001 2 PureError/Surface_1EC_D3/2017-12-20-15-00-07.json PE-FF-1Hidden -0.000005 LookUp/Surface_1EC_D3/2017-12-19-01-24-58.json LU-FF-1Hidden 0.0
+python multiplot.py 0.000001 2 PureError/Surface_1EC_D3/2017-12-20-15-00-07.json PE-FF1 -0.000005 LookUp/Surface_1EC_D3/2017-12-19-01-24-58.json LU-FF1 0.0

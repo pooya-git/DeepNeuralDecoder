@@ -10,7 +10,8 @@ def run_hypertune(spec, param, hyperparam):
     filename= hyperparam['env']['filename']
     with open(param['env']['pickle folder'] + filename, 'rb') as input_file:
         start_time= time()
-        print('Pickling model from ' + filename + ' ...'),
+        print('Pickling model from ' + \
+            param['env']['pickle folder'] + filename + ' ...'),
         m = pickle.load(input_file)
         print('Done in ' + '{0:.2f}'.format(time() - start_time) + 's.')
 
@@ -31,7 +32,7 @@ def run_hypertune(spec, param, hyperparam):
 
 def run_pickler(spec, param):
 
-    for filename in os.listdir(param['env']['raw folder']):
+    for filename in sorted(os.listdir(param['env']['raw folder'])):
 
         with open(param['env']['pickle folder'] + \
             filename.replace('.txt', '.pkl'), "wb") as output_file:
@@ -56,17 +57,21 @@ def run_pickler(spec, param):
                     raise ValueError('Unknown pure error model requested.')
             pickle.dump(model, output_file)
 
-def run_benchmark(spec, param, f0= None, f1= None):
+def run_benchmark(spec, param, f0= None, f1= None, save= False):
 
     output= []
     for filename in sorted(os.listdir(param['env']['pickle folder']))[f0:f1]:
 
         with open(param['env']['pickle folder'] + filename, 'rb') as input_file:
             start_time= time()
-            print('Pickling model from ' + filename + ' ...'),
+            print('Pickling model from ' + \
+                param['env']['pickle folder'] + filename + ' ...'),
             m = pickle.load(input_file)
             print('Done in ' + '{0:.2f}'.format(time() - start_time) + 's.')
 
+        if 'total fraction' in param['data']:
+            m.data_size= int(param['data']['total fraction'] * m.data_size) 
+            print('Fraction training on ' + str(m.data_size) + ' rows.')
         m.test_size= int(param['data']['test fraction'] * m.data_size)
         m.train_size= m.data_size - m.test_size
         m.num_batches= m.train_size // param['opt']['batch size']
@@ -79,12 +84,17 @@ def run_benchmark(spec, param, f0= None, f1= None):
             elif (param['nn']['mixed']):                
                 prediction, test_beg= m.mixed_train(param)
             else:
-                prediction, test_beg= m.train(param)
+                if save:
+                    outfilename = strftime("%Y-%m-%d-%H-%M-%S", localtime())
+                    prediction, test_beg= m.train(param, save= True, save_path=\
+                        param['env']['report folder'] + outfilename + '.ckpt')
+                else:
+                    prediction, test_beg= m.train(param)
             print('Testing ...'),
             start_time= time()
             result= m.num_logical_fault(prediction, test_beg)
             print('Done in ' + '{0:.2f}'.format(time() - start_time) + 's.')
-            print m.error_scale * result
+            print('Result= ' + str(m.error_scale * result))
             fault_rates.append(m.error_scale * result)
 
         run_log= {}
@@ -135,7 +145,10 @@ if __name__=='__main__':
         if (len(sys.argv)>3):
             run_benchmark(spec, param, int(sys.argv[3]), int(sys.argv[4]))
         else: 
-            run_benchmark(spec, param)        
+            run_benchmark(spec, param)
+    elif (sys.argv[1]=='save'):
+        run_benchmark(spec, param, \
+            int(sys.argv[3]), int(sys.argv[4]), save= True)
     elif (sys.argv[1]=='tune'):
         with open(sys.argv[3]) as hyperparam:
             hyperparam = json.load(hyperparam)

@@ -1,1 +1,5 @@
-python multiplot.py 0.000002 2 PureError/Knill_CNOT_D3/2017-12-18-02-47-50.json PE-FF-1Hidden -0.000006 LookUp/Knill_CNOT_D3/2017-12-18-02-54-33.json LU-FF-1Hidden -0.000001
+python multiplot.py 0.000002 2 LookUp/Knill_CNOT_D3/2018-01-29-15-53-37.json LU-FF3 0.0 PureError/Knill_CNOT_D3/2018-01-15-06-37-36.json PE-FF2 -0.000007
+
+python multiplot.py -0.000007 2 LookUp/Knill_CNOT_D3/2018-01-14-06-37-48.json LU-FF0 0.000008 LookUp/Knill_CNOT_D3/2018-01-13-08-17-49.json LU-FF1 0.0 LookUp/Knill_CNOT_D3/2018-01-14-06-29-20.json LU-FF2 -0.000004 LookUp/Knill_CNOT_D3/2018-01-13-17-56-07.json LU-RNN 0.1
+
+python multiplot.py 0.000002 2 PureError/Knill_CNOT_D3/2018-01-14-23-00-17.json PE-RNN 0.0 PureError/Knill_CNOT_D3/2018-01-15-06-37-36.json PE-FF2 -0.000007

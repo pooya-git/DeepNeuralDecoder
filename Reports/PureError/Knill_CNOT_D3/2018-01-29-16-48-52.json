@@ -1,0 +1,470 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        4.741686916177769e-05, 
+        4.730861146962751e-05, 
+        5.109763069488372e-05, 
+        5.153066146348443e-05, 
+        4.5251715318774135e-05, 
+        4.362784993652148e-05, 
+        5.131414607918408e-05, 
+        4.557648839522467e-05, 
+        4.8824219159729995e-05, 
+        5.098937300273354e-05
+      ], 
+      "nn std": 2.741485785336183e-06, 
+      "nn avg": 4.829375646819413e-05, 
+      "p": 0.0001, 
+      "lu avg": 5.38e-05, 
+      "lu std": 6.1415e-06
+    }, 
+    "data": {
+      "path": "1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 92372189, 
+      "test size": 200000, 
+      "fault scale": 0.021651538430035474
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0001689405431760153, 
+        0.00017852733314186738, 
+        0.00017021878183812894, 
+        0.00017852733314186738, 
+        0.0001804446911350378, 
+        0.00017767517403379166, 
+        0.00017277525916235614, 
+        0.0001710709409462047, 
+        0.00016553190674371235, 
+        0.0001755447762636023
+      ], 
+      "nn std": 4.69094045430123e-06, 
+      "nn avg": 0.0001739256739582584, 
+      "p": 0.0002, 
+      "lu avg": 0.0002308, 
+      "lu std": 1.2766e-05
+    }, 
+    "data": {
+      "path": "2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 46939591, 
+      "test size": 200000, 
+      "fault scale": 0.042607955403786965
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0003881032248731828, 
+        0.00039188345108948005, 
+        0.0003984988469680002, 
+        0.00038778820602182473, 
+        0.00039030835683268955, 
+        0.0003830629232514532, 
+        0.0003868431494677504, 
+        0.0004079494125087433, 
+        0.0003739273765620682, 
+        0.0003868431494677504
+      ], 
+      "nn std": 8.547698548642082e-06, 
+      "nn avg": 0.00038952080970429425, 
+      "p": 0.0003, 
+      "lu avg": 0.0004861, 
+      "lu std": 1.8796e-05
+    }, 
+    "data": {
+      "path": "3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 31744132, 
+      "test size": 200000, 
+      "fault scale": 0.06300377027162059
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0007576899212928547, 
+        0.0007177007310023984, 
+        0.0007097028929443072, 
+        0.0007164379144669104, 
+        0.0007408523674863469, 
+        0.0007303288963572794, 
+        0.0007210682417637, 
+        0.000716858853312073, 
+        0.0007492711443896008, 
+        0.0007501130220799262
+      ], 
+      "nn std": 1.627918059303964e-05, 
+      "nn avg": 0.0007310023985095396, 
+      "p": 0.0004, 
+      "lu avg": 0.000892, 
+      "lu std": 2.575e-05
+    }, 
+    "data": {
+      "path": "4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 23756420, 
+      "test size": 200000, 
+      "fault scale": 0.08418776903253941
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0010821420617688155, 
+        0.0011522276278766073, 
+        0.0011197999778864347, 
+        0.0010795269287050917, 
+        0.0010795269287050917, 
+        0.001154319734327586, 
+        0.0011381059093324999, 
+        0.001169487506097183, 
+        0.0011501355214256282, 
+        0.0011276453770776055
+      ], 
+      "nn std": 3.223240350684503e-05, 
+      "nn avg": 0.0011252917573202543, 
+      "p": 0.0005, 
+      "lu avg": 0.0015, 
+      "lu std": 3.8869e-05
+    }, 
+    "data": {
+      "path": "5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 19119486, 
+      "test size": 200000, 
+      "fault scale": 0.104605322548943
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0016823698223559377, 
+        0.0016356891946546076, 
+        0.0016412908699787673, 
+        0.0016412908699787673, 
+        0.0016444029118255225, 
+        0.00163133233606915, 
+        0.0016064360012951074, 
+        0.0016437805034561714, 
+        0.0016506269955190332, 
+        0.001640046053240065
+      ], 
+      "nn std": 1.7707600147615318e-05, 
+      "nn avg": 0.0016417265558373128, 
+      "p": 0.0006, 
+      "lu avg": 0.002, 
+      "lu std": 3.8869e-05
+    }, 
+    "data": {
+      "path": "6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 16066622, 
+      "test size": 200000, 
+      "fault scale": 0.12448167387021367
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9972597427752401, 
+        "learning rate": 0.00025507053166152485, 
+        "tune value": 8928.6552734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.04436077234428807
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0012619473178992167, 
+        "b std": 0.0, 
+        "num hidden": [
+          302, 
+          138, 
+          992
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "relu", 
+          "relu", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/PureError/Knill_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/PureError/Knill_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/PureError/Knill_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

@@ -1,0 +1,452 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        2.5013633862533353e-05, 
+        2.5586465172362362e-05, 
+        2.7114015331906383e-05, 
+        2.405891501281834e-05, 
+        2.4154386897789844e-05, 
+        2.539552140241936e-05, 
+        2.4249858782761346e-05, 
+        2.339061181801783e-05, 
+        2.5013633862533353e-05, 
+        2.5681937057333865e-05
+      ], 
+      "nn std": 1.0087995061231411e-06, 
+      "nn avg": 2.4965897920047607e-05, 
+      "p": 0.0001, 
+      "lu avg": 4.69e-05, 
+      "lu std": 5.9478e-06
+    }, 
+    "data": {
+      "path": "1.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 104742878, 
+      "test size": 200000, 
+      "fault scale": 0.01909437699430027
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.00010347992081062902, 
+        0.00010404333235769233, 
+        9.95360399811858e-05, 
+        9.653117839684812e-05, 
+        8.958243598306722e-05, 
+        0.00010235309771650238, 
+        0.00010178968616943907, 
+        0.0001029165092635657, 
+        0.00010272870541454459, 
+        9.747019764195365e-05
+      ], 
+      "nn std": 4.2462363048172586e-06, 
+      "nn avg": 0.0001000431103735428, 
+      "p": 0.0002, 
+      "lu avg": 0.0001949, 
+      "lu std": 0.00012393
+    }, 
+    "data": {
+      "path": "2.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 53247045, 
+      "test size": 200000, 
+      "fault scale": 0.03756076980422106
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0002219212780348946, 
+        0.00022442728995749692, 
+        0.00021579547111297783, 
+        0.00020270851996161013, 
+        0.00022832553072598945, 
+        0.0002038223030383223, 
+        0.000217187699958868, 
+        0.0002071636522684587, 
+        0.00021690925418968996, 
+        0.00022136438649653854
+      ], 
+      "nn std": 8.3191469439196e-06, 
+      "nn avg": 0.00021596253857448467, 
+      "p": 0.0003, 
+      "lu avg": 0.0004309, 
+      "lu std": 1.8388e-05
+    }, 
+    "data": {
+      "path": "3.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 35913636, 
+      "test size": 200000, 
+      "fault scale": 0.05568915383560718
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0004307975852081103, 
+        0.00041887239253798956, 
+        0.00042036304162175464, 
+        0.0004453314137748199, 
+        0.00043489687018846425, 
+        0.0004021025903456323, 
+        0.0004211083661636372, 
+        0.0004546479705483517, 
+        0.00044421342696199603, 
+        0.0004132824584738704
+      ], 
+      "nn std": 1.549844992537965e-05, 
+      "nn avg": 0.00042856161158246256, 
+      "p": 0.0004, 
+      "lu avg": 0.0007708, 
+      "lu std": 2.4592e-05
+    }, 
+    "data": {
+      "path": "4.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 26833948, 
+      "test size": 200000, 
+      "fault scale": 0.07453245418825437
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0006345113412631458, 
+        0.0006451949143590845, 
+        0.0006061766474000039, 
+        0.0006572719969892761, 
+        0.0006419433921124945, 
+        0.0006544849779207704, 
+        0.0006368338571535673, 
+        0.0006354403476193143, 
+        0.000604783137865751, 
+        0.0006540204747426862
+      ], 
+      "nn std": 1.7591428967383504e-05, 
+      "nn avg": 0.0006370661087426094, 
+      "p": 0.0005, 
+      "lu avg": 0.0012, 
+      "lu std": 3.0853e-05
+    }, 
+    "data": {
+      "path": "5.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 21528378, 
+      "test size": 200000, 
+      "fault scale": 0.09290063561685882
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 900
+    }, 
+    "res": {
+      "nn res": [
+        0.0008893535628965682, 
+        0.0009613435773277971, 
+        0.0008323153206933636, 
+        0.0009220259540615106, 
+        0.0009043053351245927, 
+        0.0009170420299855022, 
+        0.0008893535628965682, 
+        0.000903751565782814, 
+        0.0008849234081623387, 
+        0.0008622188651494126
+      ], 
+      "nn std": 3.3049221550806375e-05, 
+      "nn avg": 0.0008966633182080467, 
+      "p": 0.0006, 
+      "lu avg": 0.0017, 
+      "lu std": 3.6771e-05
+    }, 
+    "data": {
+      "path": "6.000e-04.pkl", 
+      "train size": 1800000, 
+      "total size": 18058060, 
+      "test size": 200000, 
+      "fault scale": 0.110753868355737
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9882831263234948, 
+        "learning rate": 0.005439329542128114, 
+        "tune value": 7389.82421875, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.052199334494841126
+      }, 
+      "data": {
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.0013220621835448674, 
+        "b std": 0.0, 
+        "num hidden": [
+          998, 
+          148
+        ], 
+        "keep rate": 1.0, 
+        "activations": [
+          "sigmoid", 
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "FF"
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "ExRecCNOT", 
+        "EC scheme": "ColorD3", 
+        "param folder": "../../Param/LookUp/Steane_CNOT_D3/", 
+        "raw folder": "../../Data/Compact/Steane_CNOT_D3/e-04/", 
+        "report folder": "../../Reports/LookUp/Steane_CNOT_D3/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D3/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

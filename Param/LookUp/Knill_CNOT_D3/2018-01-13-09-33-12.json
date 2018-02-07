@@ -1,0 +1,44 @@
+{
+  "opt": {
+    "decay": 0.9583782436576135, 
+    "learning rate": 0.001474751507386028, 
+    "tune value": 1006.4881591796875, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 0.5941528760073438
+  }, 
+  "data": {
+    "num test batch": 100, 
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": true, 
+    "FT scheme": "ExRecCNOT", 
+    "EC scheme": "ColorD3", 
+    "param folder": "../../Param/LookUp/Knill_CNOT_D3/", 
+    "raw folder": "../../Data/Compact/Knill_CNOT_D3/e-04/", 
+    "report folder": "../../Reports/LookUp/Knill_CNOT_D3/", 
+    "pickle folder": "../../Data/Pkl/LookUp/Knill_CNOT_D3/e-04/"
+  }, 
+  "nn": {
+    "W std": 0.08293334558448452, 
+    "b std": 0.0, 
+    "num hidden": [
+      481
+    ], 
+    "unit type": "LSTM", 
+    "peepholes": false, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "id"
+    ], 
+    "type": "RNN", 
+    "keep rate": 1.0
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

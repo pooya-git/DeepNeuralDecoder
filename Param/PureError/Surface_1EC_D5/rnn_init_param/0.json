@@ -1,0 +1,43 @@
+{
+  "opt": {
+    "learning rate": -1, 
+    "decay": -1, 
+    "momentum": -1, 
+    "iterations": 20, 
+    "batch size": 2000
+  }, 
+  "data": {
+    "num trials": 10, 
+    "test fraction": 0.1,
+    "num test batch": 200
+  }, 
+  "env": {
+    "look up": false, 
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD5", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/",
+    "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D5/e-04/",
+    "report folder": "../../Reports/PureError/Surface_1EC_D5/",
+    "param folder": "../../Param/PureError/Surface_1EC_D5/"
+  }, 
+  "nn": {
+    "W std": -1, 
+    "b std": 0.0, 
+    "num hidden": [
+      -1
+    ], 
+    "unit type": "LSTM", 
+    "peepholes": false, 
+    "mixed": false, 
+    "activations": [
+      "relu", 
+      "id"
+    ], 
+    "iso": false, 
+    "keep rate": 1.0, 
+    "type": "RNN"
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

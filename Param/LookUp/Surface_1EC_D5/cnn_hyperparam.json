@@ -1,0 +1,22 @@
+{
+  "bayesopt": {
+    "n_iterations": 50,
+    "n_iter_relearn": 1,
+    "epsilon": 0.4,
+    "noise": 1e-10
+  },
+  "vars": {
+    "opt.decay": [0.00, 0.999999, "identity"], 
+    "opt.momentum": [0.00, 0.999999, "identity"], 
+    "opt.learning rate": [-6.0, -2.0, "raise_ten"],
+    "nn.W std": [-6.0, -2.0, "raise_ten"], 
+    "nn.num hidden": [10.0, 100.0999999, "int_times_ten"],
+    "nn.keep rate": [0.00, 1.00, "identity"],
+    "nn.num filters": [0.50, 1.0999999, "int_times_ten"]
+  },
+  "env": {
+    "filename": "6.000e-04.pkl",
+    "inner iterations": 1, 
+    "database usage": 1
+  }
+}

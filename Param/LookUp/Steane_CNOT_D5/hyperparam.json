@@ -8,13 +8,13 @@
   "vars": {
     "opt.decay": [0.00, 0.999999, "identity"], 
     "opt.momentum": [0.00, 0.999999, "identity"], 
-    "opt.learning rate": [-7.0, -1.0, "raise_ten"],
-    "nn.W std": [-5.0, -1.0, "raise_ten"], 
+    "opt.learning rate": [-7.0, -3.0, "raise_ten"],
+    "nn.W std": [-5.0, -3.0, "raise_ten"], 
     "nn.num hidden": [10.0, 100.0999999, "int_times_ten"]
   },
   "env": {
-    "filename": "SyndromeAndError4.000e-04.pkl",
-    "inner iterations": 5, 
-    "database usage": 0.1
+    "filename": "1.000e-03.pkl",
+    "inner iterations": 1, 
+    "database usage": 1
   }
 }

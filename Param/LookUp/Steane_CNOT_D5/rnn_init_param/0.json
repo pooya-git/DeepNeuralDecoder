@@ -4,20 +4,21 @@
     "decay": -1, 
     "momentum": -1, 
     "iterations": 20, 
-    "batch size": 1000
+    "batch size": 2000
   }, 
   "data": {
-    "num trials": 1, 
-    "test fraction": 0.1
+    "num trials": 10, 
+    "test fraction": 0.1,
+    "num test batch": 100
   }, 
   "env": {
     "look up": true, 
     "FT scheme": "ExRecCNOT", 
     "EC scheme": "ColorD5", 
     "param folder": "../../Param/LookUp/Steane_CNOT_D5/", 
-    "raw folder": "../../Data/Compact/Steane_CNOT_D5/e-03-2/", 
+    "raw folder": "../../Data/Compact/Steane_CNOT_D5/e-04/", 
     "report folder": "../../Reports/LookUp/Steane_CNOT_D5/", 
-    "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D5/e-03-2/"
+    "pickle folder": "../../Data/Pkl/LookUp/Steane_CNOT_D5/e-04/"
   }, 
   "nn": {
     "W std": -1, 

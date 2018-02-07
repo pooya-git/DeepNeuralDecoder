@@ -1,5 +1,7 @@
-python multiplot.py 0.000001 3 PureError/Steane_CNOT_D5/2017-12-18-18-57-15.json FF-1Hidden no PureError/Steane_CNOT_D5/2017-12-21-08-14-57.json LSTM no
+python multiplot.py 0.000005 3 PureError/Steane_CNOT_D5/2018-01-25-21-19-09.json PE-RNN -0.000003 PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 -0.000012
 
-python multiplot.py 0 3 LookUp/Steane_CNOT_D5/2017-12-18-19-00-46.json FF-1Hidden -0.000018 LookUp/Steane_CNOT_D5/2017-12-21-12-51-48.json LSTM -0.00001
+python multiplot.py 0.000005 3 LookUp/Steane_CNOT_D5/2018-01-21-18-14-48.json LU-RNN -0.000003 LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 -0.000013
+
+python multiplot.py 0.000005 3 LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 -0.000003 PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 -0.000012
 
 python multiplot.py 0 3 PureError/Steane_CNOT_D5/2017-12-18-18-57-15.json FF-1Hidden no PureError/Steane_CNOT_D5/2017-12-18-18-57-15-cross.json FF-1Hidden-Cross-Trained 0.0
