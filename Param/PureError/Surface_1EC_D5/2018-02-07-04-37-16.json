@@ -1,0 +1,44 @@
+{
+  "opt": {
+    "decay": 0.999999, 
+    "learning rate": 3.120633789354617e-05, 
+    "tune value": 23690.826171875, 
+    "iterations": 20, 
+    "batch size": 2000, 
+    "momentum": 9.563727302986352e-05
+  }, 
+  "data": {
+    "num test batch": 200, 
+    "num trials": 10, 
+    "test fraction": 0.1
+  }, 
+  "env": {
+    "look up": false, 
+    "FT scheme": "Surface1EC", 
+    "EC scheme": "SurfaceD5", 
+    "param folder": "../../Param/PureError/Surface_1EC_D5/", 
+    "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+    "report folder": "../../Reports/PureError/Surface_1EC_D5/", 
+    "pickle folder": "../../Data/Pkl/PureError/Surface_1EC_D5/e-04/"
+  }, 
+  "nn": {
+    "W std": 1.0006248088502904e-06, 
+    "b std": 0.0, 
+    "num hidden": [
+      100
+    ], 
+    "unit type": "LSTM", 
+    "peepholes": false, 
+    "mixed": false, 
+    "iso": false, 
+    "activations": [
+      "relu", 
+      "id"
+    ], 
+    "type": "RNN", 
+    "keep rate": 1.0
+  }, 
+  "usr": {
+    "verbose": false
+  }
+}

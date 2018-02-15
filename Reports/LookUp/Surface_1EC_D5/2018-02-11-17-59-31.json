@@ -1,0 +1,440 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        9.022527275599287e-05, 
+        8.857663820397307e-05, 
+        8.9925521019262e-05, 
+        8.632850017849152e-05, 
+        8.947589341416569e-05, 
+        9.20237831763781e-05, 
+        8.602874844176064e-05, 
+        9.19488452421954e-05, 
+        8.872651407233851e-05, 
+        9.000045895344473e-05
+      ], 
+      "nn std": 1.9126063521525086e-06, 
+      "nn avg": 8.932601754580025e-05, 
+      "p": 0.0003, 
+      "lu avg": 9.36e-05, 
+      "lu std": 3.0593e-06
+    }, 
+    "data": {
+      "path": "3.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 133443824, 
+      "test size": 1999999, 
+      "fault scale": 0.14987579342750249
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.00020840207517470059, 
+        0.00020149103017824858, 
+        0.0002062606246124197, 
+        0.00021015417108929407, 
+        0.0002077207045412476, 
+        0.0002105435257369815, 
+        0.00020226973947362346, 
+        0.00020957013911776292, 
+        0.00019944691827788956, 
+        0.0002077207045412476
+      ], 
+      "nn std": 3.7190502940800035e-06, 
+      "nn avg": 0.00020635796327434153, 
+      "p": 0.0004, 
+      "lu avg": 0.0002099, 
+      "lu std": 4.581e-06
+    }, 
+    "data": {
+      "path": "4.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 102734148, 
+      "test size": 1999999, 
+      "fault scale": 0.19467722650505653
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0003891740319559095, 
+        0.0004007947068893888, 
+        0.00039154559826886444, 
+        0.00038810682711507976, 
+        0.00039190133321580765, 
+        0.00038490521259259056, 
+        0.00038644673069601127, 
+        0.00039889745383902485, 
+        0.00040447063467446905, 
+        0.0004122968035072204
+      ], 
+      "nn std": 8.458624379913679e-06, 
+      "nn avg": 0.00039485393327543656, 
+      "p": 0.0005, 
+      "lu avg": 0.000396, 
+      "lu std": 6.2916e-06
+    }, 
+    "data": {
+      "path": "5.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 84332489, 
+      "test size": 1999999, 
+      "fault scale": 0.2371565127171807
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0006407903004016426, 
+        0.0006658731387175373, 
+        0.0006402359835327831, 
+        0.0006549253805575612, 
+        0.00065007510795504, 
+        0.0006538167468198421, 
+        0.0006369100823196258, 
+        0.0006744650501848605, 
+        0.0006453634145697339, 
+        0.0006629629751560247
+      ], 
+      "nn std": 1.168655883641918e-05, 
+      "nn avg": 0.0006525418180214651, 
+      "p": 0.0006, 
+      "lu avg": 0.0006635, 
+      "lu std": 8.1428e-06
+    }, 
+    "data": {
+      "path": "6.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 72160925, 
+      "test size": 1999999, 
+      "fault scale": 0.277158295850559
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0010273248622239307, 
+        0.0010235392339891121, 
+        0.0010284290037924197, 
+        0.0010058729688932914, 
+        0.0010072925794813484, 
+        0.0010154947739901222, 
+        0.0010158102430096905, 
+        0.001005399765363939, 
+        0.0010244856410478167, 
+        0.0010336342426152953
+      ], 
+      "nn std": 9.690921253477321e-06, 
+      "nn avg": 0.0010187283314406967, 
+      "p": 0.0007, 
+      "lu avg": 0.001, 
+      "lu std": 1.0228e-05
+    }, 
+    "data": {
+      "path": "7.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 63397696, 
+      "test size": 1999999, 
+      "fault scale": 0.3154688618337171
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0014789512443777503, 
+        0.0014968779261277836, 
+        0.0014561035127355509, 
+        0.0014659456125198829, 
+        0.0014986354439464143, 
+        0.001478072485468435, 
+        0.001456455016299277, 
+        0.0014715696695395011, 
+        0.0014198986456717582, 
+        0.0014627820804463476
+      ], 
+      "nn std": 2.1503006061749966e-05, 
+      "nn avg": 0.00146852916371327, 
+      "p": 0.0008, 
+      "lu avg": 0.0015, 
+      "lu std": 1.2418e-05
+    }, 
+    "data": {
+      "path": "8.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 56898453, 
+      "test size": 1999999, 
+      "fault scale": 0.351503387974362
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9388617003838692, 
+        "learning rate": 4.846467490350135e-06, 
+        "tune value": 16793.427734375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.6966735925075394
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 7.4659383574194e-05, 
+        "b std": 0.0, 
+        "num hidden": [
+          654
+        ], 
+        "keep rate": 0.4795199285726994, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "3DCNN", 
+        "num filters": 8
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

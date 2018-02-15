@@ -27,7 +27,7 @@ def plot_results(filenames, titles= None, shifts= None, global_shift= 0.0):
 	ax.set_xlabel('Physical fault rate')
 	ax.set_ylabel('Logical fault rate')
 	plt.rc('lines', linewidth= 2)
-	plt.rc('lines', linestyle= None)
+	plt.rc('lines', linestyle= 'none')
 	plt.rc('axes', prop_cycle=(cycler('color', ['r', 'g', 'b', 'y'])))
 
 	with open(filenames[0]) as data_file:

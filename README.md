@@ -72,8 +72,8 @@ After Chris' debugging:
 | Steane | LU | 5 | Yes |     |     | Yes | Yes*|  -  |     |     | 6e-4 2e-3 | 1e-3 |
 | Knill  | PU | 5 |     |     |     | Yes |     |     |     |     | 6e-4 2e-3 | 4e-4 |
 | Knill  | LU | 5 |     |     |     | Yes |     |     |     |     | 6e-4 2e-3 | 4e-4 |
-| Sur    | PU | 5 | K3B |     |     | Yes |     |     |     | K2B | 3e-4 8e-4 | 6e-4 |
-| Sur    | LU | 5 | G4B |     |     | Yes |     |     |     | G3B | 3e-4 8e-4 | 6e-4 |
+| Sur    | PU | 5 | Yes |     |     | Yes |     |     |     | Yes | 3e-4 8e-4 | 6e-4 |
+| Sur    | LU | 5 | Yes |     |     | Yes |     |     |     | G3B | 3e-4 8e-4 | 6e-4 |
 | SurB05 | PU | 3 |     |     | Yes |     |     |     |     |     | 1e-4 6e-4 | 4e-4 |
 | SurB05 | LU | 3 |     |     | Yes |     |     |     |     |     | 1e-4 6e-4 | 4e-4 |
 | SurB10 | PU | 3 |     |     | Yes |     |     |     |     |     | 1e-4 6e-4 | 4e-4 |
