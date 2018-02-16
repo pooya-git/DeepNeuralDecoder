@@ -1,0 +1,458 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        7.201535474959231e-05, 
+        6.864314771136999e-05, 
+        6.796870630372553e-05, 
+        7.216523061795775e-05, 
+        7.11160995393997e-05, 
+        6.624513381752301e-05, 
+        7.283967202560222e-05, 
+        6.527094067314767e-05, 
+        6.969227878992806e-05, 
+        6.557069240987855e-05
+      ], 
+      "nn std": 2.7022997286159973e-06, 
+      "nn avg": 6.915272566381249e-05, 
+      "p": 0.0003, 
+      "lu avg": 9.36e-05, 
+      "lu std": 3.0593e-06
+    }, 
+    "data": {
+      "path": "3.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 133443824, 
+      "test size": 1999999, 
+      "fault scale": 0.14987579342750249
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.00015340573118885015, 
+        0.00015486581111767803, 
+        0.0001525296832315534, 
+        0.00014649468619239815, 
+        0.00014552129957317954, 
+        0.00015788330963725566, 
+        0.00014970686203581948, 
+        0.0001478574274593042, 
+        0.00014240646239168004, 
+        0.0001520429899219441
+      ], 
+      "nn std": 4.4938003873819745e-06, 
+      "nn avg": 0.00015027142627496628, 
+      "p": 0.0004, 
+      "lu avg": 0.0002099, 
+      "lu std": 4.581e-06
+    }, 
+    "data": {
+      "path": "4.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 102734148, 
+      "test size": 1999999, 
+      "fault scale": 0.19467722650505653
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0002752202706184235, 
+        0.00028399506597635686, 
+        0.0002787776200878559, 
+        0.0002861294756580163, 
+        0.00028423222260765235, 
+        0.0002784218851409127, 
+        0.00027142576451769557, 
+        0.0002752202706184235, 
+        0.0002700028247299226, 
+        0.0002761688971436055
+      ], 
+      "nn std": 5.173182026303245e-06, 
+      "nn avg": 0.0002779594297098864, 
+      "p": 0.0005, 
+      "lu avg": 0.000396, 
+      "lu std": 6.2916e-06
+    }, 
+    "data": {
+      "path": "5.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 84332489, 
+      "test size": 1999999, 
+      "fault scale": 0.2371565127171807
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0004383260640506911, 
+        0.00045121393125167566, 
+        0.00044580934178029507, 
+        0.00046188453097722207, 
+        0.0004471951339524439, 
+        0.0004614687933255774, 
+        0.0004390189601367655, 
+        0.00044068191074334424, 
+        0.00045135251046889054, 
+        0.00044830376769016306
+      ], 
+      "nn std": 7.914123086879826e-06, 
+      "nn avg": 0.0004485254944377068, 
+      "p": 0.0006, 
+      "lu avg": 0.0006635, 
+      "lu std": 8.1428e-06
+    }, 
+    "data": {
+      "path": "6.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 72160925, 
+      "test size": 1999999, 
+      "fault scale": 0.277158295850559
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0006878801971685186, 
+        0.0006851987105021887, 
+        0.0006881956661880869, 
+        0.0006951359846185879, 
+        0.000688353400697871, 
+        0.0006973442677555656, 
+        0.000737093364221162, 
+        0.0006728954187390279, 
+        0.0007039691171664982, 
+        0.0006921390289326897
+      ], 
+      "nn std": 1.6098195824635398e-05, 
+      "nn avg": 0.0006948205155990197, 
+      "p": 0.0007, 
+      "lu avg": 0.001, 
+      "lu std": 1.0228e-05
+    }, 
+    "data": {
+      "path": "7.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 63397696, 
+      "test size": 1999999, 
+      "fault scale": 0.3154688618337171
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }, 
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.0010026639155288253, 
+        0.000992294560398904, 
+        0.0009810464463596675, 
+        0.0009889552765435057, 
+        0.0010010821494920575, 
+        0.0010133847742224726, 
+        0.0009954580924724395, 
+        0.0010107484974945266, 
+        0.0009780586660679952, 
+        0.0010125060153131572
+      ], 
+      "nn std": 1.2022256928342313e-05, 
+      "nn avg": 0.000997619839389355, 
+      "p": 0.0008, 
+      "lu avg": 0.0015, 
+      "lu std": 1.2418e-05
+    }, 
+    "data": {
+      "path": "8.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 56898453, 
+      "test size": 1999999, 
+      "fault scale": 0.351503387974362
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9997144447775638, 
+        "learning rate": 2.4393313920885975e-05, 
+        "tune value": 10559.1025390625, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.5365349536329707
+      }, 
+      "data": {
+        "num test batch": 200, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009990969752524698, 
+        "b std": 0.0, 
+        "num hidden": [
+          722
+        ], 
+        "unit type": "LSTM", 
+        "peepholes": false, 
+        "activations": [
+          "relu", 
+          "id"
+        ], 
+        "iso": false, 
+        "mixed": false, 
+        "type": "RNN", 
+        "keep rate": 1.0
+      }, 
+      "env": {
+        "look up": true, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../../Param/LookUp/Surface_1EC_D5/", 
+        "raw folder": "../../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../../Reports/LookUp/Surface_1EC_D5/", 
+        "pickle folder": "../../Data/Pkl/LookUp/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]
