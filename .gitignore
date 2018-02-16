@@ -5,5 +5,4 @@ local:*
 BayesOpt/*
 BayesOpt
 .ipynb_checkpoints/*
-Data/Chris/*
 sftp-config.json
