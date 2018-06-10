@@ -1,5 +1,14 @@
-python multiplot.py 0.000003 2 PureError/Steane_CNOT_D3/2018-01-13-19-17-59.json PE-FF1 0.0000013 PureError/Steane_CNOT_D3/2018-01-14-23-04-23.json PE-RNN -0.000002 PureError/Steane_CNOT_D3/2018-01-13-20-00-07.json PE-FF2 -0.000007
+python poly_plot.py 2 \
+PureError/Steane_CNOT_D3/2018-01-13-19-17-59.json PE-FF1 \
+PureError/Steane_CNOT_D3/2018-01-13-20-00-07.json PE-FF2 \
+PureError/Steane_CNOT_D3/2018-01-14-23-04-23.json PE-RNN
 
-python multiplot.py -0.000007 2 LookUp/Steane_CNOT_D3/2018-01-10-18-04-58.json LU-FF0 0.000009 LookUp/Steane_CNOT_D3/2018-01-10-18-54-55.json LU-FF1 0.000008 LookUp/Steane_CNOT_D3/2018-01-13-21-52-27.json LU-FF2 0.000003 LookUp/Steane_CNOT_D3/2018-01-12-09-55-18.json LU-RNN 0.1
+python poly_plot.py 2 \
+LookUp/Steane_CNOT_D3/2018-01-10-18-04-58.json LU-FF0 \
+LookUp/Steane_CNOT_D3/2018-01-10-18-54-55.json LU-FF1 \
+LookUp/Steane_CNOT_D3/2018-01-13-21-52-27.json LU-FF2 \
+LookUp/Steane_CNOT_D3/2018-01-12-09-55-18.json LU-RNN
 
-python multiplot.py 0.000002 2 PureError/Steane_CNOT_D3/2018-01-13-20-00-07.json PE-FF2 0.0 LookUp/Steane_CNOT_D3/2018-01-13-21-52-27.json LU-FF2 -0.000006
+python poly_plot.py 2 \
+PureError/Steane_CNOT_D3/2018-01-13-20-00-07.json PE-FF2 \
+LookUp/Steane_CNOT_D3/2018-01-13-21-52-27.json LU-FF2

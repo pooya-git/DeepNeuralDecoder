@@ -131,6 +131,9 @@ class Model(object):
         elif param['type']=='3DCNN':
             return nn.surface_conv3d_cost(\
                 param, self.spec, x, y, predict, keep_rate)
+        elif param['type']=='Ch3DCNN':
+            return nn.surface_channeled_conv3d_cost(\
+                param, self.spec, x, y, predict, keep_rate)
         else:
             print('Neural network type not supported.')
 

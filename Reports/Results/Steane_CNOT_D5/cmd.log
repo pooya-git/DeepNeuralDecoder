@@ -1,7 +1,15 @@
-python multiplot.py 0.000005 3 PureError/Steane_CNOT_D5/2018-01-25-21-19-09.json PE-RNN -0.000003 PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 -0.000012
+python poly_plot.py 3 \
+PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 \
+PureError/Steane_CNOT_D5/2018-01-25-21-19-09.json PE-RNN
 
-python multiplot.py 0.000005 3 LookUp/Steane_CNOT_D5/2018-01-27-20-49-40.json LU-RNN -0.000003 LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 -0.000013
+python poly_plot.py 3 \
+LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 \
+LookUp/Steane_CNOT_D5/2018-01-27-20-49-40.json LU-RNN
 
-python multiplot.py 0.000005 3 LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 -0.000003 PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 -0.000012
+python poly_plot.py 3 \
+LookUp/Steane_CNOT_D5/2018-01-16-21-42-05.json LU-FF2 \
+PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2
 
-python multiplot.py 0 3 PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 no PureError/Steane_CNOT_D5/cross.json PE-FF2-cross-trained
+python poly_plot.py 3 \
+PureError/Steane_CNOT_D5/2018-01-18-00-19-44.json PE-FF2 \
+PureError/Steane_CNOT_D5/cross.json PE-FF2-cross-trained

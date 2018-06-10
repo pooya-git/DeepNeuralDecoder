@@ -1,0 +1,75 @@
+[
+  {
+    "opt": {
+      "batch size": 2000, 
+      "number of batches": 9000
+    }, 
+    "res": {
+      "nn res": [
+        0.001370512394968235, 
+        0.0012613705384312672, 
+        0.0013532887203456538, 
+        0.0013615490540932183, 
+        0.0013622520612206705, 
+        0.0012661158365415701, 
+        0.0012158508269287315, 
+        0.0012518799422106613, 
+        0.0013467859044167202, 
+        0.0013283319673210977
+      ], 
+      "nn std": 5.395645251915488e-05, 
+      "nn avg": 0.0013117937246477824, 
+      "p": 0.0008, 
+      "lu avg": 0.0015, 
+      "lu std": 1.2418e-05
+    }, 
+    "data": {
+      "path": "8.000e-04.pkl", 
+      "train size": 18000000, 
+      "total size": 56898453, 
+      "test size": 1999999, 
+      "fault scale": 0.351503387974362
+    }, 
+    "param": {
+      "opt": {
+        "decay": 0.9999721062756692, 
+        "learning rate": 0.00011900587187851238, 
+        "tune value": 11959.3662109375, 
+        "iterations": 20, 
+        "batch size": 2000, 
+        "momentum": 0.16113756224765247
+      }, 
+      "data": {
+        "num test batch": 100, 
+        "num trials": 10, 
+        "test fraction": 0.1
+      }, 
+      "nn": {
+        "W std": 0.009997560016072968, 
+        "b std": 0.0, 
+        "num hidden": [
+          442
+        ], 
+        "keep rate": 0.9999793474448729, 
+        "padding size": 1, 
+        "iso": false, 
+        "mixed": false, 
+        "kernel size": 3, 
+        "type": "Ch3DCNN", 
+        "num filters": 5
+      }, 
+      "env": {
+        "look up": false, 
+        "FT scheme": "Surface1EC", 
+        "EC scheme": "SurfaceD5", 
+        "param folder": "../Param/PureError/Surface_1EC_D5/", 
+        "raw folder": "../Data/Compact/Surface_1EC_D5/e-04/", 
+        "report folder": "../Reports/PureError/Surface_1EC_D5/", 
+        "pickle folder": "../Data/Pkl/PureError/Surface_1EC_D5/e-04/"
+      }, 
+      "usr": {
+        "verbose": false
+      }
+    }
+  }
+]

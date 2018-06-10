@@ -26,7 +26,6 @@
 
 import tensorflow as tf
 from util import perp
-import CustomLSTM
 
 def cross_ff_cost(param, spec, x, y, predict):
 
@@ -60,6 +59,63 @@ def cross_ff_cost(param, spec, x, y, predict):
         with tf.variable_scope(key):
             logits[key]= tf.nn.relu(tf.matmul(hidden[key], W21[key]) +b21[key]\
                 + tf.matmul(hidden[perp(key)], W22[key]) +b22[key])
+            loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
+                logits=logits[key], labels=y[key])
+            predict[key]= tf.argmax(logits[key], 1)
+    return tf.reduce_sum(sum(loss[key] for key in spec.err_keys))
+
+def surface_channeled_conv3d_cost(param, spec, x, y, predict, keep_rate):
+
+    num_hiddens= param['num hidden'][0]
+    num_filters= param['num filters']
+    kernel_size= param['kernel size']
+    pad_size= param['padding size']
+    short_leg= min(spec.syn_w['Z'], spec.syn_h['Z'])
+    long_leg= max(spec.syn_w['Z'], spec.syn_h['Z'])
+    flat_size= (spec.num_syn) * \
+               (2 * pad_size + short_leg) * \
+               (2 * pad_size - 1 + long_leg) * num_filters
+    W_std= param['W std']
+    b_std= param['b std']
+    conv_input, padded_input= {}, {}
+    logits, loss = {}, {}
+
+    conv_input['X'] = tf.reshape(\
+        x['X'], [-1, spec.num_syn, spec.syn_h['X'], spec.syn_w['X'], 1])
+    conv_input['Z'] = tf.reshape(\
+        x['Z'], [-1, spec.num_syn, spec.syn_h['Z'], spec.syn_w['Z'], 1])
+    padded_input['X'] = tf.pad(conv_input['X'], tf.constant([\
+        [0, 0], [0, 0],\
+        [pad_size, pad_size],\
+        [pad_size, pad_size - 1],\
+        [0, 0]]), 'SYMMETRIC')
+    padded_input['Z'] = tf.pad(conv_input['Z'], tf.constant([\
+        [0, 0], [0, 0],\
+        [pad_size, pad_size - 1],\
+        [pad_size, pad_size],\
+        [0, 0]]), 'SYMMETRIC')
+    merged_input= tf.concat([padded_input['X'], padded_input['Z']], axis=-1)
+
+    conv1 = tf.layers.conv3d(\
+        merged_input, filters= num_filters,\
+        kernel_size= kernel_size,\
+        padding= 'same', activation=tf.nn.relu)
+    conv2 = tf.layers.conv3d(\
+        conv1, filters= num_filters,\
+        kernel_size= kernel_size + 1,\
+        padding= 'same', activation=tf.nn.relu)
+    pool_flat= tf.reshape(conv2, [-1, flat_size])
+    W= tf.Variable(\
+        tf.random_normal([flat_size, num_hiddens], stddev=W_std))
+    b= tf.Variable(tf.random_normal([num_hiddens], stddev=b_std))
+    hidden= tf.nn.dropout(\
+        tf.nn.relu(tf.matmul(pool_flat, W) + b), keep_rate)
+    for key in spec.err_keys:
+        with tf.variable_scope(key):
+            W= tf.Variable(\
+                tf.random_normal([num_hiddens, spec.num_labels], stddev=W_std))
+            b= tf.Variable(tf.random_normal([spec.num_labels], stddev=b_std))
+            logits[key]= (tf.matmul(hidden, W) + b)
             loss[key]= tf.nn.softmax_cross_entropy_with_logits(\
                 logits=logits[key], labels=y[key])
             predict[key]= tf.argmax(logits[key], 1)
@@ -251,8 +307,6 @@ def rnn_cost(param, spec, x, y, predict):
         lstm_cell= tf.contrib.rnn.LSTMCell
     elif param['unit type']=='GRU':
         lstm_cell= tf.contrib.rnn.GRUCell
-    elif param['unit type']=='Custom':
-        lstm_cell= CustomLSTM.CustomLSTMCell
     else:
         raise Exception('RNN cell not recognized.')
     lstmIn, lstm, lstmOut= {}, {}, {}

@@ -7,18 +7,27 @@ from numpy import arctan, pi, log, exp
 
 matplotlib.rcParams.update({'font.size': 14})
 
-def poly(x, a):
-    global poly_deg
-    return a * np.power(x, poly_deg)
+def latex_float(f):
+    float_str = '{0:.2e}'.format(f)
+    if 'e' in float_str:
+        base, exponent = float_str.split('e')
+        return '$' + r'{0}\! \times\! 10^{{{1}}}'.format(base, int(exponent)) + '$'
+    else:
+        return float_str
+
+def write_poly(a, b):
+	return ' (' + latex_float(a) + ' $p^{%.2f}$) ' % b
+
+def poly(x, a, b):
+    return a * np.power(x, b)
 
 def plot_results(filenames, titles= None):
 
-	global poly_deg
 	fig = figure(figsize=(9, 6))
 	ax = fig.add_subplot(111)
 	ax.set_yscale('log')
 	ax.set_xscale('log')
-	lightnavy = matplotlib.colors.colorConverter.to_rgb('#0174DF') 
+	lightnavy = matplotlib.colors.colorConverter.to_rgb('#0174DF')
 	darknavy = matplotlib.colors.colorConverter.to_rgb('#084B8A')
 	ax.yaxis.grid(True, linestyle='-', which='major', color='grey')
 	ax.yaxis.grid(True, linestyle='-', which='minor', color='lightgrey')
@@ -43,7 +52,7 @@ def plot_results(filenames, titles= None):
 	lu_poly, _ = curve_fit(poly, p, lu_avg)
 	g= ax.plot(p, lu_avg, \
 		marker='o', markersize=4, \
-		label= 'Look up table' + ' ($%.2e p^%d$)' % (lu_poly[0], poly_deg))
+		label= 'Look up table' + write_poly(lu_poly[0], lu_poly[1]))
 	ax.errorbar(p, lu_avg, yerr=lu_std, \
 		color= g[-1].get_color(), linestyle='None', \
 		markersize=9, capsize=4)
@@ -71,7 +80,7 @@ def plot_results(filenames, titles= None):
 		nn_poly, _ = curve_fit(poly, p, nn_avg)
 		g= ax.plot(p, nn_avg, \
 			marker='o', markersize=4, \
-			label= label + ' ($%.2e p^%d$) ' % (nn_poly[0], poly_deg))
+			label= label + write_poly(nn_poly[0], nn_poly[1]))
 		ax.errorbar(p, nn_avg, yerr=nn_std, \
 			color= g[-1].get_color(), linestyle='None', \
 			markersize=9, capsize=4)
@@ -83,8 +92,7 @@ def plot_results(filenames, titles= None):
 
 if __name__ == '__main__':
 
-	poly_deg= int(sys.argv[1])
-	global poly_deg
+	poly_deg= int(sys.argv[1]) # dummy
 	if os.path.isdir(sys.argv[1]):
 		filenames= []
 		for elt in os.listdir(sys.argv[2]):
